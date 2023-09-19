@@ -2,4 +2,9 @@
 3D_Space_Shooter/SpaceShooter/Platforms/
 3D_Space_Shooter/SpaceShooter/Intermediate/
 *__*__*
+3D_Space_Shooter/SpaceShooter/Build/
+3D_Space_Shooter/SpaceShooter/Content/SpaceShooter/Assets/Screenshots/
+3D_Space_Shooter/JustASpaceShooterWindows/
+*.zip
+
 3D_Space_Shooter/SpaceShooter/Content/SpaceShooter/Blueprints/SpaceSkybox/MySkybox.dds
