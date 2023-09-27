@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://biugc7jiaj06x"]
+[gd_scene load_steps=38 format=3 uid="uid://biugc7jiaj06x"]
 
 [ext_resource type="Texture2D" uid="uid://64yccl3ajueo" path="res://GroundTiles/tile_cornerSquare_E.png" id="1_a8j0i"]
 [ext_resource type="Texture2D" uid="uid://dx83gy5tdjdiq" path="res://GroundTiles/tile_cornerSquare_N.png" id="2_2cyrk"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://chhfa30p4b2qy" path="res://GroundTiles/tile_end_N.png" id="15_8yoju"]
 [ext_resource type="Texture2D" uid="uid://c7pd4thaw2qo3" path="res://GroundTiles/tile_end_S.png" id="16_84nru"]
 [ext_resource type="Texture2D" uid="uid://qiv6o6ff1csr" path="res://GroundTiles/tile_end_W.png" id="17_v6fjf"]
+[ext_resource type="Script" path="res://World/GroundTilemap.gd" id="18_4xsrg"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_h4guw"]
 tile_data = PackedInt32Array(131073, 65538, 4, 196608, 65536, 4, 262145, 65537, 4, 2, 65543, 4, 65537, 65545, 4, 131074, 65544, 4, 196609, 65539, 4, 262146, 65547, 4, 327681, 65548, 4, 393218, 65550, 4, 65538, 65542, 4, 131075, 65552, 4, 196610, 65551, 4, 262147, 65546, 4, 327682, 65549, 4, 196611, 65540, 4)
@@ -150,3 +151,4 @@ y_sort_enabled = true
 tile_set = SubResource("TileSet_5q736")
 format = 2
 layer_0/y_sort_enabled = true
+script = ExtResource("18_4xsrg")
