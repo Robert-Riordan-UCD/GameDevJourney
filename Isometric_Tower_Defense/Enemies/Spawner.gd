@@ -2,12 +2,15 @@ extends Node2D
 
 signal enemy_spawned(enemy, position)
 
+@export var path : Node2D
+
 var orc_scene := preload("res://Enemies/Orc.tscn")
 var first_spawn := true
 
 func spawn_orc() -> void:
-	var new_orc :Node2D= orc_scene.instantiate()
+	var new_orc : Node2D = orc_scene.instantiate()
 	new_orc.scale *= 0.15
+	new_orc.path = path
 	emit_signal("enemy_spawned", new_orc, position)
 
 func _on_timer_timeout():

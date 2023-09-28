@@ -13,6 +13,32 @@ script = ExtResource("1_hwvo5")
 [node name="GroundTileMap" parent="." instance=ExtResource("1_2bn0o")]
 layer_0/tile_data = PackedInt32Array(655360, 65546, 4, 524289, 65546, 4, 589824, 65546, 4, 655361, 65546, 4, 720896, 65546, 4, 786433, 65546, 4, 393218, 65546, 4, 458753, 65546, 4, 524290, 65536, 4, 589825, 65546, 4, 655362, 65546, 4, 720897, 65546, 4, 786434, 65546, 4, 851969, 65546, 4, 917506, 65546, 4, 262147, 65546, 4, 327682, 65551, 4, 393219, 65539, 4, 458754, 65552, 4, 524291, 65546, 4, 589826, 65551, 4, 655363, 65537, 4, 720898, 65546, 4, 786435, 65546, 4, 851970, 65546, 4, 917507, 65536, 4, 983042, 65546, 4, 1048579, 65546, 4, 131076, 65546, 4, 196611, 65546, 4, 262148, 65546, 4, 327683, 65546, 4, 393220, 65546, 4, 458755, 65546, 4, 524292, 65552, 4, 589827, 65552, 4, 655364, 65546, 4, 720899, 65546, 4, 786436, 65552, 4, 851971, 65552, 4, 917508, 65546, 4, 983043, 65551, 4, 1048580, 65537, 4, 1114115, 65546, 4, 1179652, 65546, 4, 196612, 65546, 4, 262149, 65546, 4, 327684, 65546, 4, 393221, 65538, 4, 458756, 65552, 4, 524293, 65546, 4, 589828, 65546, 4, 655365, 65552, 4, 720900, 65552, 4, 786437, 65546, 4, 851972, 65546, 4, 917509, 65552, 4, 983044, 65552, 4, 1048581, 65546, 4, 1114116, 65546, 4, 327685, 65546, 4, 393222, 65546, 4, 458757, 65551, 4, 524294, 65539, 4, 589829, 65552, 4, 655366, 65546, 4, 720901, 65546, 4, 786438, 65552, 4, 851973, 65552, 4, 917510, 65546, 4, 983045, 65546, 4, 458758, 65546, 4, 524295, 65546, 4, 589830, 65546, 4, 655367, 65552, 4, 720902, 65552, 4, 786439, 65546, 4, 851974, 65546, 4, 589831, 65552, 4, 655368, 65546, 4, 720903, 65546, 4)
 
+[node name="Path" type="Node2D" parent="."]
+
+[node name="Node2D" type="Node2D" parent="Path"]
+position = Vector2(576, 525)
+
+[node name="Node2D2" type="Node2D" parent="Path"]
+position = Vector2(454, 460)
+
+[node name="Node2D3" type="Node2D" parent="Path"]
+position = Vector2(825, 270)
+
+[node name="Node2D4" type="Node2D" parent="Path"]
+position = Vector2(704, 205)
+
+[node name="Node2D5" type="Node2D" parent="Path"]
+position = Vector2(449, 329)
+
+[node name="Node2D6" type="Node2D" parent="Path"]
+position = Vector2(328, 267)
+
+[node name="Node2D7" type="Node2D" parent="Path"]
+position = Vector2(443, 203)
+
+[node name="Node2D8" type="Node2D" parent="Path"]
+position = Vector2(355, 157)
+
 [node name="Enemies" type="Node2D" parent="."]
 script = ExtResource("3_3c74o")
 
@@ -27,9 +53,10 @@ anchor_mode = 0
 [node name="GUI" parent="." instance=ExtResource("4_n8ogx")]
 metadata/_edit_use_anchors_ = true
 
-[node name="SpawnPoint" type="Node2D" parent="."]
+[node name="SpawnPoint" type="Node2D" parent="." node_paths=PackedStringArray("path")]
 position = Vector2(1052, 286)
 script = ExtResource("6_7upbv")
+path = NodePath("../Path")
 
 [node name="Timer" type="Timer" parent="SpawnPoint"]
 autostart = true
