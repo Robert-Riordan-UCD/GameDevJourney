@@ -1,15 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://dtwaj0nwuwg0o"]
+[gd_scene load_steps=7 format=3 uid="uid://dtwaj0nwuwg0o"]
 
 [ext_resource type="PackedScene" uid="uid://biugc7jiaj06x" path="res://World/GroundTilemap.tscn" id="1_2bn0o"]
 [ext_resource type="Script" path="res://Levels/LevelManager.gd" id="1_hwvo5"]
 [ext_resource type="Script" path="res://Towers/TowerManager.gd" id="2_t5eh5"]
+[ext_resource type="Script" path="res://Enemies/EnemyManager.gd" id="3_3c74o"]
 [ext_resource type="PackedScene" uid="uid://ckapmihl1c8vg" path="res://GUI/GUI.tscn" id="4_n8ogx"]
+[ext_resource type="Script" path="res://Enemies/Spawner.gd" id="6_7upbv"]
 
 [node name="Level1" type="Node2D"]
 script = ExtResource("1_hwvo5")
 
 [node name="GroundTileMap" parent="." instance=ExtResource("1_2bn0o")]
 layer_0/tile_data = PackedInt32Array(655360, 65546, 4, 524289, 65546, 4, 589824, 65546, 4, 655361, 65546, 4, 720896, 65546, 4, 786433, 65546, 4, 393218, 65546, 4, 458753, 65546, 4, 524290, 65536, 4, 589825, 65546, 4, 655362, 65546, 4, 720897, 65546, 4, 786434, 65546, 4, 851969, 65546, 4, 917506, 65546, 4, 262147, 65546, 4, 327682, 65551, 4, 393219, 65539, 4, 458754, 65552, 4, 524291, 65546, 4, 589826, 65551, 4, 655363, 65537, 4, 720898, 65546, 4, 786435, 65546, 4, 851970, 65546, 4, 917507, 65536, 4, 983042, 65546, 4, 1048579, 65546, 4, 131076, 65546, 4, 196611, 65546, 4, 262148, 65546, 4, 327683, 65546, 4, 393220, 65546, 4, 458755, 65546, 4, 524292, 65552, 4, 589827, 65552, 4, 655364, 65546, 4, 720899, 65546, 4, 786436, 65552, 4, 851971, 65552, 4, 917508, 65546, 4, 983043, 65551, 4, 1048580, 65537, 4, 1114115, 65546, 4, 1179652, 65546, 4, 196612, 65546, 4, 262149, 65546, 4, 327684, 65546, 4, 393221, 65538, 4, 458756, 65552, 4, 524293, 65546, 4, 589828, 65546, 4, 655365, 65552, 4, 720900, 65552, 4, 786437, 65546, 4, 851972, 65546, 4, 917509, 65552, 4, 983044, 65552, 4, 1048581, 65546, 4, 1114116, 65546, 4, 327685, 65546, 4, 393222, 65546, 4, 458757, 65551, 4, 524294, 65539, 4, 589829, 65552, 4, 655366, 65546, 4, 720901, 65546, 4, 786438, 65552, 4, 851973, 65552, 4, 917510, 65546, 4, 983045, 65546, 4, 458758, 65546, 4, 524295, 65546, 4, 589830, 65546, 4, 655367, 65552, 4, 720902, 65552, 4, 786439, 65546, 4, 851974, 65546, 4, 589831, 65552, 4, 655368, 65546, 4, 720903, 65546, 4)
+
+[node name="Enemies" type="Node2D" parent="."]
+script = ExtResource("3_3c74o")
 
 [node name="Towers" type="Node2D" parent="." node_paths=PackedStringArray("level_manager", "ground_tile_map")]
 script = ExtResource("2_t5eh5")
@@ -21,3 +26,21 @@ anchor_mode = 0
 
 [node name="GUI" parent="." instance=ExtResource("4_n8ogx")]
 metadata/_edit_use_anchors_ = true
+
+[node name="SpawnPoint" type="Node2D" parent="."]
+position = Vector2(1052, 286)
+script = ExtResource("6_7upbv")
+
+[node name="Timer" type="Timer" parent="SpawnPoint"]
+autostart = true
+
+[node name="Lights" type="Node3D" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lights"]
+transform = Transform3D(0.707107, -0.270598, 0.653281, 0, 0.92388, 0.382683, -0.707107, -0.270598, 0.653281, 1, 1, 1)
+light_color = Color(0.909804, 0.72549, 0.529412, 1)
+directional_shadow_mode = 0
+sky_mode = 1
+
+[connection signal="enemy_spawned" from="SpawnPoint" to="Enemies" method="_on_spawn_point_enemy_spawned"]
+[connection signal="timeout" from="SpawnPoint/Timer" to="SpawnPoint" method="_on_timer_timeout"]

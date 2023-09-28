@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://cguv7tfik2pyu"]
+
+[ext_resource type="PackedScene" uid="uid://gmh08hf40swr" path="res://Enemies/OrcModel.tscn" id="1_ln8ye"]
+[ext_resource type="Script" path="res://Enemies/Enemy.gd" id="1_udqcm"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_8sppl"]
+viewport_path = NodePath("SubViewport")
+
+[node name="Orc" type="Node2D"]
+script = ExtResource("1_udqcm")
+
+[node name="Screen" type="Sprite2D" parent="."]
+texture = SubResource("ViewportTexture_8sppl")
+region_rect = Rect2(-16, -16, 16, 16)
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+
+[node name="OrcModel" parent="SubViewport" instance=ExtResource("1_ln8ye")]
