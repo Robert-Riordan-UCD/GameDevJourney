@@ -31,7 +31,6 @@ func spawn_orc() -> void:
 func _on_unit_timer_timeout():
 	spawn_orc()
 	wave_units[0] -= 1
-	print("Spawning unit ", wave_units[0])
 	if wave_units[0] > 0:
 		unit_timer.start()
 	else:
