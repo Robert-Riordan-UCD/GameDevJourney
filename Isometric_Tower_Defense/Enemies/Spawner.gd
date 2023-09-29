@@ -4,8 +4,23 @@ signal enemy_spawned(enemy, position)
 
 @export var path : Node2D
 
+@export_category("Waves")
+@export var wait_between_units : float = 0.5
+@export var wait_between_waves : float = 10
+@export var wave_units : Array = [
+	1, 3, 5, 7, 9
+]
+
+@onready var unit_timer = $UnitTimer
+@onready var wave_timer = $WaveTimer
+
 var orc_scene := preload("res://Enemies/Orc.tscn")
 var first_spawn := true
+
+func _ready() -> void:
+	unit_timer.wait_time = wait_between_units
+	wave_timer.wait_time = wait_between_waves
+	unit_timer.start()
 
 func spawn_orc() -> void:
 	var new_orc : Node2D = orc_scene.instantiate()
@@ -13,5 +28,16 @@ func spawn_orc() -> void:
 	new_orc.path = path
 	emit_signal("enemy_spawned", new_orc, position)
 
-func _on_timer_timeout():
+func _on_unit_timer_timeout():
 	spawn_orc()
+	wave_units[0] -= 1
+	print("Spawning unit ", wave_units[0])
+	if wave_units[0] > 0:
+		unit_timer.start()
+	else:
+		wave_units.pop_front()
+		if len(wave_units) > 0:
+			wave_timer.start()
+
+func _on_wave_timer_timeout():
+	unit_timer.start()
