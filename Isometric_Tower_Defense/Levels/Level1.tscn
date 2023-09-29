@@ -50,9 +50,6 @@ ground_tile_map = NodePath("../GroundTileMap")
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
 
-[node name="GUI" parent="." instance=ExtResource("4_n8ogx")]
-metadata/_edit_use_anchors_ = true
-
 [node name="SpawnPoint" type="Node2D" parent="." node_paths=PackedStringArray("path")]
 position = Vector2(1052, 286)
 script = ExtResource("6_7upbv")
@@ -69,5 +66,11 @@ light_color = Color(0.909804, 0.72549, 0.529412, 1)
 directional_shadow_mode = 0
 sky_mode = 1
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GUI" parent="CanvasLayer" instance=ExtResource("4_n8ogx")]
+metadata/_edit_use_anchors_ = true
+
+[connection signal="enemy_reached_end" from="Enemies" to="." method="_on_enemies_enemy_reached_end"]
 [connection signal="enemy_spawned" from="SpawnPoint" to="Enemies" method="_on_spawn_point_enemy_spawned"]
 [connection signal="timeout" from="SpawnPoint/Timer" to="SpawnPoint" method="_on_timer_timeout"]

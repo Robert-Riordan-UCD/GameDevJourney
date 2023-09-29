@@ -1,15 +1,20 @@
+class_name Enemy
 extends Node2D
 
-signal reached_end
+signal reached_end(damage)
 
+@export_category("Variables")
 @export var speed : float = 100
+@export var damage : int = 1
+
+@export_category("Setup")
 @export var path : Node2D
 
 @onready var next_point : Vector2 = path.get_children()[0].position
 
 var path_points : Array = []
 
-const NEAR_TARGET_THRESHOLD = 10;
+const NEAR_TARGET_THRESHOLD = 1;
 
 func _ready() -> void:
 	for point in path.get_children():
@@ -29,5 +34,5 @@ func update_path() -> void:
 		if len(path_points) > 0:
 			next_point = path_points[0]
 		else:
-			emit_signal("reached_end")
+			reached_end.emit(damage)
 			queue_free()

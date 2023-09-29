@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://ckapmihl1c8vg"]
+[gd_scene load_steps=4 format=3 uid="uid://ckapmihl1c8vg"]
 
 [ext_resource type="Texture2D" uid="uid://t04ucfrhwa86" path="res://GUI/coin.png" id="1_a1be3"]
 [ext_resource type="Script" path="res://GUI/GUI.gd" id="1_trp08"]
+[ext_resource type="Texture2D" uid="uid://ctxl2axvv5qtx" path="res://GUI/Heart.png" id="3_s7lfh"]
 
 [node name="GUI" type="Control"]
 layout_mode = 3
@@ -10,20 +11,37 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource("1_trp08")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 64.0
+grow_horizontal = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
 
 [node name="CoinTexture" type="TextureRect" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 0
 texture = ExtResource("1_a1be3")
 
 [node name="GoldAmount" type="Label" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 2
 text = "<GOLD AMOUNT>"
+
+[node name="Health" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "<HEALTH>"
+
+[node name="HeartTexture" type="TextureRect" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("3_s7lfh")
