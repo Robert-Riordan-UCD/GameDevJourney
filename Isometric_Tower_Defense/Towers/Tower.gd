@@ -37,8 +37,10 @@ var current_level : int = 0
 ]
 
 @onready var range_shape = $Range
+@onready var range_sprite = $RangeSprite
 @onready var attack_timer = $AttackTimer
 @onready var bullet = $Bullet
+@onready var last_range : int = 32
 
 var enemies : Array = []
 
@@ -81,6 +83,8 @@ func set_level(level: int) -> void:
 	cooldown = levels[current_level]["cooldown"]
 	
 	range_shape.scale = Vector2(range, range*0.5)
+	range_sprite.scale *= range/last_range
+	last_range = range
 	attack_timer.wait_time = cooldown
 
 func _on_click_area_input_event(_viewport, event, _shape_idx):
