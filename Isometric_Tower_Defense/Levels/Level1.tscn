@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://biugc7jiaj06x" path="res://World/GroundTilemap.tscn" id="1_2bn0o"]
 [ext_resource type="Script" path="res://Levels/LevelManager.gd" id="1_hwvo5"]
-[ext_resource type="Script" path="res://Towers/TowerManager.gd" id="2_t5eh5"]
 [ext_resource type="Script" path="res://Enemies/EnemyManager.gd" id="3_3c74o"]
+[ext_resource type="PackedScene" uid="uid://dq5otudm77au1" path="res://Towers/TowerManager.tscn" id="4_dyw6v"]
 [ext_resource type="PackedScene" uid="uid://ckapmihl1c8vg" path="res://GUI/GUI.tscn" id="4_n8ogx"]
 [ext_resource type="Script" path="res://Enemies/Spawner.gd" id="6_7upbv"]
 
@@ -42,8 +42,7 @@ position = Vector2(355, 157)
 [node name="Enemies" type="Node2D" parent="."]
 script = ExtResource("3_3c74o")
 
-[node name="Towers" type="Node2D" parent="." node_paths=PackedStringArray("level_manager", "ground_tile_map")]
-script = ExtResource("2_t5eh5")
+[node name="TowerManager" parent="." node_paths=PackedStringArray("level_manager", "ground_tile_map") instance=ExtResource("4_dyw6v")]
 level_manager = NodePath("..")
 ground_tile_map = NodePath("../GroundTileMap")
 

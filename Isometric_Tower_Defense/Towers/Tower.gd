@@ -63,8 +63,11 @@ func _on_attack_timer_timeout():
 		else:
 			enemy_to_attack = enemies[i]
 	if enemy_to_attack == null: return
+	attack(enemy_to_attack)
+
+func attack(enemy: Enemy) -> void:
 	print("Attacking!!!")
-	enemy_to_attack.take_damage(damage)
+	enemy.take_damage(damage)
 
 func level_up() -> void:
 	current_level = min(current_level + 1, len(levels))
@@ -78,7 +81,7 @@ func set_level(level: int) -> void:
 	range_shape.scale = Vector2(range, range*0.5)
 	attack_timer.wait_time = cooldown
 
-func _on_click_area_input_event(viewport, event, shape_idx):
+func _on_click_area_input_event(_viewport, event, _shape_idx):
 	if event.is_action_pressed("right_mouse") and current_level < len(levels)-1:
 		request_level_up.emit(levels[current_level]["next_price"])
 

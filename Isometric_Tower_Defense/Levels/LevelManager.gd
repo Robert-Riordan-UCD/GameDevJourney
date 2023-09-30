@@ -5,6 +5,8 @@ extends Node2D
 @export var gold : int = 500
 
 @onready var gui : GUI = $CanvasLayer/GUI
+@onready var tower_manager : TowerManager = $TowerManager
+@onready var ground_tile_map = $GroundTileMap
 
 func _ready():
 	gui.set_gold_amount(gold)
