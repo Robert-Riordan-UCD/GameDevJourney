@@ -1,12 +1,40 @@
 class_name Tower
 extends Area2D
 
-@export var price : int = 50
+signal request_level_up(cost)
 
-@export_category("Attack")
-@export var range : float = 300
-@export var damage : int = 1
-@export var cooldown : float = 0.5
+@export var price : int = 50
+var range : float
+var damage : int
+var cooldown : float
+var current_level : int = 0
+
+@export var levels : Array = [
+	{
+	"next_price": 50,
+	"range": 300,
+	"damage": 1,
+	"cooldown": 0.5
+	},
+	{
+	"next_price": 50,
+	"range": 400,
+	"damage": 1,
+	"cooldown": 0.5
+	},
+	{
+	"next_price": 50,
+	"range": 500,
+	"damage": 2,
+	"cooldown": 0.5
+	},
+	{
+	"next_price": null,
+	"range": 600,
+	"damage": 2,
+	"cooldown": 0.3
+	}
+]
 
 @onready var range_shape = $Range
 @onready var attack_timer = $AttackTimer
@@ -14,8 +42,7 @@ extends Area2D
 var enemies : Array = []
 
 func _ready():
-	range_shape.scale *= range
-	attack_timer.wait_time = cooldown
+	set_level(current_level)
 
 func _on_area_entered(area):
 	if area is Enemy:
@@ -23,11 +50,28 @@ func _on_area_entered(area):
 		print("Orcs!")
 
 func _on_attack_timer_timeout():
-	for i in range(len(enemies)-1, 0, -1):
+	var enemy_to_attack = null
+	for i in range(len(enemies)-1, -1, -1):
 		if enemies[i] == null:
 			enemies.remove_at(i)
 		else:
-			var dead : bool = enemies[i].take_damage(damage)
-			if dead:
-				enemies.remove_at(i)
-			break
+			enemy_to_attack = enemies[i]
+	if enemy_to_attack == null: return
+	print("Attacking!!!")
+	enemy_to_attack.take_damage(damage)
+
+func level_up() -> void:
+	current_level = min(current_level + 1, len(levels))
+	set_level(current_level)
+
+func set_level(level: int) -> void:
+	range = levels[current_level]["range"]
+	damage = levels[current_level]["damage"]
+	cooldown = levels[current_level]["cooldown"]
+	
+	range_shape.scale = Vector2(range, range*0.5)
+	attack_timer.wait_time = cooldown
+
+func _on_click_area_input_event(viewport, event, shape_idx):
+	if event.is_action_pressed("right_mouse") and current_level < len(levels)-1:
+		request_level_up.emit(levels[current_level]["next_price"])

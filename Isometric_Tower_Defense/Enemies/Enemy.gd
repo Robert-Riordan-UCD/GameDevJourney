@@ -38,12 +38,9 @@ func update_path() -> void:
 			reached_end.emit(damage)
 			queue_free()
 
-# Returns true if the enemy dies. Otherwise false
-func take_damage(d: int) -> bool:
+func take_damage(d: int):
 	health -= d
 	print("Ouch")
 	if health <= 0:
 		print("Ugh....")
 		queue_free()
-		return true
-	return false

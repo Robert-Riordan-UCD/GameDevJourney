@@ -11,7 +11,7 @@ func _ready():
 	gui.set_health(health)
 
 func spend_gold(amount: int) -> bool:
-	if amount > gold or amount <= 0:
+	if amount > gold or amount < 0:
 		return false
 	gold -= amount
 	gui.set_gold_amount(gold)
