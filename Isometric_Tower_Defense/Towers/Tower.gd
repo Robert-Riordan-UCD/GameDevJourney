@@ -38,6 +38,7 @@ var current_level : int = 0
 
 @onready var range_shape = $Range
 @onready var attack_timer = $AttackTimer
+@onready var bullet = $Bullet
 
 var enemies : Array = []
 
@@ -68,6 +69,7 @@ func _on_attack_timer_timeout():
 func attack(enemy: Enemy) -> void:
 	print("Attacking!!!")
 	enemy.take_damage(damage)
+	bullet.goto(enemy.global_position)
 
 func level_up() -> void:
 	current_level = min(current_level + 1, len(levels))

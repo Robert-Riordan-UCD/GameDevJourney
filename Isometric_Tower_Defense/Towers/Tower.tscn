@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://disy4deitnyhg"]
+[gd_scene load_steps=7 format=3 uid="uid://disy4deitnyhg"]
 
 [ext_resource type="Script" path="res://Towers/Tower.gd" id="1_8y4go"]
 [ext_resource type="Texture2D" uid="uid://bkph1uyhip4bl" path="res://Towers/towerRound_sampleF_E.png" id="1_m3onx"]
+[ext_resource type="Texture2D" uid="uid://xjiygytcvcxy" path="res://Towers/Bullet.png" id="3_fmt15"]
+[ext_resource type="Script" path="res://Towers/Bullet.gd" id="4_5aj0a"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_os5my"]
 radius = 1.0
@@ -35,6 +37,13 @@ scale = Vector2(10, 10)
 skew = 0.785398
 shape = SubResource("RectangleShape2D_rg1kf")
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="Bullet" type="Sprite2D" parent="."]
+visible = false
+z_index = 1
+position = Vector2(0, -76)
+texture = ExtResource("3_fmt15")
+script = ExtResource("4_5aj0a")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]
