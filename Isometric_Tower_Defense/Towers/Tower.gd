@@ -49,6 +49,12 @@ func _on_area_entered(area):
 		enemies.append(area)
 		print("Orcs!")
 
+func _on_area_exited(area):
+	for i in range(len(enemies)):
+		if enemies[i] == area:
+			enemies.remove_at(i)
+			return
+
 func _on_attack_timer_timeout():
 	var enemy_to_attack = null
 	for i in range(len(enemies)-1, -1, -1):
@@ -75,3 +81,6 @@ func set_level(level: int) -> void:
 func _on_click_area_input_event(viewport, event, shape_idx):
 	if event.is_action_pressed("right_mouse") and current_level < len(levels)-1:
 		request_level_up.emit(levels[current_level]["next_price"])
+
+
+

@@ -36,5 +36,6 @@ shape = SubResource("RectangleShape2D_rg1kf")
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
 [connection signal="input_event" from="ClickArea" to="." method="_on_click_area_input_event"]
