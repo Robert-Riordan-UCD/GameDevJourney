@@ -6,7 +6,7 @@ signal reached_end(damage)
 @export_category("Variables")
 @export var speed : float = 50
 @export var damage : int = 1
-@export var health : int = 2
+@export var health : int = 10
 
 @export_category("Setup")
 @export var path : Node2D

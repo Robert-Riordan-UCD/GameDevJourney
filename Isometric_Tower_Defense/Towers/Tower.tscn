@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://disy4deitnyhg"]
+[gd_scene load_steps=7 format=3 uid="uid://disy4deitnyhg"]
 
 [ext_resource type="Script" path="res://Towers/Tower.gd" id="1_8y4go"]
-[ext_resource type="Texture2D" uid="uid://bkph1uyhip4bl" path="res://Towers/towerRound_sampleF_E.png" id="1_m3onx"]
 [ext_resource type="Texture2D" uid="uid://2aqa46huwieg" path="res://Towers/Circle.png" id="2_iwe2m"]
 [ext_resource type="Texture2D" uid="uid://xjiygytcvcxy" path="res://Towers/Bullet.png" id="3_fmt15"]
 [ext_resource type="Script" path="res://Towers/Bullet.gd" id="4_5aj0a"]
@@ -29,7 +28,6 @@ scale = Vector2(64, 32)
 shape = SubResource("CircleShape2D_os5my")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_m3onx")
 offset = Vector2(0, -80)
 
 [node name="AttackTimer" type="Timer" parent="."]

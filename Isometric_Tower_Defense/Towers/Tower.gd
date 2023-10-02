@@ -14,25 +14,29 @@ var current_level : int = 0
 	"next_price": 50,
 	"range": 300,
 	"damage": 1,
-	"cooldown": 0.5
+	"cooldown": 0.5,
+	"sprite": "res://Towers/crossbowTowerLevel0.png"
 	},
 	{
 	"next_price": 50,
 	"range": 400,
 	"damage": 1,
-	"cooldown": 0.5
+	"cooldown": 0.5,
+	"sprite": "res://Towers/crossbowTowerLevel1.png"
 	},
 	{
 	"next_price": 50,
 	"range": 500,
 	"damage": 2,
-	"cooldown": 0.5
+	"cooldown": 0.5,
+	"sprite": "res://Towers/crossbowTowerLevel2.png"
 	},
 	{
 	"next_price": null,
 	"range": 600,
 	"damage": 2,
-	"cooldown": 0.3
+	"cooldown": 0.3,
+	"sprite": "res://Towers/crossbowTowerLevel3.png"
 	}
 ]
 
@@ -41,6 +45,7 @@ var current_level : int = 0
 @onready var attack_timer = $AttackTimer
 @onready var bullet = $Bullet
 @onready var last_range : int = 32
+@onready var sprite_2d = $Sprite2D
 
 var enemies : Array = []
 
@@ -81,6 +86,7 @@ func set_level(level: int) -> void:
 	range = levels[current_level]["range"]
 	damage = levels[current_level]["damage"]
 	cooldown = levels[current_level]["cooldown"]
+	sprite_2d.texture = load(levels[current_level]["sprite"])
 	
 	range_shape.scale = Vector2(range, range*0.5)
 	range_sprite.scale *= range/last_range

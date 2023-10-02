@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=3 uid="uid://mst7r7t0j2es"]
+
+[ext_resource type="PackedScene" uid="uid://disy4deitnyhg" path="res://Towers/Tower.tscn" id="1_n78bc"]
+
+[node name="MageTower" instance=ExtResource("1_n78bc")]
+levels = [{
+"cooldown": 0.5,
+"damage": 1,
+"next_price": 50,
+"range": 300,
+"sprite": "res://Towers/mageTowerLevel0.png"
+}, {
+"cooldown": 0.5,
+"damage": 1,
+"next_price": 50,
+"range": 400,
+"sprite": "res://Towers/mageTowerLevel1.png"
+}, {
+"cooldown": 0.5,
+"damage": 2,
+"next_price": 50,
+"range": 500,
+"sprite": "res://Towers/mageTowerLevel2.png"
+}, {
+"cooldown": 0.3,
+"damage": 2,
+"next_price": null,
+"range": 600,
+"sprite": "res://Towers/mageTowerLevel3.png"
+}]
