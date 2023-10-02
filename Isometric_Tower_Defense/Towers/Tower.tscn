@@ -17,6 +17,7 @@ input_pickable = false
 script = ExtResource("1_8y4go")
 
 [node name="RangeSprite" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.247059)
 texture_filter = 1
 position = Vector2(0, -32)
 scale = Vector2(1, 0.5)
@@ -54,3 +55,5 @@ script = ExtResource("4_5aj0a")
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
 [connection signal="input_event" from="ClickArea" to="." method="_on_click_area_input_event"]
+[connection signal="mouse_entered" from="ClickArea" to="." method="_on_click_area_mouse_entered"]
+[connection signal="mouse_exited" from="ClickArea" to="." method="_on_click_area_mouse_exited"]

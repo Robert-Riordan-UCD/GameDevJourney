@@ -97,5 +97,8 @@ func _on_click_area_input_event(_viewport, event, _shape_idx):
 	if event.is_action_pressed("right_mouse") and current_level < len(levels)-1:
 		request_level_up.emit(levels[current_level]["next_price"])
 
+func _on_click_area_mouse_entered():
+	range_sprite.visible = true
 
-
+func _on_click_area_mouse_exited():
+	range_sprite.visible = false
