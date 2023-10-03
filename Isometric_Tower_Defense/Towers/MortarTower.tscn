@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=3 uid="uid://c0tautgj7cheu"]
+
+[ext_resource type="PackedScene" uid="uid://disy4deitnyhg" path="res://Towers/Tower.tscn" id="1_4fnxo"]
+
+[node name="MortarTower" instance=ExtResource("1_4fnxo")]
+levels = [{
+"cooldown": 1.5,
+"damage": 2,
+"next_price": 50,
+"range": 250,
+"sprite": "res://Towers/mortarTowerLevel0.png"
+}, {
+"cooldown": 1.25,
+"damage": 2,
+"next_price": 50,
+"range": 300,
+"sprite": "res://Towers/mortarTowerLevel1.png"
+}, {
+"cooldown": 1.1,
+"damage": 2,
+"next_price": 50,
+"range": 350,
+"sprite": "res://Towers/mortarTowerLevel2.png"
+}, {
+"cooldown": 1.0,
+"damage": 3,
+"next_price": null,
+"range": 400,
+"sprite": "res://Towers/mortarTowerLevel3.png"
+}]

@@ -6,13 +6,18 @@ extends Node2D
 
 var crossbow_tower_scene := preload("res://Towers/CrossbowTower.tscn")
 var mage_tower_scene := preload("res://Towers/MageTower.tscn")
+var mortar_tower_scene := preload("res://Towers/MortarTower.tscn")
 
 func _input(event):
 	if event.is_action_pressed("left_mouse"):
 		if ground_tile_map.can_place_tower(get_global_mouse_position()):
-			var new_tower : Tower = crossbow_tower_scene.instantiate()
-			if randf() > .5:
+			var new_tower : Tower = mortar_tower_scene.instantiate()
+			var r : float = randf()
+			if r < .33:
 				new_tower = mage_tower_scene.instantiate()
+			elif r < .66:
+				new_tower = crossbow_tower_scene.instantiate()
+			
 			if !level_manager.spend_gold(new_tower.price):
 				return
 			add_child(new_tower)

@@ -50,7 +50,7 @@ var current_level : int = 0
 var enemies : Array = []
 
 func _ready():
-	set_level(current_level)
+	set_level()
 
 func _on_area_entered(area):
 	if area is Enemy:
@@ -80,9 +80,9 @@ func attack(enemy: Enemy) -> void:
 
 func level_up() -> void:
 	current_level = min(current_level + 1, len(levels))
-	set_level(current_level)
+	set_level()
 
-func set_level(level: int) -> void:
+func set_level() -> void:
 	range = levels[current_level]["range"]
 	damage = levels[current_level]["damage"]
 	cooldown = levels[current_level]["cooldown"]
