@@ -31,3 +31,4 @@ levels = [{
 }]
 
 [node name="MortarAttack" parent="." index="4" instance=ExtResource("2_qj1qm")]
+splash_range = 150.0
