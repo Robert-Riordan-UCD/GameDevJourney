@@ -19,6 +19,10 @@ func spend_gold(amount: int) -> bool:
 	gui.set_gold_amount(gold)
 	return true
 
-func _on_enemies_enemy_reached_end(damage):
+func _on_enemies_enemy_reached_end(damage: int) -> void:
 	health -= damage
 	gui.set_health(health)
+
+func _on_enemies_enemy_died(g: int) -> void:
+	gold += g
+	gui.set_gold_amount(gold)

@@ -2,11 +2,13 @@ class_name Enemy
 extends Area2D
 
 signal reached_end(damage)
+signal died(gold)
 
 @export_category("Variables")
 @export var speed : float = 50
 @export var damage : int = 1
 @export var health : int = 10
+@export var gold : int = 10
 
 @export_category("Setup")
 @export var path : Node2D
@@ -43,4 +45,5 @@ func take_damage(d: int):
 	print("Ouch")
 	if health <= 0:
 		print("Ugh....")
+		died.emit(gold)
 		queue_free()
