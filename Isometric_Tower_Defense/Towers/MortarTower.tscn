@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://c0tautgj7cheu"]
+[gd_scene load_steps=3 format=3 uid="uid://c0tautgj7cheu"]
 
 [ext_resource type="PackedScene" uid="uid://disy4deitnyhg" path="res://Towers/Tower.tscn" id="1_4fnxo"]
+[ext_resource type="PackedScene" uid="uid://dscgl22rpa4ol" path="res://Towers/Attack/MortarAttack.tscn" id="2_qj1qm"]
 
 [node name="MortarTower" instance=ExtResource("1_4fnxo")]
 levels = [{
@@ -28,3 +29,5 @@ levels = [{
 "range": 400,
 "sprite": "res://Towers/mortarTowerLevel3.png"
 }]
+
+[node name="MortarAttack" parent="." index="4" instance=ExtResource("2_qj1qm")]

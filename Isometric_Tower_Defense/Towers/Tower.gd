@@ -43,13 +43,19 @@ var current_level : int = 0
 @onready var range_shape = $Range
 @onready var range_sprite = $RangeSprite
 @onready var attack_timer = $AttackTimer
-@onready var bullet = $Bullet
 @onready var last_range : int = 32
 @onready var sprite_2d = $Sprite2D
 
+var attack : Attack = null
 var enemies : Array = []
 
 func _ready():
+	for child in get_children():
+		if child is Attack:
+			attack = child
+			break
+	if attack == null:
+		push_error("Tower must have an attack as a child. ", self)
 	set_level()
 
 func _on_area_entered(area):
@@ -71,12 +77,7 @@ func _on_attack_timer_timeout():
 		else:
 			enemy_to_attack = enemies[i]
 	if enemy_to_attack == null: return
-	attack(enemy_to_attack)
-
-func attack(enemy: Enemy) -> void:
-	print("Attacking!!!")
-	enemy.take_damage(damage)
-	bullet.goto(enemy.global_position)
+	attack.attack(enemy_to_attack, damage)
 
 func level_up() -> void:
 	current_level = min(current_level + 1, len(levels))

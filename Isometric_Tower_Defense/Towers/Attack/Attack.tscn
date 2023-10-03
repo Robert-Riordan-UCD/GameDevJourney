@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://byndd4lp3xjul"]
+
+[ext_resource type="Script" path="res://Towers/Attack.gd" id="1_unmey"]
+
+[node name="Attack" type="Node2D"]
+script = ExtResource("1_unmey")
