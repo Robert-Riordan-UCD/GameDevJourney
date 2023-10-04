@@ -5,7 +5,10 @@
 
 [node name="TowerSelectPanel" type="Panel"]
 custom_minimum_size = Vector2(200, 200)
+offset_right = 200.0
+offset_bottom = 200.0
 script = ExtResource("1_8tg8u")
+separation = null
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
@@ -41,3 +44,6 @@ expand_mode = 2
 [node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "<PRICE>"
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

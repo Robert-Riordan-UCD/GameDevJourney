@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dtwaj0nwuwg0o"]
+[gd_scene load_steps=11 format=3 uid="uid://dtwaj0nwuwg0o"]
 
 [ext_resource type="PackedScene" uid="uid://biugc7jiaj06x" path="res://World/GroundTilemap.tscn" id="1_2bn0o"]
 [ext_resource type="Script" path="res://Levels/LevelManager.gd" id="1_hwvo5"]
@@ -7,6 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://ckapmihl1c8vg" path="res://GUI/GUI.tscn" id="4_n8ogx"]
 [ext_resource type="Script" path="res://Enemies/Spawner.gd" id="6_7upbv"]
 [ext_resource type="PackedScene" uid="uid://hj6qg5kef8ea" path="res://GUI/TowerSelectPanel.tscn" id="7_40pq7"]
+[ext_resource type="Texture2D" uid="uid://bx2h8w6mr0v7m" path="res://Towers/crossbowTowerLevel0.png" id="8_njhld"]
+[ext_resource type="Texture2D" uid="uid://bvc5f0f5pwyl2" path="res://Towers/mageTowerLevel0.png" id="9_qhfo0"]
+[ext_resource type="Texture2D" uid="uid://vl7yaf2cq77f" path="res://Towers/mortarTowerLevel0.png" id="10_0vcwm"]
 
 [node name="Level1" type="Node2D"]
 script = ExtResource("1_hwvo5")
@@ -98,16 +101,22 @@ alignment = 1
 layout_mode = 2
 tower_name = "Crossbow"
 tower_price = 25
+texture = ExtResource("8_njhld")
+separation = 20
 
 [node name="MageSelect" parent="CanvasLayer/TowerSelect/HBoxContainer" instance=ExtResource("7_40pq7")]
 layout_mode = 2
 tower_name = "Mage"
 tower_price = 50
+texture = ExtResource("9_qhfo0")
+separation = 20
 
 [node name="MortarSelect" parent="CanvasLayer/TowerSelect/HBoxContainer" instance=ExtResource("7_40pq7")]
 layout_mode = 2
 tower_name = "Mortar"
 tower_price = 75
+texture = ExtResource("10_0vcwm")
+separation = 20
 
 [connection signal="enemy_died" from="Enemies" to="." method="_on_enemies_enemy_died"]
 [connection signal="enemy_reached_end" from="Enemies" to="." method="_on_enemies_enemy_reached_end"]
