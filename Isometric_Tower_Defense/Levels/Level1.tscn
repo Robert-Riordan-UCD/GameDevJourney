@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dtwaj0nwuwg0o"]
+[gd_scene load_steps=8 format=3 uid="uid://dtwaj0nwuwg0o"]
 
 [ext_resource type="PackedScene" uid="uid://biugc7jiaj06x" path="res://World/GroundTilemap.tscn" id="1_2bn0o"]
 [ext_resource type="Script" path="res://Levels/LevelManager.gd" id="1_hwvo5"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dq5otudm77au1" path="res://Towers/TowerManager.tscn" id="4_dyw6v"]
 [ext_resource type="PackedScene" uid="uid://ckapmihl1c8vg" path="res://GUI/GUI.tscn" id="4_n8ogx"]
 [ext_resource type="Script" path="res://Enemies/Spawner.gd" id="6_7upbv"]
+[ext_resource type="PackedScene" uid="uid://hj6qg5kef8ea" path="res://GUI/TowerSelectPanel.tscn" id="7_40pq7"]
 
 [node name="Level1" type="Node2D"]
 script = ExtResource("1_hwvo5")
@@ -72,6 +73,41 @@ sky_mode = 1
 
 [node name="GUI" parent="CanvasLayer" instance=ExtResource("4_n8ogx")]
 metadata/_edit_use_anchors_ = true
+
+[node name="TowerSelect" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/TowerSelect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="CrossbowSelect" parent="CanvasLayer/TowerSelect/HBoxContainer" instance=ExtResource("7_40pq7")]
+layout_mode = 2
+tower_name = "Crossbow"
+tower_price = 25
+
+[node name="MageSelect" parent="CanvasLayer/TowerSelect/HBoxContainer" instance=ExtResource("7_40pq7")]
+layout_mode = 2
+tower_name = "Mage"
+tower_price = 50
+
+[node name="MortarSelect" parent="CanvasLayer/TowerSelect/HBoxContainer" instance=ExtResource("7_40pq7")]
+layout_mode = 2
+tower_name = "Mortar"
+tower_price = 75
 
 [connection signal="enemy_died" from="Enemies" to="." method="_on_enemies_enemy_died"]
 [connection signal="enemy_reached_end" from="Enemies" to="." method="_on_enemies_enemy_reached_end"]
