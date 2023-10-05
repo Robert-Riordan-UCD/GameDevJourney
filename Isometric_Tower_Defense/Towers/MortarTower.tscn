@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dscgl22rpa4ol" path="res://Towers/Attack/MortarAttack.tscn" id="2_qj1qm"]
 
 [node name="MortarTower" instance=ExtResource("1_4fnxo")]
+tower_name = "Mortar"
 levels = [{
 "cooldown": 1.5,
 "damage": 2,
@@ -31,4 +32,3 @@ levels = [{
 }]
 
 [node name="MortarAttack" parent="." index="4" instance=ExtResource("2_qj1qm")]
-splash_range = 150.0

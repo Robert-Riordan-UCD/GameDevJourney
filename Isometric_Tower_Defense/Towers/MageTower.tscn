@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://by2gqxfqa0d7r" path="res://Towers/Attack/MageAttack.tscn" id="2_onjcb"]
 
 [node name="MageTower" instance=ExtResource("1_n78bc")]
+tower_name = "Mage"
 levels = [{
 "cooldown": 2.0,
 "damage": 4,
@@ -30,4 +31,4 @@ levels = [{
 "sprite": "res://Towers/mageTowerLevel3.png"
 }]
 
-[node name="MageAttack" parent="." index="6" instance=ExtResource("2_onjcb")]
+[node name="MageAttack" parent="." index="5" instance=ExtResource("2_onjcb")]

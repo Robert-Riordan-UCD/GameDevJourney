@@ -3,6 +3,7 @@ extends Area2D
 
 signal request_level_up(cost)
 
+@export var tower_name : String
 @export var price : int = 50
 var range : float
 var damage : int

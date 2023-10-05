@@ -7,9 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://ckapmihl1c8vg" path="res://GUI/GUI.tscn" id="4_n8ogx"]
 [ext_resource type="Script" path="res://Enemies/Spawner.gd" id="6_7upbv"]
 [ext_resource type="PackedScene" uid="uid://hj6qg5kef8ea" path="res://GUI/TowerSelectPanel.tscn" id="7_40pq7"]
-[ext_resource type="Texture2D" uid="uid://bx2h8w6mr0v7m" path="res://Towers/crossbowTowerLevel0.png" id="8_njhld"]
-[ext_resource type="Texture2D" uid="uid://bvc5f0f5pwyl2" path="res://Towers/mageTowerLevel0.png" id="9_qhfo0"]
-[ext_resource type="Texture2D" uid="uid://vl7yaf2cq77f" path="res://Towers/mortarTowerLevel0.png" id="10_0vcwm"]
+[ext_resource type="PackedScene" uid="uid://dhib44oiejfwd" path="res://Towers/CrossbowTower.tscn" id="8_fv0x2"]
+[ext_resource type="PackedScene" uid="uid://mst7r7t0j2es" path="res://Towers/MageTower.tscn" id="9_7rlog"]
+[ext_resource type="PackedScene" uid="uid://c0tautgj7cheu" path="res://Towers/MortarTower.tscn" id="10_pjcmg"]
 
 [node name="Level1" type="Node2D"]
 script = ExtResource("1_hwvo5")
@@ -86,6 +86,7 @@ anchor_right = 0.5
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0
+mouse_filter = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/TowerSelect"]
 layout_mode = 1
@@ -94,28 +95,23 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_constants/separation = 10
 alignment = 1
 
 [node name="CrossbowSelect" parent="CanvasLayer/TowerSelect/HBoxContainer" instance=ExtResource("7_40pq7")]
 layout_mode = 2
-tower_name = "Crossbow"
-tower_price = 25
-texture = ExtResource("8_njhld")
+tower = ExtResource("8_fv0x2")
 separation = 20
 
 [node name="MageSelect" parent="CanvasLayer/TowerSelect/HBoxContainer" instance=ExtResource("7_40pq7")]
 layout_mode = 2
-tower_name = "Mage"
-tower_price = 50
-texture = ExtResource("9_qhfo0")
+tower = ExtResource("9_7rlog")
 separation = 20
 
 [node name="MortarSelect" parent="CanvasLayer/TowerSelect/HBoxContainer" instance=ExtResource("7_40pq7")]
 layout_mode = 2
-tower_name = "Mortar"
-tower_price = 75
-texture = ExtResource("10_0vcwm")
+tower = ExtResource("10_pjcmg")
 separation = 20
 
 [connection signal="enemy_died" from="Enemies" to="." method="_on_enemies_enemy_died"]

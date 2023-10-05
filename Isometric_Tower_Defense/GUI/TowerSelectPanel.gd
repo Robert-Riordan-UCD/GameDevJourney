@@ -1,18 +1,14 @@
 @tool
 extends Panel
 
-@export var tower_name : String:
-	set(new_name):
-		tower_name = new_name
-		$VBoxContainer/Label.text = new_name
-@export var tower_price : int:
-	set(price):
-		tower_price = price
-		$VBoxContainer/HBoxContainer/Label.text = str(tower_price)
-@export var texture : Texture2D:
-	set(new_texture):
-		texture = new_texture
-		$TextureRect.texture = texture
+@export var tower : PackedScene :
+	set(t):
+		tower = t
+		var tmp : Tower = tower.instantiate()
+		$VBoxContainer/Label.text = tmp.tower_name
+		$VBoxContainer/HBoxContainer/Label.text = str(tmp.price)
+		$TextureRect.texture = load(tmp.levels[0]["sprite"])
+
 @export var y_travel : int = 50
 @export var separation : int = 20
 

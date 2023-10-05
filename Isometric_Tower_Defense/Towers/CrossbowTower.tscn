@@ -6,6 +6,7 @@
 
 [node name="CrossbowTower" instance=ExtResource("1_h6w6g")]
 script = ExtResource("1_u0a7x")
+tower_name = "Crossbow"
 price = 25
 levels = [{
 "cooldown": 0.2,
