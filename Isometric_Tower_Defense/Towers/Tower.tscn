@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://disy4deitnyhg"]
+[gd_scene load_steps=6 format=3 uid="uid://disy4deitnyhg"]
 
 [ext_resource type="Script" path="res://Towers/Tower.gd" id="1_8y4go"]
 [ext_resource type="Texture2D" uid="uid://2aqa46huwieg" path="res://Towers/Circle.png" id="2_iwe2m"]
+[ext_resource type="PackedScene" uid="uid://bfkp6rd0o0v14" path="res://GUI/UpgradePopup.tscn" id="3_t83wa"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_os5my"]
 radius = 1.0
@@ -42,9 +43,12 @@ skew = 0.785398
 shape = SubResource("RectangleShape2D_rg1kf")
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
+[node name="UpgradePopup" parent="." instance=ExtResource("3_t83wa")]
+
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
 [connection signal="input_event" from="ClickArea" to="." method="_on_click_area_input_event"]
 [connection signal="mouse_entered" from="ClickArea" to="." method="_on_click_area_mouse_entered"]
 [connection signal="mouse_exited" from="ClickArea" to="." method="_on_click_area_mouse_exited"]
+[connection signal="buy" from="UpgradePopup" to="." method="_on_upgrade_popup_buy"]

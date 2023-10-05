@@ -46,6 +46,7 @@ var current_level : int = 0
 @onready var attack_timer = $AttackTimer
 @onready var last_range : int = 32
 @onready var sprite_2d = $Sprite2D
+@onready var upgrade_popup : UpgradePopup = $UpgradePopup
 
 var attack : Attack = null
 var enemies : Array = []
@@ -95,12 +96,15 @@ func set_level() -> void:
 	last_range = range
 	attack_timer.wait_time = cooldown
 
-func _on_click_area_input_event(_viewport, event, _shape_idx):
-	if event.is_action_pressed("right_mouse") and current_level < len(levels)-1:
-		request_level_up.emit(levels[current_level]["next_price"])
+func _on_click_area_input_event(_viewport, event: InputEvent, _shape_idx):
+	if event.is_action_pressed("left_mouse") and current_level < len(levels)-1:
+		upgrade_popup.display(current_level, levels[current_level], levels[current_level+1], get_global_mouse_position())
 
 func _on_click_area_mouse_entered():
 	range_sprite.visible = true
 
 func _on_click_area_mouse_exited():
 	range_sprite.visible = false
+
+func _on_upgrade_popup_buy():
+	request_level_up.emit(levels[current_level]["next_price"])

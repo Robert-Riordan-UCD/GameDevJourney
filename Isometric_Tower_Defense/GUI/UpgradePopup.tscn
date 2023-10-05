@@ -1,0 +1,107 @@
+[gd_scene load_steps=3 format=3 uid="uid://bfkp6rd0o0v14"]
+
+[ext_resource type="Script" path="res://GUI/UpgradePopup.gd" id="1_8o6r4"]
+[ext_resource type="Texture2D" uid="uid://t04ucfrhwa86" path="res://GUI/coin.png" id="2_1y68u"]
+
+[node name="UpgradePopup" type="Popup"]
+size = Vector2i(336, 260)
+script = ExtResource("1_8o6r4")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+theme_override_constants/separation = 5
+alignment = 1
+
+[node name="Level" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "<level>"
+horizontal_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/h_separation = 20
+columns = 3
+
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer/GridContainer"]
+visible = false
+layout_mode = 2
+
+[node name="CurrentTexture" type="TextureRect" parent="MarginContainer/VBoxContainer/GridContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("2_1y68u")
+stretch_mode = 3
+
+[node name="NextTexture" type="TextureRect" parent="MarginContainer/VBoxContainer/GridContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("2_1y68u")
+stretch_mode = 3
+
+[node name="Damage" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Damage"
+
+[node name="CurrentDamage" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "<damage>"
+horizontal_alignment = 1
+
+[node name="NextDamage" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "<damage>"
+horizontal_alignment = 1
+
+[node name="Range" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Range"
+
+[node name="CurrentRange" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "<range>"
+horizontal_alignment = 1
+
+[node name="NextRange" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "<range>"
+horizontal_alignment = 1
+
+[node name="Cooldown" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Cooldown"
+
+[node name="CurrentCooldown" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "<cooldown>"
+horizontal_alignment = 1
+
+[node name="NextCooldown" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "<cooldown>"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "<Price>"
+icon = ExtResource("2_1y68u")
+
+[node name="CanDisplayTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+autostart = true
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
