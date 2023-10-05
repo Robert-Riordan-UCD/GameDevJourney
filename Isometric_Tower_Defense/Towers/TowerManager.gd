@@ -4,19 +4,13 @@ extends Node2D
 @export var level_manager : LevelManager
 @export var ground_tile_map : TileMap
 
-var crossbow_tower_scene := preload("res://Towers/CrossbowTower.tscn")
-var mage_tower_scene := preload("res://Towers/MageTower.tscn")
-var mortar_tower_scene := preload("res://Towers/MortarTower.tscn")
+@onready var selected_tower : PackedScene = null
 
 func _input(event):
 	if event.is_action_pressed("left_mouse"):
 		if ground_tile_map.can_place_tower(get_global_mouse_position()):
-			var new_tower : Tower = mortar_tower_scene.instantiate()
-			var r : float = randf()
-			if r < .33:
-				new_tower = mage_tower_scene.instantiate()
-			elif r < .66:
-				new_tower = crossbow_tower_scene.instantiate()
+			if selected_tower == null: return
+			var new_tower : Tower = selected_tower.instantiate()
 			
 			if !level_manager.spend_gold(new_tower.price):
 				return
@@ -28,3 +22,6 @@ func _request_level_up(cost: int, tower: Tower) -> void:
 	if !level_manager.spend_gold(cost):
 		return
 	tower.level_up()
+
+func _on_tower_selected(tower):
+	selected_tower = tower
