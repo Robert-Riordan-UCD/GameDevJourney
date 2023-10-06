@@ -17,6 +17,9 @@ signal buy
 @onready var can_display_timer = $CanDisplayTimer
 @onready var margin_container = $MarginContainer
 
+func _ready() -> void:
+	hide()
+
 func display(level: int, current_level: Dictionary, next_level: Dictionary, position: Vector2) -> void:
 	if !can_display_timer.is_stopped(): return
 	level_text.text = "Level " + str(level) + " -> " + str(level+1)
