@@ -22,7 +22,12 @@ func spend_gold(amount: int) -> bool:
 func _on_enemies_enemy_reached_end(damage: int) -> void:
 	health -= damage
 	gui.set_health(health)
+	if health <= 0:
+		game_over()
 
 func _on_enemies_enemy_died(g: int) -> void:
 	gold += g
 	gui.set_gold_amount(gold)
+
+func game_over() -> void:
+	$CanvasLayer/GameOverPopup.display()
