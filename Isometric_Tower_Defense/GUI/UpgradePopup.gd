@@ -1,5 +1,5 @@
 class_name UpgradePopup
-extends Popup
+extends PopupPanel
 
 signal buy
 
@@ -15,6 +15,7 @@ signal buy
 @onready var button = $MarginContainer/VBoxContainer/Button
 
 @onready var can_display_timer = $CanDisplayTimer
+@onready var margin_container = $MarginContainer
 
 func display(level: int, current_level: Dictionary, next_level: Dictionary, position: Vector2) -> void:
 	if !can_display_timer.is_stopped(): return
@@ -29,7 +30,10 @@ func display(level: int, current_level: Dictionary, next_level: Dictionary, posi
 	next_cooldown.text = str(next_level["cooldown"])
 	button.text = str(current_level["next_price"])
 	var s = get_size()
-	popup(Rect2i(position.x-s.x/2,  position.y-s.y/2, 100+s.x/2, 100+s.y/2))
+	popup(Rect2i(position.x-s.x/2,  position.y-s.y/2, s.x/2, s.y/2))
+	#margin_container.scale /= 2
+	
+
 
 func _on_button_pressed():
 	buy.emit()
