@@ -1,6 +1,7 @@
 extends Node2D
 
 signal enemy_spawned(enemy, position)
+signal all_enemies_spawned
 
 @export var path : Node2D
 
@@ -37,6 +38,8 @@ func _on_unit_timer_timeout():
 		wave_units.pop_front()
 		if len(wave_units) > 0:
 			wave_timer.start()
+		else:
+			all_enemies_spawned.emit()
 
 func _on_wave_timer_timeout():
 	unit_timer.start()

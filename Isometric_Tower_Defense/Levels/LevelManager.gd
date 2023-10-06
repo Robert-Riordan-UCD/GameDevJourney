@@ -31,3 +31,7 @@ func _on_enemies_enemy_died(g: int) -> void:
 
 func game_over() -> void:
 	$CanvasLayer/GameOverPopup.display()
+
+func _on_enemies_all_enemies_defeated():
+	if health <= 0: return
+	$CanvasLayer/LevelWonPopup.display()
