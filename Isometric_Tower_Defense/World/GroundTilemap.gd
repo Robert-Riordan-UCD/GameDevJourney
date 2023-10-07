@@ -8,10 +8,12 @@ func _ready():
 		for tile in get_used_cells_by_id(0, id):
 			valid_tiles[tile] = id
 
+func place_tower(pos: Vector2) -> void:
+	valid_tiles.erase(local_to_map(pos))
+
+
 func can_place_tower(pos: Vector2) -> bool:
-	var tile_pos = local_to_map(pos)
-	if tile_pos in valid_tiles:
-		valid_tiles.erase(tile_pos)
+	if local_to_map(pos) in valid_tiles:
 		return true
 	return false
 

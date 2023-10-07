@@ -18,6 +18,7 @@ func _input(event):
 			new_tower.position = ground_tile_map.snap_to_grid(get_global_mouse_position())
 			new_tower.request_level_up.connect(_request_level_up.bind(new_tower))
 			selected_tower = null
+			ground_tile_map.place_tower(get_global_mouse_position())
 	elif event.is_action_pressed("right_mouse"):
 		selected_tower = null
 
