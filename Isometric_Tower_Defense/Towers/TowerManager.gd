@@ -5,6 +5,10 @@ extends Node2D
 @export var ground_tile_map : TileMap
 
 @onready var selected_tower : PackedScene = null
+@onready var tower_preview = $TowerPreview
+
+func _ready() -> void:
+	tower_preview.tile_map = ground_tile_map
 
 func _input(event):
 	if selected_tower != null and event.is_action_pressed("left_mouse"):
@@ -19,8 +23,12 @@ func _input(event):
 			new_tower.request_level_up.connect(_request_level_up.bind(new_tower))
 			selected_tower = null
 			ground_tile_map.place_tower(get_global_mouse_position())
+			tower_preview.hide()
 	elif event.is_action_pressed("right_mouse"):
 		selected_tower = null
+		tower_preview.hide()
+	elif selected_tower != null and event is InputEventMouseMotion:
+		tower_preview.update(selected_tower)
 
 func _request_level_up(cost: int, tower: Tower) -> void:
 	if !level_manager.spend_gold(cost):
