@@ -34,8 +34,13 @@ texture = ExtResource("1_a1be3")
 
 [node name="GoldAmount" type="Label" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 2
+size_flags_horizontal = 0
 text = "<GOLD AMOUNT>"
+
+[node name="WaveCounter" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Wave <Current>/<Max>"
 
 [node name="Health" type="Label" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2

@@ -11,6 +11,8 @@ extends Node2D
 func _ready():
 	gui.set_gold_amount(gold)
 	gui.set_health(health)
+	gui.set_total_waves(len($SpawnPoint.wave_units))
+	gui.set_current_wave(1)
 
 func spend_gold(amount: int) -> bool:
 	if amount > gold or amount < 0:
@@ -35,3 +37,7 @@ func game_over() -> void:
 func _on_enemies_all_enemies_defeated():
 	if health <= 0: return
 	$CanvasLayer/LevelWonPopup.display()
+
+func _on_spawn_point_new_wave(wave_number):
+	if gui == null: return
+	gui.set_current_wave(wave_number)

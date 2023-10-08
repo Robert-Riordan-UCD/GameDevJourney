@@ -2,6 +2,7 @@ extends Node2D
 
 signal enemy_spawned(enemy, position)
 signal all_enemies_spawned
+signal new_wave(wave_number)
 
 @export var path : Node2D
 
@@ -15,6 +16,8 @@ signal all_enemies_spawned
 @onready var unit_timer = $UnitTimer
 @onready var wave_timer = $WaveTimer
 
+@onready var current_wave : int = 1
+
 var orc_scene := preload("res://Enemies/Orc.tscn")
 var first_spawn := true
 
@@ -22,6 +25,7 @@ func _ready() -> void:
 	unit_timer.wait_time = wait_between_units
 	wave_timer.wait_time = wait_between_waves
 	unit_timer.start()
+	new_wave.emit(current_wave)
 
 func spawn_orc() -> void:
 	var new_orc : Node2D = orc_scene.instantiate()
@@ -42,4 +46,7 @@ func _on_unit_timer_timeout():
 			all_enemies_spawned.emit()
 
 func _on_wave_timer_timeout():
+	current_wave += 1
 	unit_timer.start()
+	print("New wave")
+	new_wave.emit(current_wave)
