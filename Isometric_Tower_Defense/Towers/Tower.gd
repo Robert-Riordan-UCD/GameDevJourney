@@ -44,7 +44,7 @@ var current_level : int = 0
 @onready var range_shape = $Range
 @onready var range_sprite = $RangeSprite
 @onready var attack_timer = $AttackTimer
-@onready var last_range : int = 32
+@onready var last_range : float = 32
 @onready var sprite_2d = $Sprite2D
 @onready var upgrade_popup : UpgradePopup = $UpgradePopup
 

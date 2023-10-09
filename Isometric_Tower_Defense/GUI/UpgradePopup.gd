@@ -20,7 +20,7 @@ signal buy
 func _ready() -> void:
 	hide()
 
-func display(level: int, current_level: Dictionary, next_level: Dictionary, position: Vector2) -> void:
+func display(level: int, current_level: Dictionary, next_level: Dictionary, pos: Vector2) -> void:
 	if !can_display_timer.is_stopped(): return
 	level_text.text = "Level " + str(level) + " -> " + str(level+1)
 	current_texture.texture = load(current_level['sprite'])
@@ -33,7 +33,7 @@ func display(level: int, current_level: Dictionary, next_level: Dictionary, posi
 	next_cooldown.text = str(next_level["cooldown"])
 	button.text = str(current_level["next_price"])
 	var s = get_size()
-	popup(Rect2i(position.x-s.x/2,  position.y-s.y/2, s.x/2, s.y/2))
+	popup(Rect2i(pos.x-s.x/2,  pos.y-s.y/2, s.x/2, s.y/2))
 	#margin_container.scale /= 2
 	
 
