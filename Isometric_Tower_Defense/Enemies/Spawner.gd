@@ -46,5 +46,4 @@ func _on_unit_timer_timeout():
 func _on_wave_timer_timeout():
 	current_wave += 1
 	unit_timer.start()
-	print("New wave")
 	new_wave.emit(current_wave)

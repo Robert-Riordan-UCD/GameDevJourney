@@ -33,3 +33,6 @@ position = Vector2(479, 91)
 
 [node name="SpawnPoint" parent="." index="5"]
 wave_units = [1, 3, 5, 7, 9]
+
+[node name="LevelWonPopup" parent="CanvasLayer" index="2"]
+next_level_path = "res://Levels/Level2.tscn"
