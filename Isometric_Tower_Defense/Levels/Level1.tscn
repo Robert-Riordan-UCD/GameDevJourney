@@ -1,179 +1,35 @@
-[gd_scene load_steps=13 format=3 uid="uid://dtwaj0nwuwg0o"]
+[gd_scene load_steps=2 format=3 uid="uid://dtwaj0nwuwg0o"]
 
-[ext_resource type="PackedScene" uid="uid://biugc7jiaj06x" path="res://World/GroundTilemap.tscn" id="1_2bn0o"]
-[ext_resource type="Script" path="res://Levels/LevelManager.gd" id="1_hwvo5"]
-[ext_resource type="Script" path="res://Enemies/EnemyManager.gd" id="3_3c74o"]
-[ext_resource type="PackedScene" uid="uid://dq5otudm77au1" path="res://Towers/TowerManager.tscn" id="4_dyw6v"]
-[ext_resource type="PackedScene" uid="uid://ckapmihl1c8vg" path="res://GUI/GUI.tscn" id="4_n8ogx"]
-[ext_resource type="Script" path="res://Enemies/Spawner.gd" id="6_7upbv"]
-[ext_resource type="PackedScene" uid="uid://hj6qg5kef8ea" path="res://GUI/TowerSelectPanel.tscn" id="7_40pq7"]
-[ext_resource type="PackedScene" uid="uid://dhib44oiejfwd" path="res://Towers/CrossbowTower.tscn" id="8_fv0x2"]
-[ext_resource type="PackedScene" uid="uid://mst7r7t0j2es" path="res://Towers/MageTower.tscn" id="9_7rlog"]
-[ext_resource type="PackedScene" uid="uid://c0tautgj7cheu" path="res://Towers/MortarTower.tscn" id="10_pjcmg"]
-[ext_resource type="Script" path="res://GUI/GameOverPopup.gd" id="11_0f11k"]
-[ext_resource type="Script" path="res://GUI/LevelWonPopup.gd" id="11_nbt1h"]
+[ext_resource type="PackedScene" uid="uid://dhmt1m718x5qp" path="res://Levels/Level.tscn" id="1_iivpg"]
 
-[node name="Level1" type="Node2D"]
-script = ExtResource("1_hwvo5")
+[node name="Level" instance=ExtResource("1_iivpg")]
 
-[node name="GroundTileMap" parent="." instance=ExtResource("1_2bn0o")]
-layer_0/tile_data = PackedInt32Array(655360, 65546, 4, 524289, 65546, 4, 589824, 65546, 4, 655361, 65546, 4, 720896, 65546, 4, 786433, 65546, 4, 393218, 65546, 4, 458753, 65546, 4, 524290, 65536, 4, 589825, 65546, 4, 655362, 65546, 4, 720897, 65546, 4, 786434, 65546, 4, 851969, 65546, 4, 917506, 65546, 4, 262147, 65546, 4, 327682, 65551, 4, 393219, 65539, 4, 458754, 65552, 4, 524291, 65546, 4, 589826, 65551, 4, 655363, 65537, 4, 720898, 65546, 4, 786435, 65546, 4, 851970, 65546, 4, 917507, 65536, 4, 983042, 65546, 4, 1048579, 65546, 4, 131076, 65546, 4, 196611, 65546, 4, 262148, 65546, 4, 327683, 65546, 4, 393220, 65546, 4, 458755, 65546, 4, 524292, 65552, 4, 589827, 65552, 4, 655364, 65546, 4, 720899, 65546, 4, 786436, 65552, 4, 851971, 65552, 4, 917508, 65546, 4, 983043, 65551, 4, 1048580, 65537, 4, 1114115, 65546, 4, 1179652, 65546, 4, 196612, 65546, 4, 262149, 65546, 4, 327684, 65546, 4, 393221, 65538, 4, 458756, 65552, 4, 524293, 65546, 4, 589828, 65546, 4, 655365, 65552, 4, 720900, 65552, 4, 786437, 65546, 4, 851972, 65546, 4, 917509, 65552, 4, 983044, 65552, 4, 1048581, 65546, 4, 1114116, 65546, 4, 327685, 65546, 4, 393222, 65546, 4, 458757, 65551, 4, 524294, 65539, 4, 589829, 65552, 4, 655366, 65546, 4, 720901, 65546, 4, 786438, 65552, 4, 851973, 65552, 4, 917510, 65546, 4, 983045, 65546, 4, 458758, 65546, 4, 524295, 65546, 4, 589830, 65546, 4, 655367, 65552, 4, 720902, 65552, 4, 786439, 65546, 4, 851974, 65546, 4, 589831, 65552, 4, 655368, 65546, 4, 720903, 65546, 4)
+[node name="GroundTileMap" parent="." index="0"]
+layer_0/tile_data = PackedInt32Array(655368, 65546, 4, 589831, 65552, 4, 524295, 65546, 4, 720903, 65546, 4, 786439, 65546, 4, 851974, 65546, 4, 917510, 65546, 4, 983045, 65546, 4, 1048581, 65546, 4, 1114116, 65546, 4, 1179652, 65546, 4, 1048579, 65546, 4, 1114115, 65546, 4, 983042, 65546, 4, 917506, 65546, 4, 851969, 65546, 4, 786433, 65546, 4, 720896, 65546, 4, 655360, 65546, 4, 589824, 65546, 4, 524289, 65546, 4, 458753, 65546, 4, 393218, 65546, 4, 327682, 65546, 4, 262147, 65546, 4, 196611, 65551, 4, 131076, 65546, 4, 196612, 65546, 4, 262149, 65546, 4, 327685, 65546, 4, 393222, 65546, 4, 458758, 65546, 4, 262148, 65539, 4, 327683, 65552, 4, 393219, 65552, 4, 458754, 65552, 4, 524290, 65552, 4, 589825, 65552, 4, 655361, 65536, 4, 720897, 65551, 4, 786434, 65537, 4, 851970, 65546, 4, 917507, 65536, 4, 983043, 65551, 4, 1048580, 65537, 4, 983044, 65552, 4, 917509, 65552, 4, 851973, 65552, 4, 786438, 65552, 4, 720902, 65552, 4, 655367, 65552, 4, 524294, 65539, 4, 458757, 65551, 4, 393221, 65538, 4, 327684, 65546, 4, 393220, 65546, 4, 458755, 65546, 4, 524291, 65546, 4, 589827, 65552, 4, 655363, 65552, 4, 589826, 65546, 4, 655362, 65546, 4, 655364, 65546, 4, 720899, 65546, 4, 786435, 65546, 4, 720898, 65552, 4, 851971, 65552, 4, 917508, 65546, 4, 851972, 65546, 4, 786437, 65546, 4, 720901, 65546, 4, 655366, 65546, 4, 589830, 65546, 4, 589829, 65552, 4, 655365, 65552, 4, 720900, 65552, 4, 786436, 65552, 4, 589828, 65546, 4, 524293, 65546, 4, 524292, 65552, 4, 458756, 65552, 4)
 
-[node name="Path" type="Node2D" parent="."]
+[node name="Node2D" type="Node2D" parent="Path" index="0"]
+position = Vector2(575, 529)
 
-[node name="Node2D" type="Node2D" parent="Path"]
-position = Vector2(576, 525)
+[node name="Node2D2" type="Node2D" parent="Path" index="1"]
+position = Vector2(449, 462)
 
-[node name="Node2D2" type="Node2D" parent="Path"]
-position = Vector2(454, 460)
+[node name="Node2D3" type="Node2D" parent="Path" index="2"]
+position = Vector2(833, 269)
 
-[node name="Node2D3" type="Node2D" parent="Path"]
-position = Vector2(825, 270)
+[node name="Node2D4" type="Node2D" parent="Path" index="3"]
+position = Vector2(705, 204)
 
-[node name="Node2D4" type="Node2D" parent="Path"]
-position = Vector2(704, 205)
+[node name="Node2D5" type="Node2D" parent="Path" index="4"]
+position = Vector2(320, 404)
 
-[node name="Node2D5" type="Node2D" parent="Path"]
-position = Vector2(449, 329)
+[node name="Node2D6" type="Node2D" parent="Path" index="5"]
+position = Vector2(204, 328)
 
-[node name="Node2D6" type="Node2D" parent="Path"]
-position = Vector2(328, 267)
+[node name="Node2D7" type="Node2D" parent="Path" index="6"]
+position = Vector2(575, 139)
 
-[node name="Node2D7" type="Node2D" parent="Path"]
-position = Vector2(443, 203)
+[node name="Node2D8" type="Node2D" parent="Path" index="7"]
+position = Vector2(479, 91)
 
-[node name="Node2D8" type="Node2D" parent="Path"]
-position = Vector2(355, 157)
-
-[node name="Enemies" type="Node2D" parent="."]
-script = ExtResource("3_3c74o")
-
-[node name="TowerManager" parent="." node_paths=PackedStringArray("level_manager", "ground_tile_map") instance=ExtResource("4_dyw6v")]
-level_manager = NodePath("..")
-ground_tile_map = NodePath("../GroundTileMap")
-
-[node name="Camera2D" type="Camera2D" parent="."]
-anchor_mode = 0
-
-[node name="SpawnPoint" type="Node2D" parent="." node_paths=PackedStringArray("path")]
-position = Vector2(1052, 286)
-script = ExtResource("6_7upbv")
-path = NodePath("../Path")
-
-[node name="UnitTimer" type="Timer" parent="SpawnPoint"]
-one_shot = true
-
-[node name="WaveTimer" type="Timer" parent="SpawnPoint"]
-one_shot = true
-
-[node name="Lights" type="Node3D" parent="."]
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lights"]
-transform = Transform3D(0.707107, -0.270598, 0.653281, 0, 0.92388, 0.382683, -0.707107, -0.270598, 0.653281, 1, 1, 1)
-light_color = Color(0.909804, 0.72549, 0.529412, 1)
-directional_shadow_mode = 0
-sky_mode = 1
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="GUI" parent="CanvasLayer" instance=ExtResource("4_n8ogx")]
-metadata/_edit_use_anchors_ = true
-
-[node name="TowerSelect" type="Control" parent="CanvasLayer"]
-layout_mode = 3
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 0
-mouse_filter = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/TowerSelect"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_override_constants/separation = 10
-alignment = 1
-
-[node name="CrossbowSelect" parent="CanvasLayer/TowerSelect/HBoxContainer" instance=ExtResource("7_40pq7")]
-layout_mode = 2
-tower = ExtResource("8_fv0x2")
-separation = 20
-
-[node name="MageSelect" parent="CanvasLayer/TowerSelect/HBoxContainer" instance=ExtResource("7_40pq7")]
-layout_mode = 2
-tower = ExtResource("9_7rlog")
-separation = 20
-
-[node name="MortarSelect" parent="CanvasLayer/TowerSelect/HBoxContainer" instance=ExtResource("7_40pq7")]
-layout_mode = 2
-tower = ExtResource("10_pjcmg")
-separation = 20
-
-[node name="LevelWonPopup" type="PopupPanel" parent="CanvasLayer"]
-size = Vector2i(139, 104)
-script = ExtResource("11_nbt1h")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/LevelWonPopup"]
-offset_left = 4.0
-offset_top = 4.0
-offset_right = 135.0
-offset_bottom = 100.0
-
-[node name="Label" type="Label" parent="CanvasLayer/LevelWonPopup/VBoxContainer"]
-layout_mode = 2
-text = "You Won!"
-horizontal_alignment = 1
-
-[node name="NextLevelButton" type="Button" parent="CanvasLayer/LevelWonPopup/VBoxContainer"]
-layout_mode = 2
-text = "Next"
-
-[node name="MenuButton" type="Button" parent="CanvasLayer/LevelWonPopup/VBoxContainer"]
-layout_mode = 2
-text = "Main Menu"
-
-[node name="GameOverPopup" type="PopupPanel" parent="CanvasLayer"]
-size = Vector2i(139, 104)
-script = ExtResource("11_0f11k")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/GameOverPopup"]
-offset_left = 4.0
-offset_top = 4.0
-offset_right = 135.0
-offset_bottom = 100.0
-
-[node name="Label" type="Label" parent="CanvasLayer/GameOverPopup/VBoxContainer"]
-layout_mode = 2
-text = "Game Over :("
-horizontal_alignment = 1
-
-[node name="RetryButton" type="Button" parent="CanvasLayer/GameOverPopup/VBoxContainer"]
-layout_mode = 2
-text = "Retry"
-
-[node name="MenuButton" type="Button" parent="CanvasLayer/GameOverPopup/VBoxContainer"]
-layout_mode = 2
-text = "Main Menu"
-
-[connection signal="all_enemies_defeated" from="Enemies" to="." method="_on_enemies_all_enemies_defeated"]
-[connection signal="enemy_died" from="Enemies" to="." method="_on_enemies_enemy_died"]
-[connection signal="enemy_reached_end" from="Enemies" to="." method="_on_enemies_enemy_reached_end"]
-[connection signal="all_enemies_spawned" from="SpawnPoint" to="Enemies" method="_on_spawn_point_all_enemies_spawned"]
-[connection signal="enemy_spawned" from="SpawnPoint" to="Enemies" method="_on_spawn_point_enemy_spawned"]
-[connection signal="new_wave" from="SpawnPoint" to="." method="_on_spawn_point_new_wave"]
-[connection signal="timeout" from="SpawnPoint/UnitTimer" to="SpawnPoint" method="_on_unit_timer_timeout"]
-[connection signal="timeout" from="SpawnPoint/WaveTimer" to="SpawnPoint" method="_on_wave_timer_timeout"]
-[connection signal="tower_selected" from="CanvasLayer/TowerSelect/HBoxContainer/CrossbowSelect" to="TowerManager" method="_on_tower_selected"]
-[connection signal="tower_selected" from="CanvasLayer/TowerSelect/HBoxContainer/MageSelect" to="TowerManager" method="_on_tower_selected"]
-[connection signal="tower_selected" from="CanvasLayer/TowerSelect/HBoxContainer/MortarSelect" to="TowerManager" method="_on_tower_selected"]
-[connection signal="pressed" from="CanvasLayer/LevelWonPopup/VBoxContainer/NextLevelButton" to="CanvasLayer/LevelWonPopup" method="_on_next_level_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/LevelWonPopup/VBoxContainer/MenuButton" to="CanvasLayer/LevelWonPopup" method="_on_menu_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/GameOverPopup/VBoxContainer/RetryButton" to="CanvasLayer/GameOverPopup" method="_on_retry_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/GameOverPopup/VBoxContainer/MenuButton" to="CanvasLayer/GameOverPopup" method="_on_menu_button_pressed"]
+[node name="SpawnPoint" parent="." index="5"]
+wave_units = [1, 3, 5, 7, 9]

@@ -9,9 +9,7 @@ signal new_wave(wave_number)
 @export_category("Waves")
 @export var wait_between_units : float = 0.5
 @export var wait_between_waves : float = 10
-@export var wave_units : Array = [
-	1, 3, 5, 7, 9
-]
+@export var wave_units : Array = []
 
 @onready var unit_timer = $UnitTimer
 @onready var wave_timer = $WaveTimer
