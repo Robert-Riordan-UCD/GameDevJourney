@@ -7,7 +7,8 @@ func display() -> void:
 	popup(Rect2i(screen_center.x-popup_size.x/2, screen_center.y-popup_size.y/2, popup_size.x, popup_size.y))
 
 func _on_retry_button_pressed():
-	get_tree().reload_current_scene()
+	SceneTransition.change_scene(get_tree().current_scene.scene_file_path)
+	#get_tree().reload_current_scene()
 
 func _on_menu_button_pressed():
 	$VBoxContainer/MenuButton.text = "Woops!\nThere's no menu yet."
