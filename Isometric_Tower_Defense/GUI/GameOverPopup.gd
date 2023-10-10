@@ -11,3 +11,6 @@ func _on_retry_button_pressed():
 
 func _on_menu_button_pressed():
 	SceneTransition.change_scene("res://GUI/MainMenu.tscn")
+
+func _on_popup_hide():
+	popup()
