@@ -12,4 +12,4 @@ func _on_next_level_button_pressed():
 	SceneTransition.change_scene(next_level_path)
 
 func _on_menu_button_pressed():
-	$VBoxContainer/MenuButton.text = "Woops!\nThere's no menu yet."
+	SceneTransition.change_scene("res://GUI/MainMenu.tscn")

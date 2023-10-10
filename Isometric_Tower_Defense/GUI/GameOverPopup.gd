@@ -10,4 +10,4 @@ func _on_retry_button_pressed():
 	SceneTransition.change_scene(get_tree().current_scene.scene_file_path)
 
 func _on_menu_button_pressed():
-	$VBoxContainer/MenuButton.text = "Woops!\nThere's no menu yet."
+	SceneTransition.change_scene("res://GUI/MainMenu.tscn")
