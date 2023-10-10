@@ -8,11 +8,14 @@ extends Node2D
 @onready var tower_manager : TowerManager = $TowerManager
 @onready var ground_tile_map = $GroundTileMap
 
+var game_speed := [1, 2, 4]
+
 func _ready():
 	gui.set_gold_amount(gold)
 	gui.set_health(health)
 	gui.set_total_waves(len($SpawnPoint.wave_units))
 	gui.set_current_wave(1)
+	set_game_speed()
 
 func spend_gold(amount: int) -> bool:
 	if amount > gold or amount < 0:
@@ -41,3 +44,12 @@ func _on_enemies_all_enemies_defeated():
 func _on_spawn_point_new_wave(wave_number):
 	if gui == null: return
 	gui.set_current_wave(wave_number)
+
+func _on_button_pressed():
+	set_game_speed()
+
+func set_game_speed() -> void:
+	var new_speed = game_speed.pop_front()
+	game_speed.append(new_speed)
+	Engine.time_scale = new_speed
+	$CanvasLayer/SpeedButton/Button.text = str(new_speed) + 'x'

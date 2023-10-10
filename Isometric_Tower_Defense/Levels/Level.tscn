@@ -137,6 +137,25 @@ text = "Retry"
 layout_mode = 2
 text = "Main Menu"
 
+[node name="SpeedButton" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -46.0
+offset_top = -51.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Button" type="Button" parent="CanvasLayer/SpeedButton"]
+layout_mode = 2
+text = "1x"
+
 [connection signal="all_enemies_defeated" from="Enemies" to="." method="_on_enemies_all_enemies_defeated"]
 [connection signal="enemy_died" from="Enemies" to="." method="_on_enemies_enemy_died"]
 [connection signal="enemy_reached_end" from="Enemies" to="." method="_on_enemies_enemy_reached_end"]
@@ -152,3 +171,4 @@ text = "Main Menu"
 [connection signal="pressed" from="CanvasLayer/LevelWonPopup/VBoxContainer/MenuButton" to="CanvasLayer/LevelWonPopup" method="_on_menu_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/GameOverPopup/VBoxContainer/RetryButton" to="CanvasLayer/GameOverPopup" method="_on_retry_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/GameOverPopup/VBoxContainer/MenuButton" to="CanvasLayer/GameOverPopup" method="_on_menu_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/SpeedButton/Button" to="." method="_on_button_pressed"]
