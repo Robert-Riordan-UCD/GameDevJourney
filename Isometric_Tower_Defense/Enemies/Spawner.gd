@@ -28,7 +28,7 @@ func _ready() -> void:
 func spawn_orc() -> void:
 	var new_orc : Node2D = orc_scene.instantiate()
 	new_orc.scale *= 0.15
-	new_orc.path = path
+	new_orc.path = path.path()
 	emit_signal("enemy_spawned", new_orc, position)
 
 func _on_unit_timer_timeout():

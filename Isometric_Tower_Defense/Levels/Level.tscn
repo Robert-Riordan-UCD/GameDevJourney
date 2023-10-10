@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://dhmt1m718x5qp"]
+[gd_scene load_steps=14 format=3 uid="uid://dhmt1m718x5qp"]
 
 [ext_resource type="Script" path="res://Levels/LevelManager.gd" id="1_ptxdy"]
 [ext_resource type="PackedScene" uid="uid://biugc7jiaj06x" path="res://World/GroundTilemap.tscn" id="2_go2fb"]
 [ext_resource type="Script" path="res://Enemies/EnemyManager.gd" id="3_gg80f"]
+[ext_resource type="Script" path="res://Levels/Path.gd" id="3_yxbnk"]
 [ext_resource type="PackedScene" uid="uid://dq5otudm77au1" path="res://Towers/TowerManager.tscn" id="4_0nnn7"]
 [ext_resource type="Script" path="res://Enemies/Spawner.gd" id="5_k4o1p"]
 [ext_resource type="PackedScene" uid="uid://ckapmihl1c8vg" path="res://GUI/GUI.tscn" id="6_lr0f1"]
@@ -19,6 +20,7 @@ script = ExtResource("1_ptxdy")
 [node name="GroundTileMap" parent="." instance=ExtResource("2_go2fb")]
 
 [node name="Path" type="Node2D" parent="."]
+script = ExtResource("3_yxbnk")
 
 [node name="Enemies" type="Node2D" parent="."]
 script = ExtResource("3_gg80f")

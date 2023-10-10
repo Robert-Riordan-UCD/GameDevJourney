@@ -11,17 +11,18 @@ signal died(gold)
 @export var gold : int = 10
 
 @export_category("Setup")
-@export var path : Node2D
+@export var path : Array
 
-@onready var next_point : Vector2 = path.get_children()[0].position
+var next_point : Vector2
 
 var path_points : Array = []
 
 const NEAR_TARGET_THRESHOLD = 1;
 
 func _ready() -> void:
-	for point in path.get_children():
-		path_points.append(point.position)
+	for point in path:
+		path_points.append(point.global_position)
+	next_point = path_points[0]
 
 func _process(delta: float) -> void:
 	move(delta)
