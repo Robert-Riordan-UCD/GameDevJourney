@@ -1,7 +1,11 @@
 extends Node2D
 
+@export var seed : int = 0
+
 func _ready():
 	randomize()
+	if seed != 0:
+		seed(seed)
 
 func path() -> Array:
 	var new_path : Array = []
