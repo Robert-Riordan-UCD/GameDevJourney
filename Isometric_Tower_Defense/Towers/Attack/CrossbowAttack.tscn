@@ -1,14 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://drg5sqv7i6dcr"]
+[gd_scene load_steps=3 format=3 uid="uid://drg5sqv7i6dcr"]
 
 [ext_resource type="PackedScene" uid="uid://byndd4lp3xjul" path="res://Towers/Attack/Attack.tscn" id="1_0ind8"]
-[ext_resource type="Texture2D" uid="uid://xjiygytcvcxy" path="res://Towers/Bullet.png" id="2_0pyx5"]
-[ext_resource type="Script" path="res://Towers/Bullet.gd" id="3_0x8sb"]
+[ext_resource type="Script" path="res://Towers/Attack/CrossbowAttack.gd" id="2_ti62l"]
 
 [node name="CrossbowAttack" instance=ExtResource("1_0ind8")]
-
-[node name="Bullet" type="Sprite2D" parent="." index="0"]
-visible = false
-z_index = 1
-position = Vector2(0, -76)
-texture = ExtResource("2_0pyx5")
-script = ExtResource("3_0x8sb")
+script = ExtResource("2_ti62l")

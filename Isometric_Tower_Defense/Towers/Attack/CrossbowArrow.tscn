@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://2fp5jxeckaax"]
+
+[ext_resource type="Script" path="res://Towers/Attack/CrossbowArrow.gd" id="1_7tba8"]
+[ext_resource type="Texture2D" uid="uid://chbyl6bc0rq6j" path="res://Towers/Attack/Arrow.png" id="1_rosll"]
+
+[node name="CrossbowArrow" type="Sprite2D"]
+z_index = 2
+texture_filter = 1
+texture = ExtResource("1_rosll")
+script = ExtResource("1_7tba8")

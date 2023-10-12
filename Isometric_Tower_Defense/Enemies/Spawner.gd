@@ -22,6 +22,8 @@ var first_spawn := true
 func _ready() -> void:
 	unit_timer.wait_time = wait_between_units
 	wave_timer.wait_time = wait_between_waves
+
+func start() -> void:
 	unit_timer.start()
 	new_wave.emit(current_wave)
 

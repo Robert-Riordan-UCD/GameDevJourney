@@ -1,6 +1,8 @@
 class_name TowerManager
 extends Node2D
 
+signal tower_placed
+
 @export var level_manager : LevelManager
 @export var ground_tile_map : TileMap
 
@@ -24,6 +26,7 @@ func _input(event):
 			selected_tower = null
 			ground_tile_map.place_tower(get_global_mouse_position())
 			tower_preview.hide()
+			tower_placed.emit()
 	elif event.is_action_pressed("right_mouse"):
 		selected_tower = null
 		tower_preview.hide()

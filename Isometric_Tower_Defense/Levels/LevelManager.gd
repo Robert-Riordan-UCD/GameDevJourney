@@ -7,13 +7,15 @@ extends Node2D
 @onready var gui : GUI = $CanvasLayer/GUI
 @onready var tower_manager : TowerManager = $TowerManager
 @onready var ground_tile_map = $GroundTileMap
+@onready var level_started : bool = false
+@onready var spawn_point = $SpawnPoint
 
 var game_speed := [1, 2, 4]
 
 func _ready():
 	gui.set_gold_amount(gold)
 	gui.set_health(health)
-	gui.set_total_waves(len($SpawnPoint.wave_units))
+	gui.set_total_waves(len(spawn_point.wave_units))
 	gui.set_current_wave(1)
 	set_game_speed()
 
@@ -53,3 +55,8 @@ func set_game_speed() -> void:
 	game_speed.append(new_speed)
 	Engine.time_scale = new_speed
 	$CanvasLayer/SpeedButton/Button.text = str(new_speed) + 'x'
+
+func _on_tower_manager_tower_placed():
+	if level_started: return
+	level_started = true
+	spawn_point.start()

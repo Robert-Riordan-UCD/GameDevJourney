@@ -161,6 +161,7 @@ text = "1x"
 [connection signal="all_enemies_defeated" from="Enemies" to="." method="_on_enemies_all_enemies_defeated"]
 [connection signal="enemy_died" from="Enemies" to="." method="_on_enemies_enemy_died"]
 [connection signal="enemy_reached_end" from="Enemies" to="." method="_on_enemies_enemy_reached_end"]
+[connection signal="tower_placed" from="TowerManager" to="." method="_on_tower_manager_tower_placed"]
 [connection signal="all_enemies_spawned" from="SpawnPoint" to="Enemies" method="_on_spawn_point_all_enemies_spawned"]
 [connection signal="enemy_spawned" from="SpawnPoint" to="Enemies" method="_on_spawn_point_enemy_spawned"]
 [connection signal="new_wave" from="SpawnPoint" to="." method="_on_spawn_point_new_wave"]

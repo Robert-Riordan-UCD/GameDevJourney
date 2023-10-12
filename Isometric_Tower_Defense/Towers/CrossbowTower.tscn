@@ -34,8 +34,5 @@ levels = [{
 "sprite": "res://Towers/crossbowTowerLevel3.png"
 }]
 
-[node name="CrossbowAttack" parent="." index="4" instance=ExtResource("3_tvuke")]
-position = Vector2(0, -32)
-rotation = 0.392699
-scale = Vector2(10, 10)
-skew = 0.785398
+[node name="CrossbowAttack" parent="." index="6" instance=ExtResource("3_tvuke")]
+position = Vector2(0, -126)
