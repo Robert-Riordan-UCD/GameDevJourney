@@ -2,15 +2,16 @@ extends Attack
 
 @export var splash_range : float = 150
 
-@onready var collision_shape_2d = $Area2D/CollisionShape2D
-@onready var area_2d = $Area2D
-
-func _ready() -> void:
-	collision_shape_2d.shape.radius = splash_range
+@onready var bomb = preload("res://Towers/Attack/Bomb.tscn")
 
 func attack(enemy: Enemy, damage: int) -> void:
-	print("Attacking!!!")
-	collision_shape_2d.global_position = enemy.global_position
-	for area in area_2d.get_overlapping_areas():
+	var new_bomb : Bomb = bomb.instantiate()
+	new_bomb.splash_range = splash_range
+	add_child(new_bomb)
+	new_bomb.goto(enemy.global_position)
+	new_bomb.hit.connect(_bomb_landed.bind(enemy, damage))
+
+func _bomb_landed(hits: Array, enemy: Enemy, damage: int) -> void:
+	for area in hits:
 		if area is Enemy:
 			area.take_damage(damage)

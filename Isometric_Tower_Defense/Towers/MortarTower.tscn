@@ -7,28 +7,29 @@
 tower_name = "Mortar"
 levels = [{
 "cooldown": 1.5,
-"damage": 2,
+"damage": 4,
 "next_price": 50,
 "range": 250,
 "sprite": "res://Towers/mortarTowerLevel0.png"
 }, {
 "cooldown": 1.25,
-"damage": 2,
+"damage": 4,
 "next_price": 50,
 "range": 300,
 "sprite": "res://Towers/mortarTowerLevel1.png"
 }, {
 "cooldown": 1.1,
-"damage": 2,
+"damage": 4,
 "next_price": 50,
 "range": 350,
 "sprite": "res://Towers/mortarTowerLevel2.png"
 }, {
 "cooldown": 1.0,
-"damage": 3,
+"damage": 5,
 "next_price": null,
 "range": 400,
 "sprite": "res://Towers/mortarTowerLevel3.png"
 }]
 
 [node name="MortarAttack" parent="." index="4" instance=ExtResource("2_qj1qm")]
+position = Vector2(0, -128)
