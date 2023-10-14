@@ -9,4 +9,5 @@ func attack(enemy: Enemy, damage: int) -> void:
 	new_arrow.goto(enemy.global_position)
 
 func arrow_hit(enemy: Enemy, damage: int) -> void:
+	if enemy == null: return
 	enemy.take_damage(damage)

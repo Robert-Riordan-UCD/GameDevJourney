@@ -11,4 +11,5 @@ func attack(enemy: Enemy, damage: int) -> void:
 	current_enemy= enemy
 
 func _on_laser_hit():
+	if current_enemy == null: return
 	current_enemy.take_damage(current_damage)
