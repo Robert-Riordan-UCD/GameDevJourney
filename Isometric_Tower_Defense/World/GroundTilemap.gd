@@ -1,11 +1,14 @@
 extends TileMap
 
+@export var object_tile_map : TileMap = null
+
 var placeable_tile_ids : Array = [10]
 var valid_tiles : Dictionary = {}
 
 func _ready():
 	for id in placeable_tile_ids:
 		for tile in get_used_cells_by_id(0, id):
+			if object_tile_map != null and object_tile_map.get_cell_tile_data(0, tile): continue
 			valid_tiles[tile] = id
 
 func place_tower(pos: Vector2) -> void:

@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://t04ucfrhwa86" path="res://GUI/coin.png" id="1_a1be3"]
 [ext_resource type="Script" path="res://GUI/GUI.gd" id="1_trp08"]
-[ext_resource type="Texture2D" uid="uid://ctxl2axvv5qtx" path="res://GUI/Heart.png" id="3_s7lfh"]
+[ext_resource type="Texture2D" uid="uid://bes047itom3qu" path="res://GUI/detail_crystal_E.png" id="3_pe2r1"]
 
 [node name="GUI" type="Control"]
 layout_mode = 3
@@ -49,5 +49,4 @@ text = "<HEALTH>"
 
 [node name="HeartTexture" type="TextureRect" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 0
-texture = ExtResource("3_s7lfh")
+texture = ExtResource("3_pe2r1")
