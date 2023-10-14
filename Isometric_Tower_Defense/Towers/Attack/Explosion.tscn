@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://bhvp4f7hn7pji"]
+
+[ext_resource type="Texture2D" uid="uid://cp881u01rqn6m" path="res://Towers/Attack/BlurryWhiteDot.png" id="1_bjixy"]
+[ext_resource type="Script" path="res://Towers/Attack/Explosion.gd" id="2_fpdwk"]
+
+[sub_resource type="Curve" id="Curve_rxktd"]
+_data = [Vector2(0, 0.527273), 0.0, 0.0, 0, 0, Vector2(0.72, 0.690909), 0.0, 0.0, 0, 0, Vector2(0.996, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_yflpa"]
+offsets = PackedFloat32Array(0.0021322, 0.162047, 0.550107, 1)
+colors = PackedColorArray(0.907852, 0.791029, 0.560411, 1, 1, 0.768627, 0, 1, 1, 0.2, 0, 1, 1, 0.768627, 0, 0)
+
+[node name="Explosion" type="CPUParticles2D"]
+z_index = 1
+scale = Vector2(1, 0.5)
+emitting = false
+amount = 128
+lifetime = 0.75
+one_shot = true
+explosiveness = 1.0
+randomness = 0.5
+lifetime_randomness = 0.5
+texture = ExtResource("1_bjixy")
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 400.0
+linear_accel_min = -20.0
+linear_accel_max = 100.0
+scale_amount_min = 0.1
+scale_amount_max = 0.25
+scale_amount_curve = SubResource("Curve_rxktd")
+color_ramp = SubResource("Gradient_yflpa")
+script = ExtResource("2_fpdwk")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

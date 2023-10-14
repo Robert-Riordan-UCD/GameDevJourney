@@ -9,6 +9,7 @@ signal hit(hits)
 
 @onready var collision_shape_2d = $CollisionShape2D
 @onready var sprite_2d = $Sprite2D
+@onready var expolsion = preload("res://Towers/Attack/Explosion.tscn")
 
 func _ready() -> void:
 	collision_shape_2d.shape.radius = splash_range
@@ -24,6 +25,9 @@ func goto(pos: Vector2) -> void:
 	tween.connect("finished", _bomb_landed)
 
 func _bomb_landed() -> void:
+	var new_explosion : Explosion = expolsion.instantiate()
+	get_parent().add_child(new_explosion)
+	new_explosion.global_position = global_position
 	var hits := []
 	for area in get_overlapping_areas():
 		hits.append(area)
