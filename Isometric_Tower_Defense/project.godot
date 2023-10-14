@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 SceneTransition="*res://Levels/SceneTransition.tscn"
 
+[display]
+
+window/stretch/mode="viewport"
+
 [input]
 
 left_mouse={
