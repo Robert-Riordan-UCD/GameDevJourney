@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://by2gqxfqa0d7r"]
+[gd_scene load_steps=9 format=3 uid="uid://by2gqxfqa0d7r"]
 
 [ext_resource type="PackedScene" uid="uid://byndd4lp3xjul" path="res://Towers/Attack/Attack.tscn" id="1_whc4j"]
 [ext_resource type="Script" path="res://Towers/Attack/MageAttack.gd" id="2_qtlcq"]
 [ext_resource type="Script" path="res://Towers/Attack/Laser.gd" id="3_5f65w"]
 [ext_resource type="Texture2D" uid="uid://cp881u01rqn6m" path="res://Towers/Attack/BlurryWhiteDot.png" id="4_mn12x"]
+[ext_resource type="AudioStream" uid="uid://7b6dkbenpqx0" path="res://Audio/Towers/Spell1.wav" id="5_5db3w"]
+[ext_resource type="AudioStream" uid="uid://b5sxdlfrj8brw" path="res://Audio/Towers/MageSpell.wav" id="5_qesp3"]
 
 [sub_resource type="Curve" id="Curve_gsrkb"]
 _data = [Vector2(0, 0.509091), 0.0, 0.0, 0, 0, Vector2(0.5, 0.518182), -2.72727, -2.72727, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -65,5 +67,11 @@ scale_amount_min = 0.5
 scale_amount_max = 0.5
 scale_amount_curve = SubResource("Curve_gsrkb")
 color_ramp = SubResource("Gradient_rtcn6")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="1"]
+stream = ExtResource("5_qesp3")
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="." index="2"]
+stream = ExtResource("5_5db3w")
 
 [connection signal="hit" from="Laser" to="." method="_on_laser_hit"]
