@@ -19,10 +19,16 @@ var path_points : Array = []
 
 const NEAR_TARGET_THRESHOLD = 1;
 
+@onready var spawn_audio = $SpawnAudio
+@onready var hurt_audio = $HurtAudio
+@onready var death_audio = $DeathAudio
+
 func _ready() -> void:
 	for point in path:
 		path_points.append(point.global_position)
 	next_point = path_points[0]
+	spawn_audio.stream = load("res://Audio/Enemies/OrcSpawn/monster-"+str(randi_range(1, 11))+".wav")
+	AudioManager.request_sound(spawn_audio)
 
 func _process(delta: float) -> void:
 	move(delta)
@@ -43,7 +49,7 @@ func update_path() -> void:
 
 func take_damage(d: int):
 	health -= d
-	print("Ouch")
+	AudioManager.request_sound(hurt_audio)
 	if health <= 0:
 		print("Ugh....")
 		died.emit(gold)

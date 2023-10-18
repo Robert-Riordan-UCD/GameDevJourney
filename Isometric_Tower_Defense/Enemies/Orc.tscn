@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cguv7tfik2pyu"]
+[gd_scene load_steps=7 format=3 uid="uid://cguv7tfik2pyu"]
 
 [ext_resource type="PackedScene" uid="uid://gmh08hf40swr" path="res://Enemies/OrcModel.tscn" id="1_ln8ye"]
 [ext_resource type="Script" path="res://Enemies/Enemy.gd" id="1_udqcm"]
+[ext_resource type="AudioStream" uid="uid://bmmu1cr7ksyeo" path="res://Audio/Enemies/OrcHurt/zombie-23.wav" id="3_uew4d"]
+[ext_resource type="AudioStream" uid="uid://cvyv18skqiyr0" path="res://Audio/Enemies/OrcDeath/zombie-13.wav" id="4_q1lx6"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_8sppl"]
 viewport_path = NodePath("SubViewport")
@@ -23,3 +25,13 @@ transparent_bg = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_vewa2")
+
+[node name="SpawnAudio" type="AudioStreamPlayer" parent="."]
+volume_db = -9.0
+
+[node name="HurtAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_uew4d")
+volume_db = -10.0
+
+[node name="DeathAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_q1lx6")
