@@ -1,7 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://cvteqsd4md1bu"]
+[gd_scene load_steps=3 format=3 uid="uid://cvteqsd4md1bu"]
 
 [ext_resource type="Script" path="res://Audio/AudioManager.gd" id="1_8amoj"]
+[ext_resource type="AudioStream" uid="uid://bbxw6tjr778o8" path="res://Audio/BackgroundMusic/The-Pyre(chosic.com).mp3" id="2_hifrj"]
 
 [node name="AudioManager" type="Node2D"]
 script = ExtResource("1_8amoj")
 timeout_min = 0.3
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_hifrj")
+volume_db = -10.0
+autoplay = true
+
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]
