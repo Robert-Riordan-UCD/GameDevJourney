@@ -4,7 +4,8 @@ extends Node2D
 @export var timeout_max : float = 1.0
 
 @onready var timed_out := {}
-@onready var audio_stream_player = $AudioStreamPlayer
+@onready var music = $Music
+@onready var click = $Click
 
 func _ready():
 	randomize()
@@ -22,4 +23,8 @@ func _timeout(audio_player: AudioStreamPlayer) -> void:
 		timed_out.erase(audio_player)
 
 func _on_audio_stream_player_finished():
-	audio_stream_player.play()
+	music.play()
+
+func _input(event):
+	if event.is_action_pressed("left_mouse"):
+		click.play()
