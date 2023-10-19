@@ -17,9 +17,11 @@ signal new_wave(wave_number)
 @onready var current_wave : int = 1
 
 var orc_scene := preload("res://Enemies/Orc.tscn")
+var wolf_scene := preload("res://Enemies/Wolf.tscn")
 var first_spawn := true
 
-func _ready() -> void:
+func _ready():
+	randomize()
 	unit_timer.wait_time = wait_between_units
 	wave_timer.wait_time = wait_between_waves
 
@@ -27,14 +29,17 @@ func start() -> void:
 	unit_timer.start()
 	new_wave.emit(current_wave)
 
-func spawn_orc() -> void:
-	var new_orc : Node2D = orc_scene.instantiate()
-	new_orc.scale *= 0.15
-	new_orc.path = path.path()
-	emit_signal("enemy_spawned", new_orc, position)
+func spawn_unit() -> void:
+	var new_unit : Node2D
+	if randf() > 0.5:
+		new_unit = orc_scene.instantiate()
+	else:
+		new_unit = wolf_scene.instantiate()
+	new_unit.path = path.path()
+	emit_signal("enemy_spawned", new_unit, position)
 
 func _on_unit_timer_timeout():
-	spawn_orc()
+	spawn_unit()
 	wave_units[0] -= 1
 	if wave_units[0] > 0:
 		unit_timer.start()

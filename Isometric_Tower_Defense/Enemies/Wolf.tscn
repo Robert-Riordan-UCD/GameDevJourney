@@ -1,0 +1,89 @@
+[gd_scene load_steps=13 format=3 uid="uid://bpgwprcmsijxl"]
+
+[ext_resource type="PackedScene" uid="uid://cxn1ljdl3gu52" path="res://Enemies/Enemy.tscn" id="1_nxm5d"]
+[ext_resource type="Texture2D" uid="uid://dh3hg2uonbg4t" path="res://Enemies/Textures/wolfsheet1.png" id="2_ry703"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0p11f"]
+atlas = ExtResource("2_ry703")
+region = Rect2(320, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xlq2y"]
+atlas = ExtResource("2_ry703")
+region = Rect2(384, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_itc26"]
+atlas = ExtResource("2_ry703")
+region = Rect2(448, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h0htt"]
+atlas = ExtResource("2_ry703")
+region = Rect2(512, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u5q71"]
+atlas = ExtResource("2_ry703")
+region = Rect2(320, 128, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m1j0x"]
+atlas = ExtResource("2_ry703")
+region = Rect2(384, 128, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_itpic"]
+atlas = ExtResource("2_ry703")
+region = Rect2(448, 128, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3cvm8"]
+atlas = ExtResource("2_ry703")
+region = Rect2(512, 128, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jkin8"]
+atlas = ExtResource("2_ry703")
+region = Rect2(576, 128, 64, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gyfkr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0p11f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xlq2y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_itc26")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h0htt")
+}],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u5q71")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m1j0x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_itpic")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3cvm8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jkin8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Wolf" instance=ExtResource("1_nxm5d")]
+scale = Vector2(0.5, 0.5)
+speed = 100.0
+health = 4
+gold = 5
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_gyfkr")
