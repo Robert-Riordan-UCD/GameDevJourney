@@ -63,7 +63,7 @@ func _ready():
 func _on_area_entered(area):
 	if area is Enemy:
 		enemies.append(area)
-		print("Orcs!")
+		area.died.connect(_enemy_died.bind(area))
 
 func _on_area_exited(area):
 	for i in range(len(enemies)):
@@ -108,3 +108,10 @@ func _on_click_area_mouse_exited():
 
 func _on_upgrade_popup_buy():
 	request_level_up.emit(levels[current_level]["next_price"])
+
+func _enemy_died(_gold: int, enemy: Enemy) -> void:
+	for i in range(enemies.size()):
+		if enemies[i] == enemy:
+			enemies.remove_at(i)
+			return
+			
