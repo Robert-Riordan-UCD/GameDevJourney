@@ -1,7 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://bpgwprcmsijxl"]
+[gd_scene load_steps=15 format=3 uid="uid://bpgwprcmsijxl"]
 
 [ext_resource type="PackedScene" uid="uid://cxn1ljdl3gu52" path="res://Enemies/Enemy.tscn" id="1_nxm5d"]
 [ext_resource type="Texture2D" uid="uid://dh3hg2uonbg4t" path="res://Enemies/Textures/wolfsheet1.png" id="2_ry703"]
+[ext_resource type="AudioStream" uid="uid://cyd5ycjfjcstj" path="res://Audio/Enemies/Wolf/Spawn.wav" id="3_1ftp0"]
+[ext_resource type="AudioStream" uid="uid://gxseb20eeeih" path="res://Audio/Enemies/Wolf/Death.wav" id="4_wp8jh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0p11f"]
 atlas = ExtResource("2_ry703")
@@ -54,7 +56,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_h0htt")
 }],
-"loop": true,
+"loop": false,
 "name": &"death",
 "speed": 5.0
 }, {
@@ -87,3 +89,12 @@ gold = 5
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_gyfkr")
+
+[node name="SpawnAudio" parent="." index="2"]
+stream = ExtResource("3_1ftp0")
+
+[node name="HurtAudio" parent="." index="3"]
+stream = null
+
+[node name="DeathAudio" parent="." index="4"]
+stream = ExtResource("4_wp8jh")

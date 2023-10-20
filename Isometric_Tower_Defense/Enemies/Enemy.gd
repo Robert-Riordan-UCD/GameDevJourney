@@ -28,7 +28,6 @@ func _ready() -> void:
 	for point in path:
 		path_points.append(point.global_position)
 	next_point = path_points[0]
-	spawn_audio.stream = load("res://Audio/Enemies/OrcSpawn/monster-"+str(randi_range(1, 10))+".wav")
 	AudioManager.request_sound(spawn_audio)
 	animated_sprite_2d.play("default")
 
@@ -61,6 +60,12 @@ func take_damage(d: int):
 		dead = true
 		death_audio.play()
 
-func _on_animated_sprite_2d_animation_looped():
+func _on_animated_sprite_2d_animation_finished():
+	print("Animantion finished")
 	if dead:
+		print("I'm dead")
+		if death_audio.playing:
+			print("Waiting for audio")
+			await death_audio.finished
+		print("I'm free!")
 		queue_free()
