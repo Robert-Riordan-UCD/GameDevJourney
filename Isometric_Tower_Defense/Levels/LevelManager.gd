@@ -15,7 +15,11 @@ var game_speed := [1, 2, 4]
 func _ready():
 	gui.set_gold_amount(gold)
 	gui.set_health(health)
-	gui.set_total_waves(len(spawn_point.wave_units))
+	var num_waves : int = 0
+	for child in spawn_point.get_children():
+		if child is Wave:
+			num_waves += 1
+	gui.set_total_waves(num_waves)
 	gui.set_current_wave(1)
 	set_game_speed()
 

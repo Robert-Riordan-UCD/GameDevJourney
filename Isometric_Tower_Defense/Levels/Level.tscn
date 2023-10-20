@@ -232,9 +232,6 @@ position = Vector2(1052, 286)
 script = ExtResource("5_k4o1p")
 path = NodePath("../Path")
 
-[node name="UnitTimer" type="Timer" parent="SpawnPoint"]
-one_shot = true
-
 [node name="WaveTimer" type="Timer" parent="SpawnPoint"]
 one_shot = true
 
@@ -360,7 +357,6 @@ text = "1x"
 [connection signal="all_enemies_spawned" from="SpawnPoint" to="Enemies" method="_on_spawn_point_all_enemies_spawned"]
 [connection signal="enemy_spawned" from="SpawnPoint" to="Enemies" method="_on_spawn_point_enemy_spawned"]
 [connection signal="new_wave" from="SpawnPoint" to="." method="_on_spawn_point_new_wave"]
-[connection signal="timeout" from="SpawnPoint/UnitTimer" to="SpawnPoint" method="_on_unit_timer_timeout"]
 [connection signal="timeout" from="SpawnPoint/WaveTimer" to="SpawnPoint" method="_on_wave_timer_timeout"]
 [connection signal="tower_selected" from="CanvasLayer/TowerSelect/HBoxContainer/CrossbowSelect" to="TowerManager" method="_on_tower_selected"]
 [connection signal="tower_selected" from="CanvasLayer/TowerSelect/HBoxContainer/MageSelect" to="TowerManager" method="_on_tower_selected"]

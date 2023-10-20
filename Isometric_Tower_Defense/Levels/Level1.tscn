@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dtwaj0nwuwg0o"]
+[gd_scene load_steps=3 format=3 uid="uid://dtwaj0nwuwg0o"]
 
 [ext_resource type="PackedScene" uid="uid://dhmt1m718x5qp" path="res://Levels/Level.tscn" id="1_iivpg"]
+[ext_resource type="PackedScene" uid="uid://81xhq40pyj67" path="res://Enemies/Wave.tscn" id="2_li58x"]
 
 [node name="Level" instance=ExtResource("1_iivpg")]
 gold = 25
@@ -40,7 +41,21 @@ position = Vector2(-151, -74)
 
 [node name="SpawnPoint" parent="." index="6"]
 position = Vector2(1113, 256)
-wave_units = [1, 3, 5, 7, 9]
+
+[node name="Wave" parent="SpawnPoint" index="1" instance=ExtResource("2_li58x")]
+wave_units = Array[int]([0])
+
+[node name="Wave2" parent="SpawnPoint" index="2" instance=ExtResource("2_li58x")]
+wave_units = Array[int]([1, 1, 1])
+
+[node name="Wave3" parent="SpawnPoint" index="3" instance=ExtResource("2_li58x")]
+wave_units = Array[int]([0, 0, 0, 0, 0])
+
+[node name="Wave4" parent="SpawnPoint" index="4" instance=ExtResource("2_li58x")]
+wave_units = Array[int]([1, 1, 1, 1, 1, 1, 1])
+
+[node name="Wave5" parent="SpawnPoint" index="5" instance=ExtResource("2_li58x")]
+wave_units = Array[int]([0, 0, 0, 0, 0, 0, 0, 0, 0])
 
 [node name="LevelWonPopup" parent="CanvasLayer" index="2"]
 next_level_path = "res://Levels/Level2.tscn"

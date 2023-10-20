@@ -7,50 +7,45 @@ signal new_wave(wave_number)
 @export var path : Node2D
 
 @export_category("Waves")
-@export var wait_between_units : float = 0.5
 @export var wait_between_waves : float = 10
-@export var wave_units : Array = []
 
-@onready var unit_timer = $UnitTimer
 @onready var wave_timer = $WaveTimer
 
 @onready var current_wave : int = 1
 
-var orc_scene := preload("res://Enemies/Orc.tscn")
-var wolf_scene := preload("res://Enemies/Wolf.tscn")
-var first_spawn := true
 
 func _ready():
 	randomize()
-	unit_timer.wait_time = wait_between_units
 	wave_timer.wait_time = wait_between_waves
+	for child in get_children():
+		if child is Wave:
+			child.spawn_unit.connect(spawn_unit)
+			child.wave_complete.connect(wave_complete)
 
 func start() -> void:
-	unit_timer.start()
 	new_wave.emit(current_wave)
+	for child in get_children():
+		if child is Wave:
+			child.start()
+			return
 
-func spawn_unit() -> void:
-	var new_unit : Node2D
-	if randf() > 0.5:
-		new_unit = orc_scene.instantiate()
-	else:
-		new_unit = wolf_scene.instantiate()
+func spawn_unit(unit: PackedScene) -> void:
+	var new_unit : Enemy = unit.instantiate()
 	new_unit.path = path.path()
 	emit_signal("enemy_spawned", new_unit, position)
 
-func _on_unit_timer_timeout():
-	spawn_unit()
-	wave_units[0] -= 1
-	if wave_units[0] > 0:
-		unit_timer.start()
-	else:
-		wave_units.pop_front()
-		if len(wave_units) > 0:
+func wave_complete():
+	await get_tree().process_frame
+	for child in get_children():
+		if child is Wave:
 			wave_timer.start()
-		else:
-			all_enemies_spawned.emit()
+			return
+	all_enemies_spawned.emit()
 
 func _on_wave_timer_timeout():
 	current_wave += 1
-	unit_timer.start()
 	new_wave.emit(current_wave)
+	for child in get_children():
+		if child is Wave:
+			child.start()
+			return
