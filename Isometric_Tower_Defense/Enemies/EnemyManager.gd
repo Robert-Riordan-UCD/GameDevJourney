@@ -27,6 +27,6 @@ func check_win():
 	await get_tree().process_frame
 	if !all_enemies_spawned: return
 	for c in get_children():
-		if c is Enemy:
+		if c is Enemy and c.dead == false:
 			return
 	all_enemies_defeated.emit()

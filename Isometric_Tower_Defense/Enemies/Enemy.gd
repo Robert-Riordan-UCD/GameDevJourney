@@ -61,11 +61,7 @@ func take_damage(d: int):
 		death_audio.play()
 
 func _on_animated_sprite_2d_animation_finished():
-	print("Animantion finished")
 	if dead:
-		print("I'm dead")
 		if death_audio.playing:
-			print("Waiting for audio")
 			await death_audio.finished
-		print("I'm free!")
 		queue_free()
