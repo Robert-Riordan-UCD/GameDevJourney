@@ -5,26 +5,27 @@
 
 [node name="MageTower" instance=ExtResource("1_n78bc")]
 tower_name = "Mage"
+price = 25
 levels = [{
 "cooldown": 2.0,
-"damage": 4,
-"next_price": 50,
+"damage": 10,
+"next_price": 35,
 "range": 300,
 "sprite": "res://Towers/mageTowerLevel0.png"
 }, {
 "cooldown": 1.8,
-"damage": 6,
+"damage": 10,
 "next_price": 50,
 "range": 400,
 "sprite": "res://Towers/mageTowerLevel1.png"
 }, {
 "cooldown": 1.6,
-"damage": 8,
-"next_price": 75,
+"damage": 10,
+"next_price": 90,
 "range": 500,
 "sprite": "res://Towers/mageTowerLevel2.png"
 }, {
-"cooldown": 1.5,
+"cooldown": 1.0,
 "damage": 10,
 "next_price": null,
 "range": 600,

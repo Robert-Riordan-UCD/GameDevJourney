@@ -7,25 +7,25 @@
 tower_name = "Mortar"
 levels = [{
 "cooldown": 1.5,
-"damage": 4,
-"next_price": 50,
+"damage": 5,
+"next_price": 40,
 "range": 250,
 "sprite": "res://Towers/mortarTowerLevel0.png"
 }, {
 "cooldown": 1.25,
-"damage": 4,
-"next_price": 50,
+"damage": 5,
+"next_price": 60,
 "range": 300,
 "sprite": "res://Towers/mortarTowerLevel1.png"
 }, {
-"cooldown": 1.1,
-"damage": 4,
+"cooldown": 1.0,
+"damage": 5,
 "next_price": 50,
 "range": 350,
 "sprite": "res://Towers/mortarTowerLevel2.png"
 }, {
-"cooldown": 1.0,
-"damage": 5,
+"cooldown": 0.8,
+"damage": 7,
 "next_price": null,
 "range": 400,
 "sprite": "res://Towers/mortarTowerLevel3.png"

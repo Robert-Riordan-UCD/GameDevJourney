@@ -9,28 +9,28 @@ script = ExtResource("1_u0a7x")
 tower_name = "Crossbow"
 price = 25
 levels = [{
-"cooldown": 0.2,
+"cooldown": 0.25,
 "damage": 1,
-"next_price": 25,
-"range": 200,
+"next_price": 40,
+"range": 225,
 "sprite": "res://Towers/crossbowTowerLevel0.png"
 }, {
-"cooldown": 0.1,
+"cooldown": 0.2,
 "damage": 1,
-"next_price": 25,
-"range": 225,
+"next_price": 40,
+"range": 250,
 "sprite": "res://Towers/crossbowTowerLevel1.png"
 }, {
-"cooldown": 0.1,
+"cooldown": 0.18,
 "damage": 1,
-"next_price": 25,
-"range": 250,
+"next_price": 95,
+"range": 275,
 "sprite": "res://Towers/crossbowTowerLevel2.png"
 }, {
-"cooldown": 0.05,
-"damage": 1,
+"cooldown": 0.18,
+"damage": 2,
 "next_price": null,
-"range": 275,
+"range": 300,
 "sprite": "res://Towers/crossbowTowerLevel3.png"
 }]
 

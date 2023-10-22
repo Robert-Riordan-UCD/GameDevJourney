@@ -4,6 +4,7 @@
 [ext_resource type="AudioStream" uid="uid://ci1q3w35rh57q" path="res://Audio/Enemies/OrcSpawn/monster-6.wav" id="2_v7d2d"]
 
 [node name="Orc" instance=ExtResource("1_ebm0e")]
+gold = 6
 
 [node name="SpawnAudio" parent="." index="2"]
 stream = ExtResource("2_v7d2d")
