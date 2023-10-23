@@ -22,7 +22,7 @@ position = Vector2(579, 525)
 position = Vector2(-381, -189)
 
 [node name="Node2D" type="Node2D" parent="Path/Node2D/Node2D" index="0"]
-position = Vector2(469, -242)
+position = Vector2(526, -269)
 
 [node name="Node2D2" type="Node2D" parent="Path" index="1"]
 position = Vector2(579, 526)
@@ -34,7 +34,7 @@ position = Vector2(113, -60)
 position = Vector2(-363, -192)
 
 [node name="Node2D" type="Node2D" parent="Path/Node2D2/Node2D/Node2D" index="0"]
-position = Vector2(340, -180)
+position = Vector2(397, -207)
 
 [node name="Node2D3" type="Node2D" parent="Path" index="2"]
 position = Vector2(578, 525)
@@ -46,7 +46,7 @@ position = Vector2(249, -127)
 position = Vector2(-371, -188)
 
 [node name="Node2D" type="Node2D" parent="Path/Node2D3/Node2D/Node2D" index="0"]
-position = Vector2(213, -117)
+position = Vector2(270, -144)
 
 [node name="Node2D4" type="Node2D" parent="Path" index="3"]
 position = Vector2(579, 526)
@@ -58,10 +58,10 @@ position = Vector2(378, -191)
 position = Vector2(-372, -191)
 
 [node name="Node2D" type="Node2D" parent="Path/Node2D4/Node2D/Node2D" index="0"]
-position = Vector2(84, -49)
+position = Vector2(141, -76)
 
 [node name="SpawnPoint" parent="." index="6"]
-position = Vector2(676, 575)
+position = Vector2(721, 600)
 wait_between_waves = 5.0
 
 [node name="Wave" parent="SpawnPoint" index="1" instance=ExtResource("2_7xqqr")]
