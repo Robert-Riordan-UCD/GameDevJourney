@@ -64,4 +64,5 @@ func _on_animated_sprite_2d_animation_finished():
 	if dead:
 		if death_audio.playing:
 			await death_audio.finished
+		await Utils.tween_out(self)
 		queue_free()

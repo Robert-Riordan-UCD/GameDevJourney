@@ -59,6 +59,7 @@ func _ready():
 	if attack == null:
 		push_error("Tower must have an attack as a child. ", self)
 	set_level()
+	Utils.tween_in(sprite_2d, 0.8)
 
 func _on_area_entered(area):
 	if area is Enemy:

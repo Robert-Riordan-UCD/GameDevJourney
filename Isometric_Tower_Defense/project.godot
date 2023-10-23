@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 SceneTransition="*res://Levels/SceneTransition.tscn"
 AudioManager="*res://Audio/AudioManager.tscn"
+Utils="*res://Utils.gd"
 
 [display]
 
