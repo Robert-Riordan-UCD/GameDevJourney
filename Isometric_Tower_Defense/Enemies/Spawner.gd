@@ -2,6 +2,7 @@ extends Node2D
 
 signal enemy_spawned(enemy, position)
 signal all_enemies_spawned
+signal wave_finished
 signal new_wave(wave_number)
 
 @export var path : Node2D
@@ -39,6 +40,7 @@ func wave_complete():
 	for child in get_children():
 		if child is Wave:
 			wave_timer.start()
+			wave_finished.emit()
 			return
 	all_enemies_spawned.emit()
 
@@ -49,3 +51,7 @@ func _on_wave_timer_timeout():
 		if child is Wave:
 			child.start()
 			return
+
+func _on_next_wave_button_pressed():
+	_on_wave_timer_timeout()
+	wave_timer.stop()

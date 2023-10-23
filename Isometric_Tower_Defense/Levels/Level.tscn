@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://dhmt1m718x5qp"]
+[gd_scene load_steps=62 format=3 uid="uid://dhmt1m718x5qp"]
 
 [ext_resource type="Script" path="res://Levels/LevelManager.gd" id="1_ptxdy"]
 [ext_resource type="PackedScene" uid="uid://biugc7jiaj06x" path="res://World/GroundTilemap.tscn" id="2_go2fb"]
@@ -36,6 +36,7 @@
 [ext_resource type="Texture2D" uid="uid://c2ilarfkbws5p" path="res://GroundTiles/Decorations/detail_crystalLarge_S.png" id="25_68ni3"]
 [ext_resource type="Texture2D" uid="uid://32nwiiej1yfx" path="res://GroundTiles/Decorations/detail_crystalLarge_W.png" id="29_1s16g"]
 [ext_resource type="Texture2D" uid="uid://cpki673faeh62" path="res://GroundTiles/Decorations/detail_dirtLarge_E.png" id="34_e1d0o"]
+[ext_resource type="Script" path="res://GUI/NextWaveButton.gd" id="37_1m24x"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h1anl"]
 texture = ExtResource("3_oyqwh")
@@ -350,6 +351,32 @@ theme_override_constants/margin_bottom = 10
 layout_mode = 2
 text = "1x"
 
+[node name="NextWaveButton" type="MarginContainer" parent="CanvasLayer" node_paths=PackedStringArray("parent", "timer")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -56.0
+offset_top = -25.5
+offset_right = 56.0
+offset_bottom = 25.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+script = ExtResource("37_1m24x")
+parent = NodePath("../../SpawnPoint")
+timer = NodePath("../../SpawnPoint/WaveTimer")
+
+[node name="NextWaveButton" type="Button" parent="CanvasLayer/NextWaveButton"]
+layout_mode = 2
+text = "Next Wave"
+
 [connection signal="all_enemies_defeated" from="Enemies" to="." method="_on_enemies_all_enemies_defeated"]
 [connection signal="enemy_died" from="Enemies" to="." method="_on_enemies_enemy_died"]
 [connection signal="enemy_reached_end" from="Enemies" to="." method="_on_enemies_enemy_reached_end"]
@@ -357,6 +384,7 @@ text = "1x"
 [connection signal="all_enemies_spawned" from="SpawnPoint" to="Enemies" method="_on_spawn_point_all_enemies_spawned"]
 [connection signal="enemy_spawned" from="SpawnPoint" to="Enemies" method="_on_spawn_point_enemy_spawned"]
 [connection signal="new_wave" from="SpawnPoint" to="." method="_on_spawn_point_new_wave"]
+[connection signal="wave_finished" from="SpawnPoint" to="." method="_on_spawn_point_wave_finished"]
 [connection signal="timeout" from="SpawnPoint/WaveTimer" to="SpawnPoint" method="_on_wave_timer_timeout"]
 [connection signal="tower_selected" from="CanvasLayer/TowerSelect/HBoxContainer/CrossbowSelect" to="TowerManager" method="_on_tower_selected"]
 [connection signal="tower_selected" from="CanvasLayer/TowerSelect/HBoxContainer/MageSelect" to="TowerManager" method="_on_tower_selected"]
@@ -368,3 +396,5 @@ text = "1x"
 [connection signal="pressed" from="CanvasLayer/GameOverPopup/VBoxContainer/RetryButton" to="CanvasLayer/GameOverPopup" method="_on_retry_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/GameOverPopup/VBoxContainer/MenuButton" to="CanvasLayer/GameOverPopup" method="_on_menu_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/SpeedButton/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/NextWaveButton/NextWaveButton" to="SpawnPoint" method="_on_next_wave_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/NextWaveButton/NextWaveButton" to="CanvasLayer/NextWaveButton" method="_on_next_wave_button_pressed"]

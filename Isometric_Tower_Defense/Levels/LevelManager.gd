@@ -9,6 +9,7 @@ extends Node2D
 @onready var ground_tile_map = $GroundTileMap
 @onready var level_started : bool = false
 @onready var spawn_point = $SpawnPoint
+@onready var next_wave_button = $CanvasLayer/NextWaveButton
 
 var game_speed := [1, 2, 4]
 
@@ -50,6 +51,7 @@ func _on_enemies_all_enemies_defeated():
 func _on_spawn_point_new_wave(wave_number):
 	if gui == null: return
 	gui.set_current_wave(wave_number)
+	next_wave_button.hide_next_wave_button()
 
 func _on_button_pressed():
 	set_game_speed()
@@ -64,3 +66,7 @@ func _on_tower_manager_tower_placed():
 	if level_started: return
 	level_started = true
 	spawn_point.start()
+
+func _on_spawn_point_wave_finished():
+	await get_tree().create_timer(1).timeout
+	next_wave_button.show_next_wave_button()
