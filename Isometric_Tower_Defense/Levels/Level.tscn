@@ -396,5 +396,6 @@ text = "Next Wave"
 [connection signal="pressed" from="CanvasLayer/GameOverPopup/VBoxContainer/RetryButton" to="CanvasLayer/GameOverPopup" method="_on_retry_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/GameOverPopup/VBoxContainer/MenuButton" to="CanvasLayer/GameOverPopup" method="_on_menu_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/SpeedButton/Button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/NextWaveButton/NextWaveButton" to="SpawnPoint" method="_on_next_wave_button_pressed"]
+[connection signal="next_wave_button_pressed" from="CanvasLayer/NextWaveButton" to="." method="_on_next_wave_button_next_wave_button_pressed"]
+[connection signal="next_wave_button_pressed" from="CanvasLayer/NextWaveButton" to="SpawnPoint" method="_on_next_wave_button_next_wave_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/NextWaveButton/NextWaveButton" to="CanvasLayer/NextWaveButton" method="_on_next_wave_button_pressed"]

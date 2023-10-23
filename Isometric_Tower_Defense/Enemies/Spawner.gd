@@ -52,6 +52,6 @@ func _on_wave_timer_timeout():
 			child.start()
 			return
 
-func _on_next_wave_button_pressed():
+func _on_next_wave_button_next_wave_button_pressed(time_left):
 	_on_wave_timer_timeout()
 	wave_timer.stop()

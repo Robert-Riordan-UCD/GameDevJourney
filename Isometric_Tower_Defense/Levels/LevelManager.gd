@@ -70,3 +70,8 @@ func _on_tower_manager_tower_placed():
 func _on_spawn_point_wave_finished():
 	await get_tree().create_timer(1).timeout
 	next_wave_button.show_next_wave_button()
+
+func _on_next_wave_button_next_wave_button_pressed(time_left):
+	print(time_left)
+	gold += time_left
+	gui.set_gold_amount(gold)

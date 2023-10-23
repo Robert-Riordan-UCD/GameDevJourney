@@ -1,5 +1,7 @@
 extends MarginContainer
 
+signal next_wave_button_pressed(time_left)
+
 @export var parent: Node2D
 @export var timer: Timer
 
@@ -16,6 +18,7 @@ func _process(_delta):
 		next_wave_button.text = str(timer.time_left).split('.')[0]
 
 func _on_next_wave_button_pressed():
+	next_wave_button_pressed.emit(int(timer.time_left))
 	hide_next_wave_button()
 
 func hide_next_wave_button():
