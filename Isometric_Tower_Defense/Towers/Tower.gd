@@ -65,6 +65,9 @@ func _on_area_entered(area):
 	if area is Enemy:
 		enemies.append(area)
 		area.died.connect(_enemy_died.bind(area))
+		if attack_timer.is_stopped():
+			attack_timer.start()
+			_on_attack_timer_timeout()
 
 func _on_area_exited(area):
 	for i in range(len(enemies)):
@@ -73,14 +76,24 @@ func _on_area_exited(area):
 			return
 
 func _on_attack_timer_timeout():
-	var enemy_to_attack = null
+	var enemy_to_attack = enemy_nearest_exit()
+	if enemy_to_attack == null:
+		attack_timer.stop()
+		return
+	attack.attack(enemy_to_attack, damage)
+
+func enemy_nearest_exit() -> Enemy:
+	var dist : float = INF
+	var enemy : Enemy = null
 	for i in range(len(enemies)-1, -1, -1):
 		if enemies[i] == null:
 			enemies.remove_at(i)
 		else:
-			enemy_to_attack = enemies[i]
-	if enemy_to_attack == null: return
-	attack.attack(enemy_to_attack, damage)
+			var new_dist = enemies[i].distance_to_goal()
+			if new_dist < dist:
+				dist = new_dist
+				enemy = enemies[i]
+	return enemy
 
 func level_up() -> void:
 	current_level = min(current_level + 1, len(levels))

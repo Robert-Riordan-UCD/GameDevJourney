@@ -16,7 +16,7 @@ signal died(gold)
 var next_point : Vector2
 var path_points : Array = []
 
-const NEAR_TARGET_THRESHOLD = 1;
+const NEAR_TARGET_THRESHOLD = 5;
 
 @onready var spawn_audio = $SpawnAudio
 @onready var hurt_audio = $HurtAudio
@@ -59,6 +59,12 @@ func take_damage(d: int):
 		animated_sprite_2d.play("death")
 		dead = true
 		death_audio.play()
+
+func distance_to_goal() -> float:
+	var dist : float = position.distance_to(next_point)
+	for i in range(path_points.size()-1):
+		dist += path_points[i].distance_to(path_points[i+1])
+	return dist
 
 func _on_animated_sprite_2d_animation_finished():
 	if dead:
