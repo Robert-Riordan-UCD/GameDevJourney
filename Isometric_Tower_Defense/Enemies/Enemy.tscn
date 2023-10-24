@@ -164,6 +164,7 @@ radius = 1.0
 [node name="Enemy" type="Area2D"]
 position = Vector2(0, -81)
 script = ExtResource("1_ggpco")
+max_offset = 12.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1

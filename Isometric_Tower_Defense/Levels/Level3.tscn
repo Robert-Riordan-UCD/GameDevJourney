@@ -28,25 +28,25 @@ position = Vector2(526, -269)
 position = Vector2(579, 526)
 
 [node name="Node2D" type="Node2D" parent="Path/Node2D2" index="0"]
-position = Vector2(113, -60)
+position = Vector2(123, -67)
 
 [node name="Node2D" type="Node2D" parent="Path/Node2D2/Node2D" index="0"]
-position = Vector2(-363, -192)
+position = Vector2(-381, -188)
 
 [node name="Node2D" type="Node2D" parent="Path/Node2D2/Node2D/Node2D" index="0"]
-position = Vector2(397, -207)
+position = Vector2(405, -205)
 
 [node name="Node2D3" type="Node2D" parent="Path" index="2"]
 position = Vector2(578, 525)
 
 [node name="Node2D" type="Node2D" parent="Path/Node2D3" index="0"]
-position = Vector2(249, -127)
+position = Vector2(252, -127)
 
 [node name="Node2D" type="Node2D" parent="Path/Node2D3/Node2D" index="0"]
-position = Vector2(-371, -188)
+position = Vector2(-381, -192)
 
 [node name="Node2D" type="Node2D" parent="Path/Node2D3/Node2D/Node2D" index="0"]
-position = Vector2(270, -144)
+position = Vector2(277, -140)
 
 [node name="Node2D4" type="Node2D" parent="Path" index="3"]
 position = Vector2(579, 526)
@@ -55,10 +55,10 @@ position = Vector2(579, 526)
 position = Vector2(378, -191)
 
 [node name="Node2D" type="Node2D" parent="Path/Node2D4/Node2D" index="0"]
-position = Vector2(-372, -191)
+position = Vector2(-380, -192)
 
 [node name="Node2D" type="Node2D" parent="Path/Node2D4/Node2D/Node2D" index="0"]
-position = Vector2(141, -76)
+position = Vector2(149, -79)
 
 [node name="SpawnPoint" parent="." index="6"]
 position = Vector2(721, 600)

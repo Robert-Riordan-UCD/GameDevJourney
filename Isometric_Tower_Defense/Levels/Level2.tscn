@@ -16,55 +16,55 @@ layer_0/tile_data = PackedInt32Array(196609, 65539, 4, 131074, 65536, 4, 65537, 
 seed = 2
 
 [node name="Node2D" type="Node2D" parent="Path" index="0"]
-position = Vector2(715, 396)
+position = Vector2(706, 397)
 
 [node name="Node2D2" type="Node2D" parent="Path/Node2D" index="0"]
-position = Vector2(-75, 37)
+position = Vector2(-66, 31)
 
 [node name="Node2D3" type="Node2D" parent="Path/Node2D/Node2D2" index="0"]
-position = Vector2(-60, -32)
+position = Vector2(-63, -31)
 
 [node name="Node2D4" type="Node2D" parent="Path/Node2D/Node2D2/Node2D3" index="0"]
-position = Vector2(-69, 29)
+position = Vector2(-65, 31)
 
 [node name="Node2D5" type="Node2D" parent="Path/Node2D/Node2D2/Node2D3/Node2D4" index="0"]
-position = Vector2(-185, -95)
+position = Vector2(-191, -95)
 
 [node name="Node2D" type="Node2D" parent="Path/Node2D/Node2D2/Node2D3/Node2D4/Node2D5" index="0"]
-position = Vector2(53, -31)
+position = Vector2(64, -32)
 
 [node name="Node2D" type="Node2D" parent="Path/Node2D/Node2D2/Node2D3/Node2D4/Node2D5/Node2D" index="0"]
-position = Vector2(-51, -37)
+position = Vector2(-68, -33)
 
 [node name="Node2D" type="Node2D" parent="Path/Node2D/Node2D2/Node2D3/Node2D4/Node2D5/Node2D/Node2D" index="0"]
-position = Vector2(50, -28)
+position = Vector2(68, -32)
 
 [node name="Node2D" type="Node2D" parent="Path/Node2D/Node2D2/Node2D3/Node2D4/Node2D5/Node2D/Node2D/Node2D" index="0"]
-position = Vector2(-202, -108)
+position = Vector2(-217, -109)
 
 [node name="Node2D3" type="Node2D" parent="Path/Node2D" index="1"]
-position = Vector2(51, -29)
+position = Vector2(63, -32)
 
 [node name="Node2D3" type="Node2D" parent="Path/Node2D/Node2D3" index="0"]
-position = Vector2(-51, -34)
+position = Vector2(-64, -32)
 
 [node name="Node2D4" type="Node2D" parent="Path/Node2D/Node2D3/Node2D3" index="0"]
-position = Vector2(46, -31)
+position = Vector2(63, -32)
 
 [node name="Node2D5" type="Node2D" parent="Path/Node2D/Node2D3/Node2D3/Node2D4" index="0"]
-position = Vector2(-184, -96)
+position = Vector2(-192, -95)
 
 [node name="Node2D" type="Node2D" parent="Path/Node2D/Node2D3/Node2D3/Node2D4/Node2D5" index="0"]
-position = Vector2(-62, 31)
+position = Vector2(-64, 32)
 
 [node name="Node2D" type="Node2D" parent="Path/Node2D/Node2D3/Node2D3/Node2D4/Node2D5/Node2D" index="0"]
-position = Vector2(-66, -31)
+position = Vector2(-64, -35)
 
 [node name="Node2D" type="Node2D" parent="Path/Node2D/Node2D3/Node2D3/Node2D4/Node2D5/Node2D/Node2D" index="0"]
-position = Vector2(-68, 32)
+position = Vector2(-63, 34)
 
 [node name="Node2D" type="Node2D" parent="Path/Node2D/Node2D3/Node2D3/Node2D4/Node2D5/Node2D/Node2D/Node2D" index="0"]
-position = Vector2(-205, -108)
+position = Vector2(-216, -109)
 
 [node name="SpawnPoint" parent="." index="6"]
 position = Vector2(915, 505)

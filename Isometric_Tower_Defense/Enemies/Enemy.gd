@@ -12,11 +12,12 @@ signal died(gold)
 
 @export_category("Setup")
 @export var path : Array
+@export var max_offset: float
 
 var next_point : Vector2
 var path_points : Array = []
 
-const NEAR_TARGET_THRESHOLD = 5;
+const NEAR_TARGET_THRESHOLD = 2;
 
 @onready var spawn_audio = $SpawnAudio
 @onready var hurt_audio = $HurtAudio
@@ -25,8 +26,10 @@ const NEAR_TARGET_THRESHOLD = 5;
 @onready var dead : bool = false
 
 func _ready() -> void:
+	randomize()
+	position += Vector2(randf_range(-max_offset, max_offset), randf_range(-max_offset, max_offset))
 	for point in path:
-		path_points.append(point.global_position)
+		path_points.append(point.global_position + Vector2(randf_range(-max_offset, max_offset), randf_range(-max_offset, max_offset)))
 	next_point = path_points[0]
 	AudioManager.request_sound(spawn_audio)
 	animated_sprite_2d.play("default")

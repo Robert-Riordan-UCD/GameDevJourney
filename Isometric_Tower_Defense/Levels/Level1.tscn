@@ -16,28 +16,28 @@ layer_0/tile_data = PackedInt32Array(262146, 65557, 4, 327681, 65558, 4, 458752,
 seed = 1
 
 [node name="Node2D" type="Node2D" parent="Path" index="0"]
-position = Vector2(575, 529)
+position = Vector2(576, 525)
 
 [node name="Node2D2" type="Node2D" parent="Path/Node2D" index="0"]
-position = Vector2(-126, -67)
+position = Vector2(-126, -63)
 
 [node name="Node2D3" type="Node2D" parent="Path/Node2D/Node2D2" index="0"]
-position = Vector2(384, -193)
+position = Vector2(383, -193)
 
 [node name="Node2D4" type="Node2D" parent="Path/Node2D/Node2D2/Node2D3" index="0"]
 position = Vector2(-128, -65)
 
 [node name="Node2D5" type="Node2D" parent="Path/Node2D/Node2D2/Node2D3/Node2D4" index="0"]
-position = Vector2(-385, 200)
+position = Vector2(-385, 194)
 
 [node name="Node2D6" type="Node2D" parent="Path/Node2D/Node2D2/Node2D3/Node2D4/Node2D5" index="0"]
-position = Vector2(-116, -76)
+position = Vector2(-127, -67)
 
 [node name="Node2D7" type="Node2D" parent="Path/Node2D/Node2D2/Node2D3/Node2D4/Node2D5/Node2D6" index="0"]
-position = Vector2(371, -189)
+position = Vector2(383, -191)
 
 [node name="Node2D8" type="Node2D" parent="Path/Node2D/Node2D2/Node2D3/Node2D4/Node2D5/Node2D6/Node2D7" index="0"]
-position = Vector2(-151, -74)
+position = Vector2(-149, -76)
 
 [node name="SpawnPoint" parent="." index="6"]
 position = Vector2(1113, 256)
