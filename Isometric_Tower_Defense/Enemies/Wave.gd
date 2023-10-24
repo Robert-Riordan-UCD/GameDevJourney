@@ -10,9 +10,10 @@ signal wave_complete
 @export_category("Wave")
 @export var wait_between_units : float = 0.5
 
-enum EnemyTypes {Orc, Wolf}
+enum EnemyTypes {Orc, Wolf, Ogre}
 var orc_scene := preload("res://Enemies/Orc.tscn")
 var wolf_scene := preload("res://Enemies/Wolf.tscn")
+var ogre_scene := preload("res://Enemies/Ogre.tscn")
 
 func _ready():
 	$Timer.wait_time = wait_between_units
@@ -24,6 +25,7 @@ func _on_timer_timeout():
 	match(wave_units[0]):
 		EnemyTypes.Orc: spawn_unit.emit(orc_scene)
 		EnemyTypes.Wolf: spawn_unit.emit(wolf_scene)
+		EnemyTypes.Ogre: spawn_unit.emit(ogre_scene)
 	wave_units.pop_front()
 	if wave_units.size() <= 0:
 		wave_complete.emit()
