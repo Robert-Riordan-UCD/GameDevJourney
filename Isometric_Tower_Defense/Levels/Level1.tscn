@@ -43,7 +43,7 @@ position = Vector2(-151, -74)
 position = Vector2(1113, 256)
 
 [node name="Wave" parent="SpawnPoint" index="1" instance=ExtResource("2_li58x")]
-wave_units = Array[int]([2])
+wave_units = Array[int]([0])
 
 [node name="Wave2" parent="SpawnPoint" index="2" instance=ExtResource("2_li58x")]
 wave_units = Array[int]([1, 1, 1])

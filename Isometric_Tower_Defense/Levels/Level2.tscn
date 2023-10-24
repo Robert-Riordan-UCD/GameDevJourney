@@ -77,11 +77,22 @@ wave_units = Array[int]([1, 1, 1, 0, 0, 0, 0])
 wait_between_units = 0.4
 
 [node name="Wave3" parent="SpawnPoint" index="3" instance=ExtResource("2_uy0jn")]
-wave_units = Array[int]([0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0])
+wave_units = Array[int]([1, 1, 1, 2])
 wait_between_units = 0.4
 
 [node name="Wave4" parent="SpawnPoint" index="4" instance=ExtResource("2_uy0jn")]
+wave_units = Array[int]([0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0])
+wait_between_units = 0.4
+
+[node name="Wave5" parent="SpawnPoint" index="5" instance=ExtResource("2_uy0jn")]
 wave_units = Array[int]([0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1])
+
+[node name="Wave6" parent="SpawnPoint" index="6" instance=ExtResource("2_uy0jn")]
+wave_units = Array[int]([0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1])
+
+[node name="Wave7" parent="SpawnPoint" index="7" instance=ExtResource("2_uy0jn")]
+wave_units = Array[int]([2, 0, 0, 1, 1, 2, 1, 1, 1, 1, 1, 1, 2])
+wait_between_units = 0.75
 
 [node name="LevelWonPopup" parent="CanvasLayer" index="2"]
 next_level_path = "res://Levels/Level3.tscn"
