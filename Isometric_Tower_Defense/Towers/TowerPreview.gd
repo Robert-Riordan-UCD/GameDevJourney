@@ -5,6 +5,7 @@ extends Sprite2D
 
 @onready var last_pos: Vector2 = Vector2.ZERO
 @onready var last_tower: PackedScene = null
+@onready var range_preview = $RangePreview
 
 func update(tower: PackedScene):
 	visible = true
@@ -16,6 +17,7 @@ func update_sprite(tower: PackedScene) -> void:
 	last_tower = tower
 	var t : Tower = tower.instantiate()
 	texture = load(t.levels[0]["sprite"])
+	range_preview.scale = t.levels[0]["range"]/32*Vector2(1, 0.5)
 	scale = Vector2(0.5, 0.5)
 
 func update_position() -> void:
