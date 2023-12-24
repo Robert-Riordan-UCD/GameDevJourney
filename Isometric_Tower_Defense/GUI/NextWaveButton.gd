@@ -22,9 +22,7 @@ func _on_next_wave_button_pressed():
 	hide_next_wave_button()
 
 func hide_next_wave_button():
-	var tween: Tween = create_tween()
-	tween.tween_property(self, "scale", Vector2.ZERO, 1.0).set_trans(Tween.TRANS_CIRC)
+	await Utils.tween_out(self)
 
 func show_next_wave_button():
-	var tween: Tween = create_tween()
-	tween.tween_property(self, "scale", Vector2(1, 1), 1.0).set_trans(Tween.TRANS_CIRC)
+	Utils.tween_in(self)
