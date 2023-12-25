@@ -12,6 +12,7 @@ func _ready():
 	advance()
 
 func advance():
+	if popup_text.is_empty(): return
 	label.text = popup_text.pop_front()
 	print(label.text)
 	Utils.tween_in(place_crossbow_tower_popup)
