@@ -33,6 +33,20 @@ func _ready():
 	# Next wave button
 	await advance_text("The next wave will be coming soon, but if you call them early you'll get some extra gold!")
 	$"../../SpawnPoint/WaveTimer".paused = false
+	
+	# Place mage tower
+	while $"../..".gold < 25:
+		await $"../../Enemies".enemy_died
+	$"../TowerSelect/HBoxContainer/MageSelect".visible = true
+	$"../../SpawnPoint/WaveTimer".paused = true
+	await advance_text("You have enough gold for a mage now! They're slower than a crossbow but stronger.")
+	focus_target($"../TowerSelect/HBoxContainer/MageSelect")
+	await $"../TowerSelect/HBoxContainer/MageSelect".tower_selected
+	focus_target($TowerPlacmentSpot2, 0.6, 0.05)
+	await $"../../TowerManager".tower_placed
+	$"../../SpawnPoint/WaveTimer".paused = false
+	defocus()
+	await advance_text("You should be able to handle it from here. Good luck!")
 
 func advance_text(text):
 	label.text = text
