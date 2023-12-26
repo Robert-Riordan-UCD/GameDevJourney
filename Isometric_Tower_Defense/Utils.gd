@@ -1,7 +1,6 @@
 extends Node
 
 func tween_in(node, duration : float = 1.0) -> void:
-	print("Tweening in ", node)
 	var tween: Tween = create_tween()
 	var initial_scale : Vector2 = node.scale
 	node.scale = Vector2.ZERO
@@ -11,7 +10,6 @@ func tween_in(node, duration : float = 1.0) -> void:
 	tween.tween_property(node, "scale", initial_scale, duration).set_trans(Tween.TRANS_ELASTIC)
 
 func tween_out(node, duration : float = 1.0) -> void:
-	print("Tweening out ", node)
 	var tween: Tween = create_tween()
 	var initial_scale : Vector2 = node.scale
 	if node is Control:

@@ -62,11 +62,6 @@ func set_game_speed() -> void:
 	Engine.time_scale = new_speed
 	$CanvasLayer/SpeedButton/Button.text = str(new_speed) + 'x'
 
-func _on_tower_manager_tower_placed():
-	if level_started: return
-	level_started = true
-	spawn_point.start()
-
 func _on_spawn_point_wave_finished():
 	await get_tree().create_timer(1).timeout
 	next_wave_button.show_next_wave_button()

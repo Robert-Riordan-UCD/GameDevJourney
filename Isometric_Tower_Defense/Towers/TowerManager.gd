@@ -2,6 +2,7 @@ class_name TowerManager
 extends Node2D
 
 signal tower_placed
+signal tower_leveled_up
 
 @export var level_manager : LevelManager
 @export var ground_tile_map : TileMap
@@ -37,6 +38,7 @@ func _request_level_up(cost: int, tower: Tower) -> void:
 	if !level_manager.spend_gold(cost):
 		return
 	tower.level_up()
+	emit_signal("tower_leveled_up")
 
 func _on_tower_selected(tower):
 	selected_tower = tower
