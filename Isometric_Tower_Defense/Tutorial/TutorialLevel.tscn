@@ -57,6 +57,9 @@ visible = false
 [node name="MortarSelect" parent="CanvasLayer/TowerSelect/HBoxContainer" index="2"]
 visible = false
 
+[node name="LevelWonPopup" parent="CanvasLayer" index="2"]
+next_level_path = "res://Levels/Level1.tscn"
+
 [node name="NextWaveButton" parent="CanvasLayer" index="5"]
 visible = false
 
