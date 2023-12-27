@@ -44,9 +44,11 @@ func _ready():
 	# Place mage tower
 	while $"../..".gold < 25:
 		await $"../../Enemies".enemy_died
+	mouse_filter = Control.MOUSE_FILTER_STOP
 	$"../TowerSelect/HBoxContainer/MageSelect".visible = true
 	$"../../SpawnPoint/WaveTimer".paused = true
 	await advance_text("You have enough gold for a mage now! They're slower than a crossbow but stronger.")
+	mouse_filter = Control.MOUSE_FILTER_IGNORE
 	focus_target($"../TowerSelect/HBoxContainer/MageSelect")
 	await $"../TowerSelect/HBoxContainer/MageSelect".tower_selected
 	focus_target($TowerPlacmentSpot2, 0.6, 0.05)
