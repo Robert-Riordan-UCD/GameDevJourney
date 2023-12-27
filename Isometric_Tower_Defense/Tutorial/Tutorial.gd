@@ -53,6 +53,8 @@ func _ready():
 	await $"../../TowerManager".tower_placed
 	$"../../SpawnPoint/WaveTimer".paused = false
 	defocus()
+	
+	# Final message
 	await advance_text("You should be able to handle it from here. Good luck!")
 
 func advance_text(text):

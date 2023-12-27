@@ -1,5 +1,8 @@
 extends Control
 
+func _on_tutorial_pressed():
+	SceneTransition.change_scene("res://Tutorial/TutorialLevel.tscn")
+
 func _on_level_1_pressed():
 	SceneTransition.change_scene("res://Levels/Level1.tscn")
 
