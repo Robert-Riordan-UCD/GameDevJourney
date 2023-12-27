@@ -93,3 +93,6 @@ func _update_shader_position(target):
 
 func _update_shader_radius(radius):
 	$FocusShader.material.set_shader_parameter("radius", radius)
+
+func _on_skip_button_pressed():
+	SceneTransition.change_scene("res://Levels/Level1.tscn")

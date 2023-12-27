@@ -57,9 +57,6 @@ visible = false
 [node name="MortarSelect" parent="CanvasLayer/TowerSelect/HBoxContainer" index="2"]
 visible = false
 
-[node name="LevelWonPopup" parent="CanvasLayer" index="2"]
-next_level_path = "res://Levels/Level1.tscn"
-
 [node name="NextWaveButton" parent="CanvasLayer" index="5"]
 visible = false
 
@@ -143,3 +140,25 @@ offset_right = 21.0
 offset_bottom = -36.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Tutorial" index="4"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -69.0
+offset_top = -27.0
+offset_bottom = 27.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/margin_right = 10
+
+[node name="SkipButton" type="Button" parent="CanvasLayer/Tutorial/MarginContainer" index="0"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Skip
+Tutorial"
+
+[connection signal="pressed" from="CanvasLayer/Tutorial/MarginContainer/SkipButton" to="CanvasLayer/Tutorial" method="_on_skip_button_pressed"]
