@@ -129,6 +129,7 @@ offset_right = -44.0
 offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="TowerPlacmentSpot2" type="Control" parent="CanvasLayer/Tutorial" index="3"]
 layout_mode = 1
@@ -143,6 +144,7 @@ offset_right = 21.0
 offset_bottom = -36.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Tutorial" index="4"]
 layout_mode = 1
