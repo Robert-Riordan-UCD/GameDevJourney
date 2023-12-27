@@ -14,7 +14,6 @@ signal new_wave(wave_number)
 
 @onready var current_wave : int = 1
 
-
 func _ready():
 	randomize()
 	wave_timer.wait_time = wait_between_waves
@@ -45,11 +44,11 @@ func wave_complete():
 	all_enemies_spawned.emit()
 
 func _on_wave_timer_timeout():
-	current_wave += 1
-	new_wave.emit(current_wave)
 	for child in get_children():
 		if child is Wave:
 			child.start()
+			new_wave.emit(current_wave)
+			current_wave += 1
 			return
 
 func _on_next_wave_button_next_wave_button_pressed(time_left):
