@@ -8,3 +8,8 @@
 *.zip
 
 3D_Space_Shooter/SpaceShooter/Content/SpaceShooter/Blueprints/SpaceSkybox/MySkybox.dds
+
+Isometric_Tower_Defense/export_presets.cfg
+Isometric_Tower_Defense/TowerDefenseHTML/
+Isometric_Tower_Defense/Screenshots/
+Isometric_Tower_Defense/Levels/Level.gdshader
