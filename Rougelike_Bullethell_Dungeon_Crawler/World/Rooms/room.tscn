@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://dvfraj2ogko0p"]
+[gd_scene load_steps=7 format=3 uid="uid://dvfraj2ogko0p"]
 
 [ext_resource type="Texture2D" uid="uid://dj28wsuh8pwu8" path="res://World/Rooms/room.png" id="1_w114d"]
+[ext_resource type="Script" path="res://World/Rooms/room.gd" id="1_ymctm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w7iuo"]
 size = Vector2(633.5, 80)
@@ -16,6 +17,7 @@ size = Vector2(30, 337.5)
 
 [node name="Room" type="Node2D"]
 scale = Vector2(2, 2)
+script = ExtResource("1_ymctm")
 
 [node name="Room" type="Sprite2D" parent="."]
 texture_filter = 1
