@@ -4,6 +4,7 @@ extends Node2D
 @export var speed:float = 100
 @export var lifetime:float = 10
 @export var damage:float = 1
+@export var team:String = "enemy"
 
 var direction:Vector2 = Vector2.RIGHT
 
