@@ -1,18 +1,26 @@
-[gd_scene load_steps=3 format=3 uid="uid://cjl1n5u50go7v"]
+[gd_scene load_steps=5 format=3 uid="uid://cjl1n5u50go7v"]
 
+[ext_resource type="PackedScene" uid="uid://dvfraj2ogko0p" path="res://World/Rooms/room.tscn" id="1_6wpco"]
 [ext_resource type="PackedScene" uid="uid://dtrrrhcfme7or" path="res://Player/player.tscn" id="2_8qabr"]
 [ext_resource type="PackedScene" uid="uid://dmx33r6xnsopf" path="res://Enemies/enemy.tscn" id="3_m3864"]
+[ext_resource type="Script" path="res://World/MainCamera.gd" id="4_dn6wf"]
 
 [node name="DebugTestScene" type="Node2D"]
 
+[node name="Room" parent="." instance=ExtResource("1_6wpco")]
+
 [node name="Player" parent="." instance=ExtResource("2_8qabr")]
-position = Vector2(307, 203)
+position = Vector2(-165, -68)
 
 [node name="Enemy" parent="." instance=ExtResource("3_m3864")]
-position = Vector2(469, 249)
+position = Vector2(-3, -22)
 
 [node name="Enemy2" parent="." instance=ExtResource("3_m3864")]
-position = Vector2(650, 360)
+position = Vector2(178, 89)
 
 [node name="Enemy3" parent="." instance=ExtResource("3_m3864")]
-position = Vector2(493, 402)
+position = Vector2(21, 131)
+
+[node name="MainCamera" type="Camera2D" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("4_dn6wf")
+target = NodePath("../Player")

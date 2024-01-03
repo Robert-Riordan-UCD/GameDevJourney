@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3 uid="uid://dvfraj2ogko0p"]
+
+[ext_resource type="Texture2D" uid="uid://dj28wsuh8pwu8" path="res://World/Rooms/room.png" id="1_w114d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w7iuo"]
+size = Vector2(633.5, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0lb5q"]
+size = Vector2(30, 366.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mn33n"]
+size = Vector2(630.5, 32.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_slhq3"]
+size = Vector2(30, 337.5)
+
+[node name="Room" type="Node2D"]
+scale = Vector2(2, 2)
+
+[node name="Room" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("1_w114d")
+
+[node name="NorthWall" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NorthWall"]
+position = Vector2(-0.25, -143)
+shape = SubResource("RectangleShape2D_w7iuo")
+
+[node name="EastWall" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EastWall"]
+position = Vector2(300.5, 0.75)
+shape = SubResource("RectangleShape2D_0lb5q")
+
+[node name="SouthWall" type="StaticBody2D" parent="."]
+position = Vector2(1.5, 166.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SouthWall"]
+position = Vector2(-1.75, 0.25)
+shape = SubResource("RectangleShape2D_mn33n")
+
+[node name="WestWall" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WestWall"]
+position = Vector2(-301.5, 13.5)
+shape = SubResource("RectangleShape2D_slhq3")
