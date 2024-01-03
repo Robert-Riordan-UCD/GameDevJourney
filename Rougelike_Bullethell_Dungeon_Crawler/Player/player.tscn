@@ -1,10 +1,11 @@
-[gd_scene load_steps=25 format=3 uid="uid://dtrrrhcfme7or"]
+[gd_scene load_steps=26 format=3 uid="uid://dtrrrhcfme7or"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_wegdx"]
 [ext_resource type="Texture2D" uid="uid://bhr4hkkc0wosd" path="res://Player/Sprites/Death-Sheet.png" id="2_12qad"]
 [ext_resource type="Texture2D" uid="uid://f0d43pon7wdm" path="res://Player/Sprites/Idle-Sheet.png" id="3_1n3uv"]
 [ext_resource type="Texture2D" uid="uid://8le5xfl6i25m" path="res://Player/Sprites/Run-Sheet.png" id="3_ruvus"]
 [ext_resource type="Script" path="res://Utilites/Hurtbox.gd" id="5_45ajp"]
+[ext_resource type="Script" path="res://Utilites/health.gd" id="6_lxahp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0r6ua"]
 atlas = ExtResource("2_12qad")
@@ -150,7 +151,9 @@ script = ExtResource("1_wegdx")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_pm8el")
-frame_progress = 0.129626
+animation = &"death"
+frame = 5
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 3)
@@ -158,8 +161,15 @@ shape = SubResource("CapsuleShape2D_n484b")
 
 [node name="HurtBox" type="Area2D" parent="." node_paths=PackedStringArray("parent")]
 script = ExtResource("5_45ajp")
-parent = NodePath("..")
+parent = NodePath("../Health")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 position = Vector2(0.5, 2)
 shape = SubResource("CapsuleShape2D_l3faw")
+
+[node name="Health" type="Node2D" parent="."]
+script = ExtResource("6_lxahp")
+max_health = 10.0
+
+[connection signal="damaged" from="Health" to="." method="_on_health_damaged"]
+[connection signal="died" from="Health" to="." method="_on_health_died"]
