@@ -1,21 +1,57 @@
-[gd_scene load_steps=9 format=3 uid="uid://dmx33r6xnsopf"]
+[gd_scene load_steps=21 format=3 uid="uid://dmx33r6xnsopf"]
 
+[ext_resource type="Script" path="res://Enemies/enemy.gd" id="1_poh43"]
 [ext_resource type="Texture2D" uid="uid://cjetnupabcr2" path="res://Enemies/Sprites/Skeleton/Idle-Sheet.png" id="1_slv70"]
+[ext_resource type="Texture2D" uid="uid://v8inmwoyp44w" path="res://Enemies/Sprites/Skeleton/Death-Sheet.png" id="2_66oxj"]
 [ext_resource type="PackedScene" uid="uid://c5dxg0k1tihbq" path="res://Bullets/bullet_spawner.tscn" id="3_ynq2e"]
+[ext_resource type="Script" path="res://Utilites/health.gd" id="4_b1cdm"]
+[ext_resource type="Script" path="res://Utilites/Hurtbox.gd" id="5_x2rmh"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8vs88"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_taqq5"]
+atlas = ExtResource("2_66oxj")
+region = Rect2(0, 14, 96, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ln75r"]
+atlas = ExtResource("2_66oxj")
+region = Rect2(96, 14, 96, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ed50"]
+atlas = ExtResource("2_66oxj")
+region = Rect2(192, 14, 96, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_32wx6"]
+atlas = ExtResource("2_66oxj")
+region = Rect2(288, 14, 96, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ryl67"]
+atlas = ExtResource("2_66oxj")
+region = Rect2(384, 14, 96, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pbvgd"]
+atlas = ExtResource("2_66oxj")
+region = Rect2(480, 14, 96, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jv16c"]
+atlas = ExtResource("2_66oxj")
+region = Rect2(576, 14, 96, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nw5d0"]
+atlas = ExtResource("2_66oxj")
+region = Rect2(672, 14, 96, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5yo7h"]
 atlas = ExtResource("1_slv70")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_552pk"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_jjdqj"]
 atlas = ExtResource("1_slv70")
 region = Rect2(32, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_lo2mg"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_udvcp"]
 atlas = ExtResource("1_slv70")
 region = Rect2(64, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_1kctt"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_url6f"]
 atlas = ExtResource("1_slv70")
 region = Rect2(96, 0, 32, 32)
 
@@ -23,16 +59,45 @@ region = Rect2(96, 0, 32, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_8vs88")
+"texture": SubResource("AtlasTexture_taqq5")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_552pk")
+"texture": SubResource("AtlasTexture_ln75r")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_lo2mg")
+"texture": SubResource("AtlasTexture_4ed50")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_1kctt")
+"texture": SubResource("AtlasTexture_32wx6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ryl67")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pbvgd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jv16c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nw5d0")
+}],
+"loop": false,
+"name": &"death",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5yo7h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jjdqj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_udvcp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_url6f")
 }],
 "loop": true,
 "name": &"default",
@@ -44,14 +109,30 @@ height = 36.0
 
 [node name="Enemy" type="CharacterBody2D" groups=["enemy"]]
 scale = Vector2(2, 2)
+script = ExtResource("1_poh43")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_egpd7")
-frame_progress = 0.198041
+animation = &"death"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_b6sac")
 
 [node name="BulletSpawner" parent="." instance=ExtResource("3_ynq2e")]
+
+[node name="Health" type="Node2D" parent="."]
+position = Vector2(0, 1)
+script = ExtResource("4_b1cdm")
+max_health = 1.0
+
+[node name="HurtBox" type="Area2D" parent="." node_paths=PackedStringArray("parent")]
+position = Vector2(0, 1)
+script = ExtResource("5_x2rmh")
+parent = NodePath("../Health")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+shape = SubResource("CapsuleShape2D_b6sac")
+
+[connection signal="died" from="Health" to="." method="_on_health_died"]
