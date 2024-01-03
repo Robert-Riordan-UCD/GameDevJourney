@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cjl1n5u50go7v"]
+
+[ext_resource type="PackedScene" uid="uid://c5dxg0k1tihbq" path="res://Bullets/bullet_spawner.tscn" id="1_hm64u"]
+[ext_resource type="PackedScene" uid="uid://dtrrrhcfme7or" path="res://Player/player.tscn" id="2_8qabr"]
+
+[node name="DebugTestScene" type="Node2D"]
+
+[node name="BulletSpawner" parent="." instance=ExtResource("1_hm64u")]
+position = Vector2(597, 357)
+scale = Vector2(2, 2)
+bullets_per_second = 3.0
+rotation_speed = 2.0
+
+[node name="Player" parent="." instance=ExtResource("2_8qabr")]
+position = Vector2(307, 203)

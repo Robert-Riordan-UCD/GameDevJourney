@@ -1,6 +1,5 @@
 extends CharacterBody2D
 
-
 @export var player_speed:float = 450.0
 
 @onready var animated_sprite_2d = $AnimatedSprite2D
@@ -19,3 +18,6 @@ func _physics_process(delta):
 		animated_sprite_2d.play("run")
 	else:
 		animated_sprite_2d.play("default")
+
+func take_damage(damage:float) -> void:
+	print("Tha's a lot of damage! ", damage)
