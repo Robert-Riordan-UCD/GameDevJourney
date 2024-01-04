@@ -25,18 +25,21 @@ scale = Vector2(2, 2)
 texture = ExtResource("1_w114d")
 
 [node name="NorthWall" type="StaticBody2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NorthWall"]
 position = Vector2(-0.25, -143)
 shape = SubResource("RectangleShape2D_w7iuo")
 
 [node name="EastWall" type="StaticBody2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EastWall"]
 position = Vector2(300.5, 0.75)
 shape = SubResource("RectangleShape2D_0lb5q")
 
 [node name="SouthWall" type="StaticBody2D" parent="."]
+visible = false
 position = Vector2(1.5, 166.5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SouthWall"]
@@ -44,6 +47,7 @@ position = Vector2(-1.75, 0.25)
 shape = SubResource("RectangleShape2D_mn33n")
 
 [node name="WestWall" type="StaticBody2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WestWall"]
 position = Vector2(-301.5, 13.5)

@@ -5,6 +5,7 @@ extends CharacterBody2D
 var dying:bool = false
 
 @onready var animated_sprite_2d = $AnimatedSprite2D
+@onready var weapon: Sprite2D = $Weapon
 
 func _physics_process(_delta):
 	if dying: return
@@ -15,6 +16,11 @@ func _physics_process(_delta):
 	move_and_slide()
 
 	if speed_left:
+		if speed_left < 0:
+				weapon.position.x = -abs(weapon.position.x)
+		else:
+				weapon.position.x = abs(weapon.position.x)
+		weapon.flipped = speed_left < 0
 		animated_sprite_2d.flip_h = speed_left < 0
 	
 	if velocity:

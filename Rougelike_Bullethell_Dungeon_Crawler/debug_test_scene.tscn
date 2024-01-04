@@ -7,6 +7,7 @@
 [node name="DebugTestScene" type="Node2D"]
 
 [node name="Room" parent="." instance=ExtResource("1_6wpco")]
+num_enemies = 1
 
 [node name="Player" parent="." instance=ExtResource("2_8qabr")]
 position = Vector2(-165, -68)
