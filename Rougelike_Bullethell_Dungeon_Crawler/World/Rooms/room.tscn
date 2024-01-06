@@ -1,10 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://dvfraj2ogko0p"]
+[gd_scene load_steps=9 format=3 uid="uid://dvfraj2ogko0p"]
 
 [ext_resource type="Texture2D" uid="uid://dj28wsuh8pwu8" path="res://World/Rooms/room.png" id="1_w114d"]
 [ext_resource type="Script" path="res://World/Rooms/room.gd" id="1_ymctm"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_welv8"]
+size = Vector2(60, 80)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w7iuo"]
-size = Vector2(633.5, 80)
+size = Vector2(289, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rrhmh"]
+size = Vector2(284, 80)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0lb5q"]
 size = Vector2(30, 366.5)
@@ -24,31 +30,48 @@ texture_filter = 1
 scale = Vector2(2, 2)
 texture = ExtResource("1_w114d")
 
-[node name="NorthWall" type="StaticBody2D" parent="."]
-visible = false
+[node name="Doors" type="Node" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="NorthWall"]
-position = Vector2(-0.25, -143)
+[node name="NorthDoor" type="StaticBody2D" parent="Doors"]
+scale = Vector2(2, 2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Doors/NorthDoor"]
+position = Vector2(2, -144)
+shape = SubResource("RectangleShape2D_welv8")
+
+[node name="Walls" type="Node" parent="."]
+
+[node name="NorthWall" type="StaticBody2D" parent="Walls"]
+scale = Vector2(2, 2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/NorthWall"]
+position = Vector2(-172.5, -144)
 shape = SubResource("RectangleShape2D_w7iuo")
 
-[node name="EastWall" type="StaticBody2D" parent="."]
-visible = false
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Walls/NorthWall"]
+position = Vector2(174, -144)
+shape = SubResource("RectangleShape2D_rrhmh")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EastWall"]
+[node name="EastWall" type="StaticBody2D" parent="Walls"]
+scale = Vector2(2, 2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/EastWall"]
 position = Vector2(300.5, 0.75)
 shape = SubResource("RectangleShape2D_0lb5q")
 
-[node name="SouthWall" type="StaticBody2D" parent="."]
+[node name="SouthWall" type="StaticBody2D" parent="Walls"]
 visible = false
-position = Vector2(1.5, 166.5)
+position = Vector2(3, 333)
+scale = Vector2(2, 2)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SouthWall"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/SouthWall"]
 position = Vector2(-1.75, 0.25)
 shape = SubResource("RectangleShape2D_mn33n")
 
-[node name="WestWall" type="StaticBody2D" parent="."]
+[node name="WestWall" type="StaticBody2D" parent="Walls"]
 visible = false
+scale = Vector2(2, 2)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WestWall"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/WestWall"]
 position = Vector2(-301.5, 13.5)
 shape = SubResource("RectangleShape2D_slhq3")
