@@ -30,6 +30,8 @@ texture_filter = 1
 scale = Vector2(2, 2)
 texture = ExtResource("1_w114d")
 
+[node name="Enemies" type="Node2D" parent="."]
+
 [node name="Doors" type="Node" parent="."]
 
 [node name="NorthDoor" type="StaticBody2D" parent="Doors"]
@@ -60,7 +62,6 @@ position = Vector2(300.5, 0.75)
 shape = SubResource("RectangleShape2D_0lb5q")
 
 [node name="SouthWall" type="StaticBody2D" parent="Walls"]
-visible = false
 position = Vector2(3, 333)
 scale = Vector2(2, 2)
 
@@ -69,7 +70,6 @@ position = Vector2(-1.75, 0.25)
 shape = SubResource("RectangleShape2D_mn33n")
 
 [node name="WestWall" type="StaticBody2D" parent="Walls"]
-visible = false
 scale = Vector2(2, 2)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/WestWall"]

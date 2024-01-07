@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cjl1n5u50go7v"]
+[gd_scene load_steps=3 format=3 uid="uid://cjl1n5u50go7v"]
 
 [ext_resource type="PackedScene" uid="uid://dvfraj2ogko0p" path="res://World/Rooms/room.tscn" id="1_6wpco"]
 [ext_resource type="PackedScene" uid="uid://dtrrrhcfme7or" path="res://Player/player.tscn" id="2_8qabr"]
-[ext_resource type="Script" path="res://World/MainCamera.gd" id="4_dn6wf"]
 
 [node name="DebugTestScene" type="Node2D"]
 
@@ -11,7 +10,3 @@ num_enemies = 1
 
 [node name="Player" parent="." instance=ExtResource("2_8qabr")]
 position = Vector2(-165, -68)
-
-[node name="MainCamera" type="Camera2D" parent="." node_paths=PackedStringArray("target")]
-script = ExtResource("4_dn6wf")
-target = NodePath("../Player")

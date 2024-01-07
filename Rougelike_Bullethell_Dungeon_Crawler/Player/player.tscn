@@ -173,5 +173,7 @@ max_health = 10.0
 
 [node name="Weapon" parent="." instance=ExtResource("7_bcly8")]
 
+[node name="Camera2D" type="Camera2D" parent="."]
+
 [connection signal="damaged" from="Health" to="." method="_on_health_damaged"]
 [connection signal="died" from="Health" to="." method="_on_health_died"]
