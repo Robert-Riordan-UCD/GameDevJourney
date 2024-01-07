@@ -24,3 +24,4 @@ team = "player"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 position = Vector2(0, -24)
 shape = SubResource("CapsuleShape2D_1qg7j")
+disabled = true

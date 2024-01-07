@@ -13,6 +13,7 @@ func _input(event: InputEvent) -> void:
 func attack() -> void:
 	if attacking: return
 	attacking = true
+	$HitBox/CollisionShape2D.disabled = false
 	var tween:Tween = create_tween()
 	if flipped:
 		tween.tween_property(self, "rotation_degrees", -180, 0.2).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)
@@ -22,3 +23,4 @@ func attack() -> void:
 		tween.tween_property(self, "rotation_degrees", 0, 0.2).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)
 	await tween.finished
 	attacking = false
+	$HitBox/CollisionShape2D.disabled = true
