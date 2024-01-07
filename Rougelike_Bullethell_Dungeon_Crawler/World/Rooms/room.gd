@@ -14,6 +14,7 @@ const bottom_spawn_limit:float = 288
 @onready var enemies: Node2D = $Enemies
 @onready var rect:Rect2 = $Room.get_rect()
 @onready var doors: StaticBody2D = $Doors
+@onready var walls: StaticBody2D = $Walls
 
 func activate() -> void:
 	for i in range(num_enemies):
@@ -25,6 +26,19 @@ func activate() -> void:
 	
 	for door in doors.get_children():
 		door.set_deferred("disabled", false)
+
+func remove_door(direction:Vector2i) -> void:
+	print("Removing door: ", direction)
+	match direction:
+		Vector2i.UP: _remove_door($Doors/North)
+		Vector2i.LEFT: _remove_door($Doors/West)
+		Vector2i.DOWN: _remove_door($Doors/South)
+		Vector2i.RIGHT: _remove_door($Doors/East)
+
+func _remove_door(door:CollisionShape2D) -> void:
+	doors.remove_child(door)
+	walls.add_child(door)
+	door.disabled = false
 
 func _on_enemy_died() -> void:
 	num_enemies -= 1

@@ -54,7 +54,6 @@ texture = ExtResource("1_w114d")
 [node name="Enemies" type="Node2D" parent="."]
 
 [node name="Doors" type="StaticBody2D" parent="."]
-visible = false
 
 [node name="North" type="CollisionShape2D" parent="Doors"]
 position = Vector2(2, -144)
@@ -81,7 +80,6 @@ shape = SubResource("RectangleShape2D_kmb3r")
 disabled = true
 
 [node name="Walls" type="StaticBody2D" parent="."]
-visible = false
 
 [node name="NorthLeft" type="CollisionShape2D" parent="Walls"]
 position = Vector2(-171.5, -144)

@@ -25,10 +25,14 @@ func generate_room_positions() -> Array[Vector2i]:
 	return room_positions
 
 func generate_rooms_at_positions(room_positions:Array[Vector2i]) -> void:
+	var directions:Array[Vector2i] = [Vector2i.UP, Vector2i.LEFT, Vector2i.DOWN, Vector2i.RIGHT]
 	for pos in room_positions:
 		var new_room:Room = room_scene.instantiate()
 		rooms.add_child(new_room)
 		new_room.global_position = pos*ROOM_SIZE
+		for d in directions:
+			if not pos + d in room_positions:
+				new_room.remove_door(d)
 
 func _visited(current_room: Vector2, positions) -> bool:
 	for p in positions:
