@@ -1,25 +1,34 @@
-[gd_scene load_steps=9 format=3 uid="uid://dvfraj2ogko0p"]
+[gd_scene load_steps=12 format=3 uid="uid://dvfraj2ogko0p"]
 
 [ext_resource type="Texture2D" uid="uid://dj28wsuh8pwu8" path="res://World/Rooms/room.png" id="1_w114d"]
 [ext_resource type="Script" path="res://World/Rooms/room.gd" id="1_ymctm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_welv8"]
-size = Vector2(60, 80)
+size = Vector2(30, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iuqho"]
+size = Vector2(26, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w7iuo"]
-size = Vector2(289, 80)
+size = Vector2(144.5, 40)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rrhmh"]
-size = Vector2(284, 80)
+size = Vector2(142, 40)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0lb5q"]
-size = Vector2(30, 366.5)
+size = Vector2(14, 128)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mn33n"]
-size = Vector2(630.5, 32.5)
+size = Vector2(146, 16.25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wnv3s"]
+size = Vector2(144, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_slhq3"]
-size = Vector2(30, 337.5)
+size = Vector2(14, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5qopf"]
+size = Vector2(576, 256)
 
 [node name="Room" type="Node2D"]
 scale = Vector2(2, 2)
@@ -32,46 +41,59 @@ texture = ExtResource("1_w114d")
 
 [node name="Enemies" type="Node2D" parent="."]
 
-[node name="Doors" type="Node" parent="."]
+[node name="Doors" type="StaticBody2D" parent="."]
 
-[node name="NorthDoor" type="StaticBody2D" parent="Doors"]
-scale = Vector2(2, 2)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Doors/NorthDoor"]
+[node name="North" type="CollisionShape2D" parent="Doors"]
 position = Vector2(2, -144)
-shape = SubResource("RectangleShape2D_welv8")
-
-[node name="Walls" type="Node" parent="."]
-
-[node name="NorthWall" type="StaticBody2D" parent="Walls"]
 scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_welv8")
+disabled = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/NorthWall"]
-position = Vector2(-172.5, -144)
+[node name="South" type="CollisionShape2D" parent="Doors"]
+position = Vector2(2, 168)
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_iuqho")
+disabled = true
+
+[node name="Walls" type="StaticBody2D" parent="."]
+
+[node name="NorthLeft" type="CollisionShape2D" parent="Walls"]
+position = Vector2(-171.5, -144)
+scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_w7iuo")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Walls/NorthWall"]
+[node name="NorthRight" type="CollisionShape2D" parent="Walls"]
 position = Vector2(174, -144)
+scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_rrhmh")
 
-[node name="EastWall" type="StaticBody2D" parent="Walls"]
+[node name="East" type="CollisionShape2D" parent="Walls"]
+position = Vector2(302, 24)
 scale = Vector2(2, 2)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/EastWall"]
-position = Vector2(300.5, 0.75)
 shape = SubResource("RectangleShape2D_0lb5q")
 
-[node name="SouthWall" type="StaticBody2D" parent="Walls"]
-position = Vector2(3, 333)
+[node name="SouthLeft" type="CollisionShape2D" parent="Walls"]
+position = Vector2(-170, 167.75)
 scale = Vector2(2, 2)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/SouthWall"]
-position = Vector2(-1.75, 0.25)
 shape = SubResource("RectangleShape2D_mn33n")
 
-[node name="WestWall" type="StaticBody2D" parent="Walls"]
+[node name="SouthRight" type="CollisionShape2D" parent="Walls"]
+position = Vector2(172, 168)
 scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_wnv3s")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/WestWall"]
-position = Vector2(-301.5, 13.5)
+[node name="West" type="CollisionShape2D" parent="Walls"]
+position = Vector2(-302, 24)
+scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_slhq3")
+
+[node name="PlayerDection" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDection"]
+position = Vector2(0, 24)
+shape = SubResource("RectangleShape2D_5qopf")
+
+[connection signal="area_entered" from="PlayerDection" to="." method="_on_player_dection_area_entered"]
+[connection signal="body_entered" from="PlayerDection" to="." method="_on_player_dection_body_entered"]

@@ -10,11 +10,8 @@ signal died
 
 func take_damage(damage:float) -> void:
 	assert(damage >= 0)
-	print("Taking damage! ", damage)
 	current_health -= damage
-	print("Current health: ", current_health)
 	if current_health <= 0:
 		died.emit()
-		print("I'm dead :(")
 	else:
 		damaged.emit()

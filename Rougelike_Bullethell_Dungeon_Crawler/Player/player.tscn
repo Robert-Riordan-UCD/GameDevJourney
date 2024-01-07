@@ -147,6 +147,7 @@ height = 29.0
 
 [node name="Player" type="CharacterBody2D"]
 scale = Vector2(2, 2)
+collision_layer = 5
 script = ExtResource("1_wegdx")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

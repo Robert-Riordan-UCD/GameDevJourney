@@ -13,6 +13,7 @@ const bottom_spawn_limit:float = 288
 @onready var enemy_scene:PackedScene = preload("res://Enemies/enemy.tscn")
 @onready var enemies: Node2D = $Enemies
 @onready var rect:Rect2 = $Room.get_rect()
+@onready var doors: StaticBody2D = $Doors
 
 func activate() -> void:
 	for i in range(num_enemies):
@@ -20,10 +21,18 @@ func activate() -> void:
 		new_enemy.scale /= scale
 		new_enemy.connect("died", _on_enemy_died)
 		enemies.add_child(new_enemy)
-		new_enemy.global_position = Vector2(randf_range(left_spawn_limit, right_spawn_limit), randf_range(top_spawn_limit, bottom_spawn_limit))
+		new_enemy.global_position = global_position + Vector2(randf_range(left_spawn_limit, right_spawn_limit), randf_range(top_spawn_limit, bottom_spawn_limit))
+	
+	for door in doors.get_children():
+		door.set_deferred("disabled", false)
 
 func _on_enemy_died() -> void:
 	num_enemies -= 1
 	if num_enemies <= 0:
 		room_defeated = true
-		$Doors/NorthDoor.queue_free()
+		for door in doors.get_children():
+			door.set_deferred("disabled", true)
+
+func _on_player_dection_body_entered(body: Node2D) -> void:
+	if not room_defeated:
+		activate()
