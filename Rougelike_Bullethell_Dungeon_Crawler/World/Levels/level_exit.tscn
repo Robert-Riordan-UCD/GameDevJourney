@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://gi4a0axcg5kn"]
+
+[ext_resource type="Texture2D" uid="uid://175ij8158g1q" path="res://World/Rooms/Tiles.png" id="1_ujinc"]
+[ext_resource type="Script" path="res://World/Levels/level_exit.gd" id="1_v822d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s780d"]
+size = Vector2(24, 12)
+
+[node name="LevelExit" type="Node2D"]
+scale = Vector2(2, 2)
+script = ExtResource("1_v822d")
+
+[node name="Stairs" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_ujinc")
+region_enabled = true
+region_rect = Rect2(80, 130, 32, 30)
+
+[node name="Grate" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_ujinc")
+region_enabled = true
+region_rect = Rect2(112, 162, 32, 30)
+
+[node name="ExitTrigger" type="Area2D" parent="."]
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitTrigger"]
+position = Vector2(0, 6)
+shape = SubResource("RectangleShape2D_s780d")
+
+[connection signal="body_entered" from="ExitTrigger" to="." method="_on_exit_trigger_body_entered"]

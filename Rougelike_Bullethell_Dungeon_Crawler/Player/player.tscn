@@ -142,8 +142,8 @@ animations = [{
 radius = 9.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l3faw"]
-radius = 8.0
-height = 29.0
+radius = 7.0
+height = 24.0
 
 [node name="Player" type="CharacterBody2D"]
 scale = Vector2(2, 2)
@@ -165,7 +165,7 @@ parent = NodePath("../Health")
 team = "player"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
-position = Vector2(0.5, 2)
+position = Vector2(0, 2)
 shape = SubResource("CapsuleShape2D_l3faw")
 
 [node name="Health" type="Node2D" parent="."]

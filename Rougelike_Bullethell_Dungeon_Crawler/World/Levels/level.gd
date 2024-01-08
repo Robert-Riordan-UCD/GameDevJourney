@@ -4,13 +4,15 @@ extends Node2D
 
 @onready var num_rooms:int = min(int(3.33*level)+randi_range(5, 6), 20)
 @onready var room_scene:PackedScene = preload("res://World/Rooms/room.tscn")
-@onready var rooms: Node2D = $Rooms
+@onready var rooms:Node2D = $Rooms
+@onready var dead_ends:Array[Room] = []
 
 const ROOM_SIZE: Vector2i = Vector2i(4*317, 4*183)
 
 func _ready() -> void:
 	var room_positions:Array[Vector2i] = generate_room_positions()
 	generate_rooms_at_positions(room_positions)
+	create_final_room()
 
 func generate_room_positions() -> Array[Vector2i]:
 	var next_room:Vector2i = Vector2(0, 0)
@@ -30,9 +32,21 @@ func generate_rooms_at_positions(room_positions:Array[Vector2i]) -> void:
 		var new_room:Room = room_scene.instantiate()
 		rooms.add_child(new_room)
 		new_room.global_position = pos*ROOM_SIZE
+		var doors:int = 4
 		for d in directions:
 			if not pos + d in room_positions:
 				new_room.remove_door(d)
+				doors -= 1
+		if doors == 1:
+			dead_ends.append(new_room)
+
+func create_final_room():
+	var final_room:Room = dead_ends.pick_random()
+	if final_room:
+		print("success! ", final_room)
+		final_room.set_final_room()
+	else:
+		print("no dead ends")
 
 func _visited(current_room: Vector2, positions) -> bool:
 	for p in positions:
