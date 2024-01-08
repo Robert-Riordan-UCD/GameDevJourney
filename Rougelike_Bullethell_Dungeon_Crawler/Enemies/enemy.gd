@@ -14,6 +14,8 @@ func _ready() -> void:
 	randomize()
 	$BulletSpawner.disable()
 	await get_tree().create_timer(randf_range(start_time_offset_min, start_time_offset_max)).timeout
+	animated_sprite_2d.play_backwards("death")
+	await animated_sprite_2d.animation_finished
 	$BulletSpawner.enable()
 	animated_sprite_2d.play("default")
 
