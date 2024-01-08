@@ -25,3 +25,8 @@ func _process(delta):
 func _on_despawn_timer_timeout():
 	get_parent().remove_child(self)
 	queue_free()
+
+func early_despawn():
+	await get_tree().create_timer(randf_range(0, 1.0)).timeout
+	get_parent().remove_child(self)
+	queue_free()

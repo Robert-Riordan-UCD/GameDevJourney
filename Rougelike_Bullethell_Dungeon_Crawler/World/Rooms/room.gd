@@ -54,6 +54,7 @@ func _on_enemy_died() -> void:
 			door.set_deferred("disabled", true)
 		if exit:
 			exit.unlock()
+		get_tree().call_group("bullet", "early_despawn")
 
 func _on_player_dection_body_entered(body: Node2D) -> void:
 	if not room_defeated:
