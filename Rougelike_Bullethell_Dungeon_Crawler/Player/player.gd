@@ -6,13 +6,14 @@ signal health_changed(health:int, max_health:int)
 @export var player_speed:float = 450.0
 
 var dying:bool = false
+var movement_blocked:bool = false
 
 @onready var animated_sprite_2d = $AnimatedSprite2D
 @onready var weapon:Sprite2D = $Weapon
 @onready var health:Health = $Health
 
 func _physics_process(_delta):
-	if dying: return
+	if dying or movement_blocked: return
 	var speed_left = player_speed * Input.get_axis("player_left", "player_right")
 	var speed_up = player_speed * Input.get_axis("player_up", "player_down")
 	velocity = Vector2(speed_left, speed_up)
