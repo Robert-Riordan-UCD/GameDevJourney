@@ -2,7 +2,7 @@ extends Node2D
 
 @export var level:int = 1
 
-@onready var num_rooms:int = min(int(3.33*level)+randi_range(5, 6), 20)
+@onready var num_rooms:int = 2# min(int(3.33*level)+randi_range(5, 6), 20)
 @onready var room_scene:PackedScene = preload("res://World/Rooms/room.tscn")
 @onready var rooms:Node2D = $Rooms
 @onready var dead_ends:Array[Room] = []
