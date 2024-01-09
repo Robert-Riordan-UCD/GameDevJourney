@@ -1,12 +1,15 @@
 class_name Player
 extends CharacterBody2D
 
+signal health_changed(health:int, max_health:int)
+
 @export var player_speed:float = 450.0
 
 var dying:bool = false
 
 @onready var animated_sprite_2d = $AnimatedSprite2D
-@onready var weapon: Sprite2D = $Weapon
+@onready var weapon:Sprite2D = $Weapon
+@onready var health:Health = $Health
 
 func _physics_process(_delta):
 	if dying: return
@@ -30,9 +33,9 @@ func _physics_process(_delta):
 		animated_sprite_2d.play("default")
 
 func _on_health_damaged() -> void:
-	pass # Replace with function body.
+	health_changed.emit(health.current_health, health.max_health)
 
 func _on_health_died() -> void:
 	dying = true
 	animated_sprite_2d.play("death")
-	
+	health_changed.emit(health.current_health, health.max_health)
