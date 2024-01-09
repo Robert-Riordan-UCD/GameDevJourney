@@ -1,9 +1,8 @@
-[gd_scene load_steps=21 format=3 uid="uid://dmx33r6xnsopf"]
+[gd_scene load_steps=20 format=3 uid="uid://dmx33r6xnsopf"]
 
 [ext_resource type="Script" path="res://Enemies/enemy.gd" id="1_poh43"]
 [ext_resource type="Texture2D" uid="uid://cjetnupabcr2" path="res://Enemies/Sprites/Skeleton/Idle-Sheet.png" id="1_slv70"]
 [ext_resource type="Texture2D" uid="uid://v8inmwoyp44w" path="res://Enemies/Sprites/Skeleton/Death-Sheet.png" id="2_66oxj"]
-[ext_resource type="PackedScene" uid="uid://c5dxg0k1tihbq" path="res://Bullets/bullet_spawner.tscn" id="3_ynq2e"]
 [ext_resource type="Script" path="res://Utilites/health.gd" id="4_b1cdm"]
 [ext_resource type="Script" path="res://Utilites/Hurtbox.gd" id="5_x2rmh"]
 
@@ -120,8 +119,6 @@ frame = 7
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_b6sac")
-
-[node name="BulletSpawner" parent="." instance=ExtResource("3_ynq2e")]
 
 [node name="Health" type="Node2D" parent="."]
 position = Vector2(0, 1)

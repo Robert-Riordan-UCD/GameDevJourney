@@ -19,14 +19,18 @@ const bottom_spawn_limit:float = 288
 
 func activate() -> void:
 	for i in range(num_enemies):
-		var new_enemy:Enemy = enemy_scene.instantiate()
-		new_enemy.scale /= scale
-		new_enemy.connect("died", _on_enemy_died)
-		enemies.add_child(new_enemy)
-		new_enemy.global_position = global_position + Vector2(randf_range(left_spawn_limit, right_spawn_limit), randf_range(top_spawn_limit, bottom_spawn_limit))
+		spawn_new_enemy()
 	
 	for door in doors.get_children():
 		door.set_deferred("disabled", false)
+
+func spawn_new_enemy() -> void:
+	var new_enemy:Enemy = enemy_scene.instantiate()
+	new_enemy.scale /= scale
+	new_enemy.connect("died", _on_enemy_died)
+	new_enemy.bullet_spawner = Utils.new_random_bullet_spawner()
+	enemies.add_child(new_enemy)
+	new_enemy.global_position = global_position + Vector2(randf_range(left_spawn_limit, right_spawn_limit), randf_range(top_spawn_limit, bottom_spawn_limit))
 
 func remove_door(direction:Vector2i) -> void:
 	match direction:

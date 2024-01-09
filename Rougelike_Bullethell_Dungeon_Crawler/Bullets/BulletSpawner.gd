@@ -5,6 +5,7 @@ extends Node2D
 
 @export_category("Bullets")
 @export var bullets_per_second:float = 1
+@export var bullet_speed:float = 100
 @export var damage:float = 1
 @export var size:float = 1
 @export var bullets_per_gap:int = -1
@@ -42,6 +43,7 @@ func _on_bullet_spawn_timer_timeout():
 	var new_bullet:Bullet = bullet_scene.instantiate()
 	new_bullet.global_position = global_position + spawn_radius*Vector2.RIGHT.rotated(rotation)
 	new_bullet.direction = Vector2.RIGHT.rotated(rotation)
+	new_bullet.speed = bullet_speed
 	new_bullet.damage = damage
 	new_bullet.scale *= size
 	get_tree().root.add_child(new_bullet)
