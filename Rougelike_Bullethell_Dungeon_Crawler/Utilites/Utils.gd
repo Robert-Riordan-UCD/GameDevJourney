@@ -1,11 +1,18 @@
 extends Node
 
 var bullet_spawner_scene:PackedScene = preload("res://Bullets/bullet_spawner.tscn")
+var burst_bullet_spawner_scene:PackedScene = preload("res://Bullets/burst_bullet_spawner.tscn")
 
 func _ready() -> void:
 	randomize()
 
 func new_random_bullet_spawner() -> BulletSpawner:
+	match randi()%2:
+		0: return default_spawner()
+		1: return burst_spawner()
+		_: return null
+
+func default_spawner() -> BulletSpawner:
 	var spawner:BulletSpawner = bullet_spawner_scene.instantiate()
 	
 	spawner.bullets_per_second = randf_range(2, 4)
@@ -13,5 +20,18 @@ func new_random_bullet_spawner() -> BulletSpawner:
 	spawner.bullets_per_gap = randi_range(4, 10)
 	spawner.rotation_speed = randf_range(PI/4, PI)
 	spawner.bullet_speed = randf_range(50, 75)
+	
+	return spawner
+
+func burst_spawner() -> BurstBulletSpawner:
+	var spawner:BurstBulletSpawner = burst_bullet_spawner_scene.instantiate()
+	
+	spawner.bullets_per_second = randf_range(8, 12)
+	spawner.size = randf_range(0.6, 0.8)
+	spawner.rotation_speed = randf_range(0.5*PI, 1.5*PI)
+	spawner.bullet_speed = randf_range(75, 100)
+	
+	spawner.on_time = randf_range(0.3, 0.6)
+	spawner.off_time = randf_range(1.2, 2.0)
 	
 	return spawner

@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://cuyd1yw3aunkv"]
+
+[ext_resource type="PackedScene" uid="uid://c5dxg0k1tihbq" path="res://Bullets/bullet_spawner.tscn" id="1_bi2ad"]
+[ext_resource type="Script" path="res://Bullets/burst_bullet_spawner.gd" id="2_fqynp"]
+
+[node name="BurstBulletSpawner" instance=ExtResource("1_bi2ad")]
+script = ExtResource("2_fqynp")
+on_time = 0.5
+off_time = 1.5
+bullets_per_second = 1.0
+bullets_per_gap = -1
+rotation_speed = 3.14159
+
+[node name="BurstOnTimer" type="Timer" parent="." index="1"]
+one_shot = true
+
+[node name="BurstOffTimer" type="Timer" parent="." index="2"]
+one_shot = true
+
+[connection signal="timeout" from="BurstOnTimer" to="." method="_on_burst_on_timer_timeout"]
+[connection signal="timeout" from="BurstOffTimer" to="." method="_on_burst_off_timer_timeout"]

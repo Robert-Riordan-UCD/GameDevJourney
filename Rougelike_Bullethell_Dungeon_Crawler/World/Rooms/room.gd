@@ -29,6 +29,7 @@ func spawn_new_enemy() -> void:
 	new_enemy.scale /= scale
 	new_enemy.connect("died", _on_enemy_died)
 	new_enemy.bullet_spawner = Utils.new_random_bullet_spawner()
+	await get_tree().process_frame
 	enemies.add_child(new_enemy)
 	new_enemy.global_position = global_position + Vector2(randf_range(left_spawn_limit, right_spawn_limit), randf_range(top_spawn_limit, bottom_spawn_limit))
 
