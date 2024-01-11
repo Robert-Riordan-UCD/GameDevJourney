@@ -45,6 +45,7 @@ size = Vector2(560, 244)
 [node name="Room" type="Node2D"]
 scale = Vector2(2, 2)
 script = ExtResource("1_ymctm")
+num_enemies = 0
 
 [node name="Room" type="Sprite2D" parent="."]
 texture_filter = 1

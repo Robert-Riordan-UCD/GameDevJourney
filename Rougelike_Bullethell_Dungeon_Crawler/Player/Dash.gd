@@ -8,20 +8,29 @@ extends Node2D
 
 @onready var ray_cast_2d: RayCast2D = $RayCast2D
 
+var dir:Vector2
+
+func _ready() -> void:
+	ray_cast_2d.target_position = Vector2(dash_distance, 0)
+
+func _physics_process(_delta: float) -> void:
+	var speed_left:float = Input.get_axis("player_left", "player_right")
+	var speed_up:float = Input.get_axis("player_up", "player_down")
+	dir = Vector2(speed_left, speed_up).normalized()
+	ray_cast_2d.look_at(global_position+dir)
+#	ray_cast_2d.set_target_position(dir*dash_distance)
+#	print(ray_cast_2d.target_position)
+#	if ray_cast_2d.is_colliding():
+#		ray_cast_2d.target_position = ray_cast_2d.get_collision_point()
+
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("player_dash"):
-		var speed_left:float = Input.get_axis("player_left", "player_right")
-		var speed_up:float = Input.get_axis("player_up", "player_down")
-		var dir:Vector2 = Vector2(speed_left, speed_up).normalized()
-		
-		var target_position: Vector2 = player.global_position+dash_distance*dir
-		ray_cast_2d.target_position = dir*dash_distance
-		if ray_cast_2d.is_colliding():
-			target_position = ray_cast_2d.get_collision_point()
-		
 		player.movement_blocked = true
 		var tween:Tween = create_tween()
-		tween.tween_property(player, "global_position", target_position, dash_time).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN)
+		if ray_cast_2d.is_colliding():
+			tween.tween_property(player, "global_position", ray_cast_2d.get_collision_point(), dash_time).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN)
+		else:
+			tween.tween_property(player, "global_position", global_position+ray_cast_2d.target_position.rotated(ray_cast_2d.rotation), dash_time).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN)
 		await tween.finished
 		player.movement_blocked = false
 		
