@@ -5,7 +5,6 @@ extends Node2D
 
 @onready var room_scene:PackedScene = preload("res://World/Rooms/room.tscn")
 @onready var rooms:Node2D = $Rooms
-@onready var dead_ends:Array[Room] = []
 @onready var player: CharacterBody2D = $Player
 
 const ROOM_SIZE: Vector2i = Vector2i(4*317, 4*183)
@@ -43,11 +42,16 @@ func generate_rooms_at_positions(room_positions:Array[Vector2i]) -> void:
 			if not pos + d in room_positions:
 				new_room.remove_door(d)
 				doors -= 1
-		if doors == 1:
-			dead_ends.append(new_room)
 
 func create_final_room():
-	var final_room:Room = dead_ends.pick_random()
+	var final_room:Room = null
+	var greatest_distance:float = 0
+	for room in rooms.get_children():
+		var d:float = room.global_position.length()
+		if d > greatest_distance:
+			greatest_distance = d
+			final_room = room
+
 	if final_room:
 		print("generated exit")
 		final_room.set_final_room()
