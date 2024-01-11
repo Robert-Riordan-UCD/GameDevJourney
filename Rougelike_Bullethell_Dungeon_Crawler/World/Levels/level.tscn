@@ -18,4 +18,12 @@ anchors_preset = 10
 anchor_left = 0.0
 anchor_right = 1.0
 
+[node name="LevelTransiton" type="ColorRect" parent="GUI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+
 [connection signal="health_changed" from="Player" to="GUI/HealthBar" method="_on_player_health_changed"]

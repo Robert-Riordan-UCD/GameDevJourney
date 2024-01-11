@@ -18,10 +18,6 @@ func _physics_process(_delta: float) -> void:
 	var speed_up:float = Input.get_axis("player_up", "player_down")
 	dir = Vector2(speed_left, speed_up).normalized()
 	ray_cast_2d.look_at(global_position+dir)
-#	ray_cast_2d.set_target_position(dir*dash_distance)
-#	print(ray_cast_2d.target_position)
-#	if ray_cast_2d.is_colliding():
-#		ray_cast_2d.target_position = ray_cast_2d.get_collision_point()
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("player_dash"):
