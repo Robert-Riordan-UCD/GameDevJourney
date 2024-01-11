@@ -24,11 +24,11 @@ func generate_room_positions() -> Array[Vector2i]:
 	var num_rooms:int = min(int(3.33*level)+randi_range(5, 6), 20)
 	print("Generating ", num_rooms, " rooms")
 	while true:
+		if room_positions.size() >= num_rooms: break
 		next_room = room_positions.pick_random() + directions.pick_random()
 		if next_room in room_positions: continue
 		room_positions.append(next_room)
-		if room_positions.size() >= num_rooms:
-			break
+	print(room_positions)
 	return room_positions
 
 func generate_rooms_at_positions(room_positions:Array[Vector2i]) -> void:
@@ -48,7 +48,7 @@ func create_final_room():
 	var greatest_distance:float = 0
 	for room in rooms.get_children():
 		var d:float = room.global_position.length()
-		if d > greatest_distance:
+		if d >= greatest_distance:
 			greatest_distance = d
 			final_room = room
 
