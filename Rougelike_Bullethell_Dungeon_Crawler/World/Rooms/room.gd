@@ -43,6 +43,7 @@ func remove_door(direction:Vector2i) -> void:
 func set_final_room() -> void:
 	var level_exit = preload("res://World/Levels/level_exit.tscn").instantiate()
 	add_child(level_exit)
+	move_child(level_exit, 1)
 	level_exit.position =  Vector2(randf_range(-200, 200), randf_range(-50, 50))
 	exit = level_exit
 
