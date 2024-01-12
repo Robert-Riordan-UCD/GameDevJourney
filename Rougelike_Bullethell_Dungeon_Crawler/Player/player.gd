@@ -35,7 +35,7 @@ func _physics_process(_delta):
 
 func _on_health_damaged() -> void:
 	health_changed.emit(health.current_health, health.max_health)
-	ScreenShake.screen_shake(50, 25, 5)
+	ScreenShake.screen_shake(40, 75, 6)
 
 func _on_health_died() -> void:
 	dying = true

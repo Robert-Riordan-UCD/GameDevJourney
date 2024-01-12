@@ -1,6 +1,6 @@
 extends Node
 
-@export var enabled:bool = false
+@export var enabled:bool = true
 
 @onready var noise:FastNoiseLite = FastNoiseLite.new()
 var noise_i:float = 0.0
@@ -16,7 +16,6 @@ func _process(delta: float) -> void:
 	
 	_strength = lerp(_strength, 0.0, _decay_rate*delta)
 	var shake_offset:Vector2 = get_noise_offset(delta, _speed, _strength)
-	
 	camera.position = shake_offset
 
 func screen_shake(speed:float, strength:float, decay_rate:float) -> void:
