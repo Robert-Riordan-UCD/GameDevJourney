@@ -1,8 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://dgemqqga1bbq3"]
+[gd_scene load_steps=6 format=3 uid="uid://dgemqqga1bbq3"]
 
 [ext_resource type="Script" path="res://Bullets/Bullet.gd" id="1_tnmht"]
 [ext_resource type="Texture2D" uid="uid://c8nm8balio3wv" path="res://Bullets/Bullet.png" id="2_u6inr"]
 [ext_resource type="Script" path="res://Utilites/Hitbox.gd" id="3_uvrql"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cv47s"]
+radius = 60.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4s3vs"]
 radius = 60.0
@@ -17,6 +20,13 @@ texture = ExtResource("2_u6inr")
 
 [node name="DespawnTimer" type="Timer" parent="."]
 
+[node name="DespawnBox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DespawnBox"]
+shape = SubResource("CircleShape2D_cv47s")
+
 [node name="HitBox" type="Area2D" parent="."]
 script = ExtResource("3_uvrql")
 
@@ -24,3 +34,4 @@ script = ExtResource("3_uvrql")
 shape = SubResource("CircleShape2D_4s3vs")
 
 [connection signal="timeout" from="DespawnTimer" to="." method="_on_despawn_timer_timeout"]
+[connection signal="body_entered" from="DespawnBox" to="." method="_on_despawn_box_body_entered"]

@@ -10,6 +10,7 @@ var direction:Vector2 = Vector2.RIGHT
 
 @onready var despawn_timer = $DespawnTimer
 @onready var hit_box: HitBox = $HitBox
+@onready var despawning:bool = false
 
 func _ready():
 	despawn_timer.wait_time = lifetime
@@ -23,10 +24,18 @@ func _process(delta):
 	position += delta*speed*direction
 
 func _on_despawn_timer_timeout():
-	get_parent().remove_child(self)
-	queue_free()
+	despwan()
 
 func early_despawn():
 	await get_tree().create_timer(randf_range(0, 1.0)).timeout
-	get_parent().remove_child(self)
+	despwan()
+
+func _on_despawn_box_body_entered(_body: Node2D) -> void:
+	despwan()
+
+func despwan() -> void:
+	if despawning: return
+	despawning = true
+	get_parent().call_deferred("remove_child", self)
 	queue_free()
+	
