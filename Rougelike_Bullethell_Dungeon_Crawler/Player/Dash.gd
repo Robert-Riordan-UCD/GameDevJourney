@@ -1,10 +1,12 @@
 extends Node2D
 
 @export var player:Player = null
+@export var hurt_box:HurtBox = null
 
 @export_group("Dash", "dash_")
 @export var dash_distance:float = 250
 @export var dash_time:float = 0.3
+@export var dash_post_dash_invinciblity_duration:float = 0.2
 
 @onready var ray_cast_2d: RayCast2D = $RayCast2D
 
@@ -21,6 +23,7 @@ func _physics_process(_delta: float) -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("player_dash"):
+		if hurt_box: hurt_box.monitorable = false
 		player.movement_blocked = true
 		var tween:Tween = create_tween()
 		if ray_cast_2d.is_colliding():
@@ -29,4 +32,6 @@ func _input(event: InputEvent) -> void:
 			tween.tween_property(player, "global_position", global_position+ray_cast_2d.target_position.rotated(ray_cast_2d.rotation), dash_time).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN)
 		await tween.finished
 		player.movement_blocked = false
+		await get_tree().create_timer(dash_post_dash_invinciblity_duration).timeout
+		if hurt_box: hurt_box.monitorable = true
 		

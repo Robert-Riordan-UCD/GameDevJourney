@@ -178,9 +178,10 @@ max_health = 10.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="Dash" type="Node2D" parent="." node_paths=PackedStringArray("player")]
+[node name="Dash" type="Node2D" parent="." node_paths=PackedStringArray("player", "hurt_box")]
 script = ExtResource("8_lv11x")
 player = NodePath("..")
+hurt_box = NodePath("../HurtBox")
 
 [node name="RayCast2D" type="RayCast2D" parent="Dash"]
 exclude_parent = false
