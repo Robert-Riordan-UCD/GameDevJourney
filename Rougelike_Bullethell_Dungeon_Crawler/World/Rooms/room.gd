@@ -55,12 +55,16 @@ func _remove_door(door:CollisionShape2D) -> void:
 func _on_enemy_died() -> void:
 	num_enemies -= 1
 	if num_enemies <= 0:
-		room_defeated = true
-		for door in doors.get_children():
-			door.set_deferred("disabled", true)
-		if exit:
-			exit.unlock()
-		get_tree().call_group("bullet", "early_despawn")
+		unlock()
+
+func unlock() -> void:
+	room_defeated = true
+	for door in doors.get_children():
+		door.set_deferred("disabled", true)
+	if exit:
+		exit.unlock()
+	get_tree().call_group("bullet", "early_despawn")
+
 
 func _on_player_dection_body_entered(_body: Node2D) -> void:
 	if not room_defeated:
