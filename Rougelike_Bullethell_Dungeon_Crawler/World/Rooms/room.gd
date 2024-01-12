@@ -62,6 +62,6 @@ func _on_enemy_died() -> void:
 			exit.unlock()
 		get_tree().call_group("bullet", "early_despawn")
 
-func _on_player_dection_body_entered(body: Node2D) -> void:
+func _on_player_dection_body_entered(_body: Node2D) -> void:
 	if not room_defeated:
 		activate()

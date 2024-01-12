@@ -37,11 +37,9 @@ func generate_rooms_at_positions(room_positions:Array[Vector2i]) -> void:
 		var new_room:Room = room_scene.instantiate()
 		rooms.add_child(new_room)
 		new_room.global_position = pos*ROOM_SIZE
-		var doors:int = 4
 		for d in directions:
 			if not pos + d in room_positions:
 				new_room.remove_door(d)
-				doors -= 1
 
 func create_final_room():
 	var final_room:Room = null
