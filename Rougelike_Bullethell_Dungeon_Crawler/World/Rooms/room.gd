@@ -14,7 +14,7 @@ const bottom_spawn_limit:float = 288
 @onready var enemy_scene:PackedScene = preload("res://Enemies/enemy.tscn")
 @onready var enemies: Node2D = $Enemies
 @onready var rect:Rect2 = $Room.get_rect()
-@onready var doors: StaticBody2D = $Doors
+@onready var doors: Node2D = $Doors
 @onready var walls: StaticBody2D = $Walls
 
 func activate() -> void:
@@ -22,7 +22,7 @@ func activate() -> void:
 		spawn_new_enemy()
 	
 	for door in doors.get_children():
-		door.set_deferred("disabled", false)
+		door.lock()
 
 func spawn_new_enemy() -> void:
 	var new_enemy:Enemy = enemy_scene.instantiate()
@@ -47,10 +47,8 @@ func set_final_room() -> void:
 	level_exit.position =  Vector2(randf_range(-200, 200), randf_range(-50, 50))
 	exit = level_exit
 
-func _remove_door(door:CollisionShape2D) -> void:
-	doors.remove_child(door)
-	walls.add_child(door)
-	door.disabled = false
+func _remove_door(door:Door) -> void:
+	door.become_wall()
 
 func _on_enemy_died() -> void:
 	num_enemies -= 1
@@ -60,7 +58,7 @@ func _on_enemy_died() -> void:
 func unlock() -> void:
 	room_defeated = true
 	for door in doors.get_children():
-		door.set_deferred("disabled", true)
+		door.unlock()
 	if exit:
 		exit.unlock()
 	get_tree().call_group("bullet", "early_despawn")

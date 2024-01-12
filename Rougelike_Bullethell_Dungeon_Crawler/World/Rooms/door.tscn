@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://38e2y0xeq3me"]
+
+[ext_resource type="Script" path="res://World/Rooms/door.gd" id="1_74a14"]
+
+[node name="Door" type="StaticBody2D"]
+collision_mask = 5
+script = ExtResource("1_74a14")
