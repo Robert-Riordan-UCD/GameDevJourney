@@ -1,10 +1,12 @@
-[gd_scene load_steps=20 format=3 uid="uid://dmx33r6xnsopf"]
+[gd_scene load_steps=28 format=3 uid="uid://dmx33r6xnsopf"]
 
 [ext_resource type="Script" path="res://Enemies/enemy.gd" id="1_poh43"]
 [ext_resource type="Texture2D" uid="uid://cjetnupabcr2" path="res://Enemies/Sprites/Skeleton/Idle-Sheet.png" id="1_slv70"]
 [ext_resource type="Texture2D" uid="uid://v8inmwoyp44w" path="res://Enemies/Sprites/Skeleton/Death-Sheet.png" id="2_66oxj"]
 [ext_resource type="Script" path="res://Utilites/health.gd" id="4_b1cdm"]
+[ext_resource type="Texture2D" uid="uid://blvr28dtxh06m" path="res://Enemies/Sprites/Skeleton/Run-Sheet.png" id="4_vomm4"]
 [ext_resource type="Script" path="res://Utilites/Hurtbox.gd" id="5_x2rmh"]
+[ext_resource type="Script" path="res://Enemies/RandomMovement.gd" id="6_fajqo"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_taqq5"]
 atlas = ExtResource("2_66oxj")
@@ -54,6 +56,30 @@ region = Rect2(64, 0, 32, 32)
 atlas = ExtResource("1_slv70")
 region = Rect2(96, 0, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_46xkc"]
+atlas = ExtResource("4_vomm4")
+region = Rect2(0, 32, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bj0h6"]
+atlas = ExtResource("4_vomm4")
+region = Rect2(64, 32, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_78xtf"]
+atlas = ExtResource("4_vomm4")
+region = Rect2(128, 32, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nbyar"]
+atlas = ExtResource("4_vomm4")
+region = Rect2(192, 32, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pipi1"]
+atlas = ExtResource("4_vomm4")
+region = Rect2(256, 32, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mrltf"]
+atlas = ExtResource("4_vomm4")
+region = Rect2(320, 32, 64, 32)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_egpd7"]
 animations = [{
 "frames": [{
@@ -101,6 +127,29 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_46xkc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bj0h6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_78xtf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nbyar")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pipi1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mrltf")
+}],
+"loop": true,
+"name": &"move",
+"speed": 6.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b6sac"]
@@ -110,7 +159,7 @@ height = 34.0
 [node name="Enemy" type="CharacterBody2D" groups=["enemy"]]
 scale = Vector2(2, 2)
 collision_layer = 8
-collision_mask = 13
+collision_mask = 5
 script = ExtResource("1_poh43")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -118,6 +167,7 @@ texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_egpd7")
 animation = &"death"
 frame = 7
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -139,5 +189,9 @@ parent = NodePath("../Health")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 position = Vector2(0, 5.5)
 shape = SubResource("CapsuleShape2D_b6sac")
+
+[node name="RandomMovement" type="Node2D" parent="." node_paths=PackedStringArray("parent")]
+script = ExtResource("6_fajqo")
+parent = NodePath("..")
 
 [connection signal="died" from="Health" to="." method="_on_health_died"]
