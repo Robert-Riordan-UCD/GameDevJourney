@@ -35,3 +35,14 @@ func burst_spawner() -> BurstBulletSpawner:
 	spawner.off_time = randf_range(1.2, 2.0)
 	
 	return spawner
+
+func get_current_camera():
+	var viewport = get_viewport()
+	if not viewport:
+		return null
+	var camerasGroupName = "__cameras_%d" % viewport.get_viewport_rid().get_id()
+	var cameras = get_tree().get_nodes_in_group(camerasGroupName)
+	for camera in cameras:
+		if camera is Camera2D and camera.enabled:
+			return camera
+	return null
