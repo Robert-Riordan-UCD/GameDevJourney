@@ -35,10 +35,9 @@ func generate_rooms_at_positions(room_positions:Array[Vector2i]) -> void:
 	var directions:Array[Vector2i] = [Vector2i.UP, Vector2i.LEFT, Vector2i.DOWN, Vector2i.RIGHT]
 	for pos in room_positions:
 		var new_room:Room = room_scene.instantiate()
+		if pos == Vector2i.ZERO: new_room.num_enemies = 0
 		rooms.add_child(new_room)
-		if pos == Vector2i.ZERO:
-			new_room.num_enemies = 0
-			new_room.unlock()
+		if pos == Vector2i.ZERO: new_room.unlock()
 		new_room.global_position = pos*ROOM_SIZE
 		for d in directions:
 			if not pos + d in room_positions:

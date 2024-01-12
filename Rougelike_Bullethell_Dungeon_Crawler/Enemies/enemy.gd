@@ -15,6 +15,8 @@ var dying:bool = false
 func _ready() -> void:
 	randomize()
 	setup_bullet_spawner()
+
+func activate() -> void:
 	await spawn_self()
 	bullet_spawner.enable()
 

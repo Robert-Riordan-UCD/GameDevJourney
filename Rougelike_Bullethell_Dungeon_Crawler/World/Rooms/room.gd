@@ -17,10 +17,11 @@ const bottom_spawn_limit:float = 288
 @onready var doors: Node2D = $Doors
 @onready var walls: StaticBody2D = $Walls
 
-func activate() -> void:
+func _ready() -> void:
 	for i in range(num_enemies):
 		spawn_new_enemy()
-	
+
+func activate() -> void:
 	for door in doors.get_children():
 		door.lock()
 
@@ -63,7 +64,8 @@ func unlock() -> void:
 		exit.unlock()
 	get_tree().call_group("bullet", "early_despawn")
 
-
 func _on_player_dection_body_entered(_body: Node2D) -> void:
 	if not room_defeated:
 		activate()
+		for enemy in enemies.get_children():
+			enemy.activate()
