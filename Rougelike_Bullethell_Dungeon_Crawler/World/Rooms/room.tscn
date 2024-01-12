@@ -1,4 +1,4 @@
-[gd_scene load_steps=97 format=3 uid="uid://dvfraj2ogko0p"]
+[gd_scene load_steps=99 format=3 uid="uid://dvfraj2ogko0p"]
 
 [ext_resource type="Texture2D" uid="uid://dj28wsuh8pwu8" path="res://World/Rooms/room.png" id="1_w114d"]
 [ext_resource type="Script" path="res://World/Rooms/room.gd" id="1_ymctm"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bqul3eb8cal4j" path="res://World/Rooms/Door.png" id="3_gen17"]
 [ext_resource type="Texture2D" uid="uid://w58fktci5syp" path="res://World/Rooms/WestDoor.png" id="5_bvwmg"]
 [ext_resource type="Texture2D" uid="uid://c3c1jjywwggio" path="res://World/Rooms/SouthDoor.png" id="6_s4d4d"]
+[ext_resource type="Script" path="res://World/Rooms/SpawnArea.gd" id="7_62iss"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a7xlo"]
 atlas = ExtResource("3_gen17")
@@ -588,6 +589,9 @@ size = Vector2(14, 60)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5qopf"]
 size = Vector2(560, 244)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ylqw"]
+size = Vector2(512, 188)
+
 [node name="Room" type="Node2D"]
 scale = Vector2(2, 2)
 script = ExtResource("1_ymctm")
@@ -714,6 +718,15 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDection"]
 position = Vector2(0, 22)
 shape = SubResource("RectangleShape2D_5qopf")
+
+[node name="SpawnArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("7_62iss")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnArea"]
+position = Vector2(0, 30)
+shape = SubResource("RectangleShape2D_4ylqw")
 
 [connection signal="area_entered" from="PlayerDection" to="." method="_on_player_dection_area_entered"]
 [connection signal="body_entered" from="PlayerDection" to="." method="_on_player_dection_body_entered"]
