@@ -18,7 +18,10 @@ func _on_area_entered(hitbox:HitBox) -> void:
 	if invincibile or not hitbox: return
 	if hitbox.team == team: return
 	if parent.has_method("take_damage"):
-		parent.take_damage(hitbox.damage)
+		if randf() < hitbox.crit_chance:
+			parent.take_damage(hitbox.crit_damage, true)
+		else:
+			parent.take_damage(hitbox.damage)
 	invincibile = true
 	await get_tree().create_timer(invincibility_time).timeout
 	invincibile = false

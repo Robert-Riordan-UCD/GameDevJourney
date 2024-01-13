@@ -8,9 +8,10 @@ signal died
 
 @onready var current_health:float = max_health
 
-func take_damage(damage:float) -> void:
+func take_damage(damage:float, crit:bool=false) -> void:
 	assert(damage >= 0)
 	current_health -= damage
+	DamageNumbers.display_number(damage, global_position, crit)
 	if current_health <= 0:
 		died.emit()
 	else:

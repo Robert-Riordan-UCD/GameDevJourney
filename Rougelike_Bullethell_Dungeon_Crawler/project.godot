@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Utils="*res://Utilites/Utils.gd"
 ScreenShake="*res://Utilites/ScreenShake.gd"
+DamageNumbers="*res://Utilites/damage_numbers.gd"
 
 [input]
 
