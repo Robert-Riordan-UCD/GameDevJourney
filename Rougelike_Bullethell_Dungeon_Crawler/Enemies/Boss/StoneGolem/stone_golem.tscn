@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://nrfgwah0docv"]
+[gd_scene load_steps=64 format=3 uid="uid://nrfgwah0docv"]
 
 [ext_resource type="Script" path="res://Enemies/Boss/StoneGolem/stone_golem.gd" id="1_36wpp"]
 [ext_resource type="Texture2D" uid="uid://ikcpxrwrne70" path="res://Enemies/Boss/StoneGolem/Character_sheet.png" id="1_uhvlh"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c5dxg0k1tihbq" path="res://Bullets/bullet_spawner.tscn" id="5_np3k6"]
 [ext_resource type="PackedScene" uid="uid://cuyd1yw3aunkv" path="res://Bullets/burst_bullet_spawner.tscn" id="6_phnmg"]
 [ext_resource type="Script" path="res://Enemies/Boss/StoneGolem/StoneGolemStateMachine.gd" id="7_kle3x"]
+[ext_resource type="Script" path="res://Enemies/Boss/StoneGolem/PrePlayerEnter.gd" id="8_n2qdr"]
 [ext_resource type="Script" path="res://Enemies/Boss/StoneGolem/IdleState.gd" id="8_y0b6c"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uto7t"]
@@ -398,6 +399,9 @@ radius = 18.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_70ci5"]
 radius = 24.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8qaat"]
+size = Vector2(184.6, 110.2)
+
 [node name="StoneGolem" type="CharacterBody2D"]
 scale = Vector2(5, 5)
 script = ExtResource("1_36wpp")
@@ -405,8 +409,7 @@ script = ExtResource("1_36wpp")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_aes7t")
-animation = &"idle"
-frame_progress = 0.105519
+animation = &"death"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_uyrox")
@@ -430,10 +433,25 @@ shape = SubResource("CircleShape2D_70ci5")
 
 [node name="BurstBulletSpawner" parent="." instance=ExtResource("6_phnmg")]
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+[node name="StateMachine" type="Node2D" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("7_kle3x")
-initial_state = NodePath("BossIdle")
+initial_state = NodePath("PrePlayerEnter")
 
-[node name="BossIdle" type="Node" parent="StateMachine" node_paths=PackedStringArray("parent")]
+[node name="PrePlayerEnter" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("parent")]
+script = ExtResource("8_n2qdr")
+parent = NodePath("../..")
+
+[node name="PlayerDection" type="Area2D" parent="StateMachine/PrePlayerEnter"]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StateMachine/PrePlayerEnter/PlayerDection"]
+position = Vector2(-6.29998, 0.100003)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_8qaat")
+
+[node name="BossIdle" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("parent")]
 script = ExtResource("8_y0b6c")
 parent = NodePath("../..")
+
+[connection signal="body_entered" from="StateMachine/PrePlayerEnter/PlayerDection" to="StateMachine/PrePlayerEnter" method="_on_player_dection_body_entered"]

@@ -1,7 +1,7 @@
 class_name State
-extends Node
+extends Node2D
 
-signal transition
+signal transition(next_state)
 
 func enter() -> void:
 	pass

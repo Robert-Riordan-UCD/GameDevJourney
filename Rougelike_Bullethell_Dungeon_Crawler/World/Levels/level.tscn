@@ -28,6 +28,6 @@ grow_vertical = 2
 color = Color(0, 0, 0, 0)
 
 [node name="StoneGolem" parent="." instance=ExtResource("4_cq8r4")]
-position = Vector2(315, 129)
+position = Vector2(1430, -6.99997)
 
 [connection signal="health_changed" from="Player" to="GUI/HealthBar" method="_on_player_health_changed"]
