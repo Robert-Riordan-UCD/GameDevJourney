@@ -79,6 +79,7 @@ func _next_level():
 	clear_level()
 	level += 1
 	player.global_position = Vector2.ZERO
+	await get_tree().process_frame
 	generate_level()
 	await screen_on()
 	player.movement_blocked = false
