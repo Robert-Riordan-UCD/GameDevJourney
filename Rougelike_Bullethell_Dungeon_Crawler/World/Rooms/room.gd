@@ -54,7 +54,6 @@ func set_final_room() -> void:
 func add_boss() -> void:
 	await get_tree().process_frame
 	for enemy in enemies.get_children():
-		print("Removeing ", enemy)
 		enemies.remove_child(enemy)
 		enemy.queue_free()
 	num_enemies = 1

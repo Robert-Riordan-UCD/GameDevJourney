@@ -20,5 +20,4 @@ func _process(delta: float) -> void:
 func new_target() -> void:
 	target = movement_area.get_random_point()
 	await get_tree().create_timer(randf_range(5, 15)).timeout
-	print(target)
 	new_target()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://nrfgwah0docv"]
+[gd_scene load_steps=73 format=3 uid="uid://nrfgwah0docv"]
 
 [ext_resource type="Script" path="res://Enemies/Boss/StoneGolem/stone_golem.gd" id="1_36wpp"]
 [ext_resource type="Texture2D" uid="uid://ikcpxrwrne70" path="res://Enemies/Boss/StoneGolem/Character_sheet.png" id="1_uhvlh"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://Enemies/Boss/StoneGolem/PrePlayerEnter.gd" id="8_n2qdr"]
 [ext_resource type="Script" path="res://Enemies/Boss/StoneGolem/IdleState.gd" id="8_y0b6c"]
 [ext_resource type="Script" path="res://Enemies/Boss/StoneGolem/Move.gd" id="10_unv1w"]
+[ext_resource type="PackedScene" uid="uid://bs3unrpayj1l7" path="res://Bullets/CircleBulletSpawner.tscn" id="10_x8c3p"]
 [ext_resource type="Script" path="res://Enemies/Boss/StoneGolem/MeleeAttack.gd" id="11_yabme"]
 [ext_resource type="Script" path="res://Enemies/Boss/StoneGolem/RangeAttack.gd" id="12_ne06x"]
 
@@ -211,6 +212,38 @@ region = Rect2(700, 200, 100, 100)
 atlas = ExtResource("1_uhvlh")
 region = Rect2(800, 200, 100, 100)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_r4x0p"]
+atlas = ExtResource("1_uhvlh")
+region = Rect2(0, 300, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nm8fx"]
+atlas = ExtResource("1_uhvlh")
+region = Rect2(100, 300, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b1sfp"]
+atlas = ExtResource("1_uhvlh")
+region = Rect2(200, 300, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_grlvb"]
+atlas = ExtResource("1_uhvlh")
+region = Rect2(300, 300, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dx3sh"]
+atlas = ExtResource("1_uhvlh")
+region = Rect2(400, 300, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1gybx"]
+atlas = ExtResource("1_uhvlh")
+region = Rect2(500, 300, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mjhrr"]
+atlas = ExtResource("1_uhvlh")
+region = Rect2(600, 300, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qrpmh"]
+atlas = ExtResource("1_uhvlh")
+region = Rect2(700, 300, 100, 100)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_aes7t"]
 animations = [{
 "frames": [{
@@ -392,6 +425,35 @@ animations = [{
 "loop": false,
 "name": &"ranged_attack",
 "speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r4x0p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nm8fx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b1sfp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_grlvb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dx3sh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1gybx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mjhrr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qrpmh")
+}],
+"loop": false,
+"name": &"slam",
+"speed": 5.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uyrox"]
@@ -407,7 +469,7 @@ script = ExtResource("1_36wpp")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_aes7t")
-animation = &"death"
+animation = &"slam"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_uyrox")
@@ -443,8 +505,11 @@ parent = NodePath("../..")
 script = ExtResource("10_unv1w")
 parent = NodePath("../..")
 
-[node name="MeleeAttack" type="Node2D" parent="StateMachine"]
+[node name="MeleeAttack" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("parent")]
 script = ExtResource("11_yabme")
+parent = NodePath("../..")
+
+[node name="CircleBulletSpawner" parent="StateMachine/MeleeAttack" instance=ExtResource("10_x8c3p")]
 
 [node name="RangeAttack" type="Node2D" parent="StateMachine"]
 script = ExtResource("12_ne06x")
