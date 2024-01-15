@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=3 uid="uid://nrfgwah0docv"]
+[gd_scene load_steps=74 format=3 uid="uid://nrfgwah0docv"]
 
 [ext_resource type="Script" path="res://Enemies/Boss/StoneGolem/stone_golem.gd" id="1_36wpp"]
 [ext_resource type="Texture2D" uid="uid://ikcpxrwrne70" path="res://Enemies/Boss/StoneGolem/Character_sheet.png" id="1_uhvlh"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bs3unrpayj1l7" path="res://Bullets/CircleBulletSpawner.tscn" id="10_x8c3p"]
 [ext_resource type="PackedScene" uid="uid://cnojlgo67347n" path="res://Bullets/sweep_bullet_spawner.tscn" id="11_145dj"]
 [ext_resource type="Script" path="res://Enemies/Boss/StoneGolem/MeleeAttack.gd" id="11_yabme"]
+[ext_resource type="Script" path="res://Enemies/Boss/StoneGolem/Death.gd" id="12_hj7yt"]
 [ext_resource type="Script" path="res://Enemies/Boss/StoneGolem/RangeAttack.gd" id="12_ne06x"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uto7t"]
@@ -513,8 +514,12 @@ script = ExtResource("12_ne06x")
 parent = NodePath("../..")
 
 [node name="SweepBulletSpawner" parent="StateMachine/RangeAttack" instance=ExtResource("11_145dj")]
-sweep_angle = 90.0
 bullets_per_second = 5.0
 damage = 2.0
 
+[node name="Death" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("parent")]
+script = ExtResource("12_hj7yt")
+parent = NodePath("../..")
+
 [connection signal="died" from="Health" to="." method="_on_health_died"]
+[connection signal="done" from="StateMachine/RangeAttack/SweepBulletSpawner" to="StateMachine/RangeAttack" method="_on_sweep_bullet_spawner_done"]

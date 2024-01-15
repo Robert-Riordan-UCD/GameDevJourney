@@ -27,6 +27,7 @@ func _physics_process(delta: float) -> void:
 func change_state(state:String) -> void:
 	print("Chaning state to ", state)
 	if current_state and state == current_state.name: return
+	if current_state and current_state.final: return
 	
 	var new_state:State = states.get(state)
 	if not new_state: return

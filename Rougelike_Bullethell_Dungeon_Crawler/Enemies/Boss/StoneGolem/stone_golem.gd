@@ -7,5 +7,7 @@ func activate() -> void:
 	state_machine.change_state("Move")
 
 func _on_health_died() -> void:
+	if _dying:return
+	_dying = true
 	died.emit()
-	queue_free()
+	await state_machine.change_state("Death")

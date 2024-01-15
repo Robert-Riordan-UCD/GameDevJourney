@@ -1,5 +1,7 @@
 extends BulletSpawner
 
+signal done
+
 @export var sweep_angle:float = 90
 @export var firing_time:float = 3.0
 @export var sweeps:int = 4
@@ -14,7 +16,6 @@ func _process(_delta) -> void:
 
 func trigger() -> void:
 	var tween:Tween
-	look_at(player.position)
 	rotation_degrees -= sweep_angle/2
 	enable()
 	for i in range(sweeps):
@@ -25,3 +26,5 @@ func trigger() -> void:
 			tween.tween_property(self, "rotation_degrees", rotation_degrees+sweep_angle, firing_time/sweeps)
 		await tween.finished
 	disable()
+	done.emit()
+	

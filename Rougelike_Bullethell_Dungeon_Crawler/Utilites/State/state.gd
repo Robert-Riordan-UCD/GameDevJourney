@@ -3,6 +3,8 @@ extends Node2D
 
 signal transition(next_state)
 
+@export var final:bool = false
+
 func enter() -> void:
 	pass
 

@@ -2,7 +2,7 @@ extends Node2D
 
 @export var level:int = 1
 @export var level_transtion_time:float = 1.0
-@export var boss_level:int = 5
+@export var boss_level:int = 1#5
 
 @onready var room_scene:PackedScene = preload("res://World/Rooms/room.tscn")
 @onready var rooms:Node2D = $Rooms
@@ -55,6 +55,7 @@ func create_final_room() -> Room:
 			greatest_distance = d
 			final_room = room
 
+	assert(final_room != null, "Failed to generate final room")
 	final_room.set_final_room()
 	final_room.exit.level_exited.connect(_next_level)
 	return final_room
