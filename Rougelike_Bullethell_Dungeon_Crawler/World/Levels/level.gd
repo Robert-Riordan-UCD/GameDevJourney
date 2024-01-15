@@ -2,6 +2,7 @@ extends Node2D
 
 @export var level:int = 1
 @export var level_transtion_time:float = 1.0
+@export var boss_level:int = 5
 
 @onready var room_scene:PackedScene = preload("res://World/Rooms/room.tscn")
 @onready var rooms:Node2D = $Rooms
@@ -16,7 +17,8 @@ func generate_level() -> void:
 	var room_positions:Array[Vector2i] = generate_room_positions()
 	generate_rooms_at_positions(room_positions)
 	var final_room:Room = create_final_room()
-	final_room.add_boss()
+	if level%boss_level == 0:
+		final_room.add_boss()
 
 func generate_room_positions() -> Array[Vector2i]:
 	var next_room:Vector2i = Vector2(0, 0)
