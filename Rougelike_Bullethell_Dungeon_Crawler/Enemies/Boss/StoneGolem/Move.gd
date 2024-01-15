@@ -2,14 +2,13 @@ extends State
 
 @export var speed:float = 30
 @export var parent:Boss
-@export var exit_states:Array = ["MeleeAttack"]#, "RangeAttack"]
+@export var exit_states:Array = ["MeleeAttack", "RangeAttack"]
 
 var target:Vector2
 var exiting:bool = false
 
 func enter() -> void:
 	exiting = false
-	print("Moving")
 	target = parent.movement_area.get_random_point()
 	parent.animated_sprite_2d.play("idle")
 	parent.animated_sprite_2d.flip_h = target.x < parent.position.x

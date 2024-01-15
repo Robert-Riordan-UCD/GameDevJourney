@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cnojlgo67347n"]
+
+[ext_resource type="PackedScene" uid="uid://c5dxg0k1tihbq" path="res://Bullets/bullet_spawner.tscn" id="1_a0tpv"]
+[ext_resource type="Script" path="res://Bullets/sweep_bullet_spawner.gd" id="2_kgn3a"]
+
+[node name="SweepBulletSpawner" instance=ExtResource("1_a0tpv")]
+script = ExtResource("2_kgn3a")
+sweep_angle = 90.0
+firing_time = 3.0
+sweeps = 4
+bullets_per_second = 1.0
+bullets_per_gap = -1
+rotation_speed = 3.14159

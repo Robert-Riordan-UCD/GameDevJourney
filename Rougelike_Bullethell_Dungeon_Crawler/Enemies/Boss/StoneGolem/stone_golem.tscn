@@ -6,9 +6,9 @@
 [ext_resource type="Script" path="res://Utilites/Hurtbox.gd" id="3_tug5w"]
 [ext_resource type="Script" path="res://Enemies/Boss/StoneGolem/StoneGolemStateMachine.gd" id="7_kle3x"]
 [ext_resource type="Script" path="res://Enemies/Boss/StoneGolem/PrePlayerEnter.gd" id="8_n2qdr"]
-[ext_resource type="Script" path="res://Enemies/Boss/StoneGolem/IdleState.gd" id="8_y0b6c"]
 [ext_resource type="Script" path="res://Enemies/Boss/StoneGolem/Move.gd" id="10_unv1w"]
 [ext_resource type="PackedScene" uid="uid://bs3unrpayj1l7" path="res://Bullets/CircleBulletSpawner.tscn" id="10_x8c3p"]
+[ext_resource type="PackedScene" uid="uid://cnojlgo67347n" path="res://Bullets/sweep_bullet_spawner.tscn" id="11_145dj"]
 [ext_resource type="Script" path="res://Enemies/Boss/StoneGolem/MeleeAttack.gd" id="11_yabme"]
 [ext_resource type="Script" path="res://Enemies/Boss/StoneGolem/RangeAttack.gd" id="12_ne06x"]
 
@@ -469,7 +469,7 @@ script = ExtResource("1_36wpp")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_aes7t")
-animation = &"slam"
+animation = &"ranged_attack"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_uyrox")
@@ -497,10 +497,6 @@ initial_state = NodePath("PrePlayerEnter")
 script = ExtResource("8_n2qdr")
 parent = NodePath("../..")
 
-[node name="Idle" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("parent")]
-script = ExtResource("8_y0b6c")
-parent = NodePath("../..")
-
 [node name="Move" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("parent")]
 script = ExtResource("10_unv1w")
 parent = NodePath("../..")
@@ -510,8 +506,15 @@ script = ExtResource("11_yabme")
 parent = NodePath("../..")
 
 [node name="CircleBulletSpawner" parent="StateMachine/MeleeAttack" instance=ExtResource("10_x8c3p")]
+damage = 2.0
 
-[node name="RangeAttack" type="Node2D" parent="StateMachine"]
+[node name="RangeAttack" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("parent")]
 script = ExtResource("12_ne06x")
+parent = NodePath("../..")
+
+[node name="SweepBulletSpawner" parent="StateMachine/RangeAttack" instance=ExtResource("11_145dj")]
+sweep_angle = 90.0
+bullets_per_second = 5.0
+damage = 2.0
 
 [connection signal="died" from="Health" to="." method="_on_health_died"]

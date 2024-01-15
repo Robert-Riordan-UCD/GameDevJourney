@@ -13,4 +13,4 @@ func exit() -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is Player:
-		transition.emit("Move")
+		transition.emit("RangeAttack")
