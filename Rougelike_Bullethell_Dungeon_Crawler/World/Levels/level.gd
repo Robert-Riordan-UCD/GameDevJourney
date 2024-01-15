@@ -24,7 +24,7 @@ func generate_room_positions() -> Array[Vector2i]:
 	var next_room:Vector2i = Vector2(0, 0)
 	var room_positions:Array[Vector2i] = [next_room]
 	var directions:Array[Vector2i] = [Vector2i.UP, Vector2i.LEFT, Vector2i.DOWN, Vector2i.RIGHT]
-	var num_rooms:int = 2#min(int(3.33*level)+randi_range(5, 6), 20)
+	var num_rooms:int = min(int(3.33*level)+randi_range(5, 6), 20)
 	print("Generating ", num_rooms, " rooms")
 	while true:
 		if room_positions.size() >= num_rooms: break
@@ -55,9 +55,8 @@ func create_final_room() -> Room:
 			greatest_distance = d
 			final_room = room
 
-	if final_room:
-		final_room.set_final_room()
-		final_room.exit.level_exited.connect(_next_level)
+	final_room.set_final_room()
+	final_room.exit.level_exited.connect(_next_level)
 	return final_room
 
 func screen_off() -> void:
