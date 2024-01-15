@@ -4,11 +4,12 @@
 [ext_resource type="Texture2D" uid="uid://ikcpxrwrne70" path="res://Enemies/Boss/StoneGolem/Character_sheet.png" id="1_uhvlh"]
 [ext_resource type="Script" path="res://Utilites/health.gd" id="2_4bfgc"]
 [ext_resource type="Script" path="res://Utilites/Hurtbox.gd" id="3_tug5w"]
-[ext_resource type="PackedScene" uid="uid://c5dxg0k1tihbq" path="res://Bullets/bullet_spawner.tscn" id="5_np3k6"]
-[ext_resource type="PackedScene" uid="uid://cuyd1yw3aunkv" path="res://Bullets/burst_bullet_spawner.tscn" id="6_phnmg"]
 [ext_resource type="Script" path="res://Enemies/Boss/StoneGolem/StoneGolemStateMachine.gd" id="7_kle3x"]
 [ext_resource type="Script" path="res://Enemies/Boss/StoneGolem/PrePlayerEnter.gd" id="8_n2qdr"]
 [ext_resource type="Script" path="res://Enemies/Boss/StoneGolem/IdleState.gd" id="8_y0b6c"]
+[ext_resource type="Script" path="res://Enemies/Boss/StoneGolem/Move.gd" id="10_unv1w"]
+[ext_resource type="Script" path="res://Enemies/Boss/StoneGolem/MeleeAttack.gd" id="11_yabme"]
+[ext_resource type="Script" path="res://Enemies/Boss/StoneGolem/RangeAttack.gd" id="12_ne06x"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uto7t"]
 atlas = ExtResource("1_uhvlh")
@@ -399,11 +400,8 @@ radius = 18.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_70ci5"]
 radius = 24.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8qaat"]
-size = Vector2(184.6, 110.2)
-
 [node name="StoneGolem" type="CharacterBody2D"]
-scale = Vector2(5, 5)
+scale = Vector2(2, 2)
 script = ExtResource("1_36wpp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -429,10 +427,6 @@ invincibility_time = 0.1
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 shape = SubResource("CircleShape2D_70ci5")
 
-[node name="BulletSpawner" parent="." instance=ExtResource("5_np3k6")]
-
-[node name="BurstBulletSpawner" parent="." instance=ExtResource("6_phnmg")]
-
 [node name="StateMachine" type="Node2D" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("7_kle3x")
 initial_state = NodePath("PrePlayerEnter")
@@ -441,17 +435,18 @@ initial_state = NodePath("PrePlayerEnter")
 script = ExtResource("8_n2qdr")
 parent = NodePath("../..")
 
-[node name="PlayerDection" type="Area2D" parent="StateMachine/PrePlayerEnter"]
-collision_layer = 0
-collision_mask = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StateMachine/PrePlayerEnter/PlayerDection"]
-position = Vector2(-6.29998, 0.100003)
-scale = Vector2(1, 1)
-shape = SubResource("RectangleShape2D_8qaat")
-
-[node name="BossIdle" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("parent")]
+[node name="Idle" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("parent")]
 script = ExtResource("8_y0b6c")
 parent = NodePath("../..")
 
-[connection signal="body_entered" from="StateMachine/PrePlayerEnter/PlayerDection" to="StateMachine/PrePlayerEnter" method="_on_player_dection_body_entered"]
+[node name="Move" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("parent")]
+script = ExtResource("10_unv1w")
+parent = NodePath("../..")
+
+[node name="MeleeAttack" type="Node2D" parent="StateMachine"]
+script = ExtResource("11_yabme")
+
+[node name="RangeAttack" type="Node2D" parent="StateMachine"]
+script = ExtResource("12_ne06x")
+
+[connection signal="died" from="Health" to="." method="_on_health_died"]

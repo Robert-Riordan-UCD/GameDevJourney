@@ -15,13 +15,14 @@ func _ready() -> void:
 func generate_level() -> void:
 	var room_positions:Array[Vector2i] = generate_room_positions()
 	generate_rooms_at_positions(room_positions)
-	create_final_room()
+	var final_room:Room = create_final_room()
+	final_room.add_boss()
 
 func generate_room_positions() -> Array[Vector2i]:
 	var next_room:Vector2i = Vector2(0, 0)
 	var room_positions:Array[Vector2i] = [next_room]
 	var directions:Array[Vector2i] = [Vector2i.UP, Vector2i.LEFT, Vector2i.DOWN, Vector2i.RIGHT]
-	var num_rooms:int = min(int(3.33*level)+randi_range(5, 6), 20)
+	var num_rooms:int = 2#min(int(3.33*level)+randi_range(5, 6), 20)
 	print("Generating ", num_rooms, " rooms")
 	while true:
 		if room_positions.size() >= num_rooms: break
@@ -43,7 +44,7 @@ func generate_rooms_at_positions(room_positions:Array[Vector2i]) -> void:
 			if not pos + d in room_positions:
 				new_room.remove_door(d)
 
-func create_final_room():
+func create_final_room() -> Room:
 	var final_room:Room = null
 	var greatest_distance:float = 0
 	for room in rooms.get_children():
@@ -53,11 +54,9 @@ func create_final_room():
 			final_room = room
 
 	if final_room:
-		print("generated exit")
 		final_room.set_final_room()
 		final_room.exit.level_exited.connect(_next_level)
-	else:
-		print("no dead ends")
+	return final_room
 
 func screen_off() -> void:
 	var tween:Tween = create_tween()

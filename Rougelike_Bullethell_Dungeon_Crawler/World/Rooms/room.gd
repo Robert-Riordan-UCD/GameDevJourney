@@ -12,8 +12,10 @@ const top_spawn_limit:float = -192
 const bottom_spawn_limit:float = 288
 
 @onready var enemy_scene:PackedScene = preload("res://Enemies/enemy.tscn")
+@onready var boss_scene:PackedScene = preload("res://Enemies/Boss/StoneGolem/stone_golem.tscn")
 @onready var enemies: Node2D = $Enemies
 @onready var rect:Rect2 = $Room.get_rect()
+@onready var spawn_area:SpawnArea = $SpawnArea
 @onready var doors: Node2D = $Doors
 @onready var walls: StaticBody2D = $Walls
 
@@ -30,10 +32,10 @@ func spawn_new_enemy() -> void:
 	new_enemy.scale /= scale
 	new_enemy.connect("died", _on_enemy_died)
 	new_enemy.bullet_spawner = Utils.new_random_bullet_spawner()
-	new_enemy.movement_area = $SpawnArea
+	new_enemy.movement_area = spawn_area
 	await get_tree().process_frame
 	enemies.add_child(new_enemy)
-	new_enemy.global_position = global_position + $SpawnArea.get_random_point()
+	new_enemy.global_position = global_position + spawn_area.get_random_point()
 
 func remove_door(direction:Vector2i) -> void:
 	match direction:
@@ -46,8 +48,21 @@ func set_final_room() -> void:
 	var level_exit = preload("res://World/Levels/level_exit.tscn").instantiate()
 	add_child(level_exit)
 	move_child(level_exit, 1)
-	level_exit.position =  Vector2(randf_range(-200, 200), randf_range(-50, 50))
+	level_exit.position = Vector2(randf_range(-200, 200), randf_range(-50, 50))
 	exit = level_exit
+
+func add_boss() -> void:
+	await get_tree().process_frame
+	for enemy in enemies.get_children():
+		print("Removeing ", enemy)
+		enemies.remove_child(enemy)
+		enemy.queue_free()
+	num_enemies = 1
+	
+	var boss:Boss = boss_scene.instantiate()
+	boss.movement_area = spawn_area
+	enemies.add_child(boss)
+	boss.died.connect(_on_enemy_died)
 
 func _remove_door(door:Door) -> void:
 	door.become_wall()
@@ -69,4 +84,5 @@ func _on_player_dection_body_entered(_body: Node2D) -> void:
 	if not room_defeated:
 		activate()
 		for enemy in enemies.get_children():
-			enemy.activate()
+			if enemy.has_method("activate"):
+				enemy.activate()
