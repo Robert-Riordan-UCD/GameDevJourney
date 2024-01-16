@@ -1,13 +1,14 @@
-[gd_scene load_steps=28 format=3 uid="uid://dtrrrhcfme7or"]
+[gd_scene load_steps=29 format=3 uid="uid://dtrrrhcfme7or"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_wegdx"]
 [ext_resource type="Texture2D" uid="uid://bhr4hkkc0wosd" path="res://Player/Sprites/Death-Sheet.png" id="2_12qad"]
 [ext_resource type="Texture2D" uid="uid://f0d43pon7wdm" path="res://Player/Sprites/Idle-Sheet.png" id="3_1n3uv"]
 [ext_resource type="Texture2D" uid="uid://8le5xfl6i25m" path="res://Player/Sprites/Run-Sheet.png" id="3_ruvus"]
 [ext_resource type="Script" path="res://Utilites/Hurtbox.gd" id="5_45ajp"]
-[ext_resource type="Script" path="res://Utilites/Health/health.gd" id="6_lxahp"]
+[ext_resource type="Script" path="res://Utilites/Health/health.gd" id="6_lue20"]
 [ext_resource type="PackedScene" uid="uid://3py6rnhkb2e7" path="res://Player/Weapons/weapon.tscn" id="7_bcly8"]
 [ext_resource type="Script" path="res://Player/Dash.gd" id="8_lv11x"]
+[ext_resource type="PackedScene" uid="uid://pvsuvpa1bj8f" path="res://Utilites/Health/health_bar.tscn" id="9_vqcyb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0r6ua"]
 atlas = ExtResource("2_12qad")
@@ -172,7 +173,7 @@ shape = SubResource("CapsuleShape2D_l3faw")
 
 [node name="Health" type="Node2D" parent="."]
 position = Vector2(0, -19)
-script = ExtResource("6_lxahp")
+script = ExtResource("6_lue20")
 max_health = 10.0
 
 [node name="Weapon" parent="." instance=ExtResource("7_bcly8")]
@@ -187,6 +188,24 @@ hurt_box = NodePath("../HurtBox")
 [node name="RayCast2D" type="RayCast2D" parent="Dash"]
 exclude_parent = false
 target_position = Vector2(250, 0)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+custom_minimum_size = Vector2(300, 0)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -150.0
+offset_right = 150.0
+offset_bottom = 34.0
+grow_horizontal = 2
+theme_override_constants/margin_top = 10
+
+[node name="health_bar" parent="CanvasLayer/MarginContainer" node_paths=PackedStringArray("health") instance=ExtResource("9_vqcyb")]
+layout_mode = 2
+size_flags_vertical = 1
+health = NodePath("../../../Health")
 
 [connection signal="damaged" from="Health" to="." method="_on_health_damaged"]
 [connection signal="died" from="Health" to="." method="_on_health_died"]

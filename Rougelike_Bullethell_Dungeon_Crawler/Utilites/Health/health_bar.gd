@@ -7,6 +7,7 @@ func _ready() -> void:
 	value = health.current_health
 	
 	health.damaged.connect(_update_health)
+	health.died.connect(_update_health)
 
 func _update_health() -> void:
 	var tween:Tween = create_tween()
