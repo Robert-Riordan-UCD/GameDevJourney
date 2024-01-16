@@ -2,7 +2,7 @@ extends Node2D
 
 @export var level:int = 1
 @export var level_transtion_time:float = 1.0
-@export var boss_level:int = 1#5
+@export var boss_level:int = 5
 
 @onready var room_scene:PackedScene = preload("res://World/Rooms/room.tscn")
 @onready var rooms:Node2D = $Rooms

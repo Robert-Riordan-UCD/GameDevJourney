@@ -1,8 +1,8 @@
-[gd_scene load_steps=74 format=3 uid="uid://nrfgwah0docv"]
+[gd_scene load_steps=75 format=3 uid="uid://nrfgwah0docv"]
 
 [ext_resource type="Script" path="res://Enemies/Boss/StoneGolem/stone_golem.gd" id="1_36wpp"]
 [ext_resource type="Texture2D" uid="uid://ikcpxrwrne70" path="res://Enemies/Boss/StoneGolem/Character_sheet.png" id="1_uhvlh"]
-[ext_resource type="Script" path="res://Utilites/health.gd" id="2_4bfgc"]
+[ext_resource type="Script" path="res://Utilites/Health/health.gd" id="3_epiqq"]
 [ext_resource type="Script" path="res://Utilites/Hurtbox.gd" id="3_tug5w"]
 [ext_resource type="Script" path="res://Enemies/Boss/StoneGolem/StoneGolemStateMachine.gd" id="7_kle3x"]
 [ext_resource type="Script" path="res://Enemies/Boss/StoneGolem/PrePlayerEnter.gd" id="8_n2qdr"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" path="res://Enemies/Boss/StoneGolem/MeleeAttack.gd" id="11_yabme"]
 [ext_resource type="Script" path="res://Enemies/Boss/StoneGolem/Death.gd" id="12_hj7yt"]
 [ext_resource type="Script" path="res://Enemies/Boss/StoneGolem/RangeAttack.gd" id="12_ne06x"]
+[ext_resource type="PackedScene" uid="uid://pvsuvpa1bj8f" path="res://Utilites/Health/health_bar.tscn" id="13_mfc10"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uto7t"]
 atlas = ExtResource("1_uhvlh")
@@ -477,7 +478,7 @@ shape = SubResource("CircleShape2D_uyrox")
 
 [node name="Health" type="Node2D" parent="."]
 position = Vector2(0, -27)
-script = ExtResource("2_4bfgc")
+script = ExtResource("3_epiqq")
 
 [node name="HurtBox" type="Area2D" parent="." node_paths=PackedStringArray("parent")]
 position = Vector2(0, 1)
@@ -520,6 +521,13 @@ damage = 2.0
 [node name="Death" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("parent")]
 script = ExtResource("12_hj7yt")
 parent = NodePath("../..")
+
+[node name="health_bar" parent="." node_paths=PackedStringArray("health") instance=ExtResource("13_mfc10")]
+offset_left = -25.0
+offset_top = -38.0
+offset_right = 25.0
+offset_bottom = -33.0
+health = NodePath("../Health")
 
 [connection signal="died" from="Health" to="." method="_on_health_died"]
 [connection signal="done" from="StateMachine/RangeAttack/SweepBulletSpawner" to="StateMachine/RangeAttack" method="_on_sweep_bullet_spawner_done"]

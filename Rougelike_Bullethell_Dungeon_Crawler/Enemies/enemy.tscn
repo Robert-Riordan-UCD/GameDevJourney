@@ -1,12 +1,13 @@
-[gd_scene load_steps=28 format=3 uid="uid://dmx33r6xnsopf"]
+[gd_scene load_steps=29 format=3 uid="uid://dmx33r6xnsopf"]
 
 [ext_resource type="Script" path="res://Enemies/enemy.gd" id="1_poh43"]
 [ext_resource type="Texture2D" uid="uid://cjetnupabcr2" path="res://Enemies/Sprites/Skeleton/Idle-Sheet.png" id="1_slv70"]
 [ext_resource type="Texture2D" uid="uid://v8inmwoyp44w" path="res://Enemies/Sprites/Skeleton/Death-Sheet.png" id="2_66oxj"]
-[ext_resource type="Script" path="res://Utilites/health.gd" id="4_b1cdm"]
 [ext_resource type="Texture2D" uid="uid://blvr28dtxh06m" path="res://Enemies/Sprites/Skeleton/Run-Sheet.png" id="4_vomm4"]
+[ext_resource type="Script" path="res://Utilites/Health/health.gd" id="5_i51nq"]
 [ext_resource type="Script" path="res://Utilites/Hurtbox.gd" id="5_x2rmh"]
 [ext_resource type="Script" path="res://Enemies/RandomMovement.gd" id="6_fajqo"]
+[ext_resource type="PackedScene" uid="uid://pvsuvpa1bj8f" path="res://Utilites/Health/health_bar.tscn" id="8_ykc7f"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_taqq5"]
 atlas = ExtResource("2_66oxj")
@@ -176,8 +177,8 @@ shape = SubResource("CapsuleShape2D_b6sac")
 
 [node name="Health" type="Node2D" parent="."]
 position = Vector2(0, -17.5)
-script = ExtResource("4_b1cdm")
-max_health = 1.0
+script = ExtResource("5_i51nq")
+max_health = 15.0
 
 [node name="HurtBox" type="Area2D" parent="." node_paths=PackedStringArray("parent")]
 position = Vector2(0, 1)
@@ -193,5 +194,12 @@ shape = SubResource("CapsuleShape2D_b6sac")
 [node name="RandomMovement" type="Node2D" parent="." node_paths=PackedStringArray("parent")]
 script = ExtResource("6_fajqo")
 parent = NodePath("..")
+
+[node name="health_bar" parent="." node_paths=PackedStringArray("health") instance=ExtResource("8_ykc7f")]
+offset_left = -10.0
+offset_top = -19.5
+offset_right = 10.0
+offset_bottom = -14.5
+health = NodePath("../Health")
 
 [connection signal="died" from="Health" to="." method="_on_health_died"]
