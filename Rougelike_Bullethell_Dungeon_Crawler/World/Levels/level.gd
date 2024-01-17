@@ -14,6 +14,7 @@ func _ready() -> void:
 	generate_level()
 
 func generate_level() -> void:
+	$GUI/MarginContainer/LevelNumber.text = "Level " + str(level)
 	var room_positions:Array[Vector2i] = generate_room_positions()
 	generate_rooms_at_positions(room_positions)
 	var final_room:Room = create_final_room()
