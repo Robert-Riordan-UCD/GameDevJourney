@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://demy2evdrn76p"]
+[gd_scene load_steps=5 format=3 uid="uid://demy2evdrn76p"]
 
 [ext_resource type="Script" path="res://World/Levels/level.gd" id="1_1owfd"]
 [ext_resource type="PackedScene" uid="uid://dtrrrhcfme7or" path="res://Player/player.tscn" id="2_a80em"]
+[ext_resource type="PackedScene" uid="uid://b2ajorl26275p" path="res://GUI/pause_menu.tscn" id="3_36p7d"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_domg4"]
 font_size = 24
@@ -41,3 +42,5 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0)
+
+[node name="PauseMenu" parent="GUI" instance=ExtResource("3_36p7d")]
