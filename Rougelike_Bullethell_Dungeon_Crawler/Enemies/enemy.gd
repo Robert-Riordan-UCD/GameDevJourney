@@ -12,6 +12,7 @@ signal died
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var random_movement: Node2D = $RandomMovement
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 var dying:bool = false
 
@@ -45,8 +46,12 @@ func spawn_self() -> void:
 	animated_sprite_2d.position.y += 8
 	animated_sprite_2d.play("default")
 
+func _on_health_damaged() -> void:
+	animation_player.play("hit")
+
 func _on_health_died() -> void:
 	if dying: return
+	_on_health_damaged()
 	dying = true
 	died.emit()
 	animated_sprite_2d.stop()
