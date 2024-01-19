@@ -49,6 +49,7 @@ func _on_health_died() -> void:
 	if dying: return
 	dying = true
 	died.emit()
+	animated_sprite_2d.stop()
 	animated_sprite_2d.position.y -= 8
 	animated_sprite_2d.play("death")
 	$CollisionShape2D.queue_free()
