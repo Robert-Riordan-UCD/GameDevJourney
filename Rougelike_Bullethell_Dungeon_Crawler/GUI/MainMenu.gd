@@ -22,8 +22,7 @@ func _on_play_button_pressed():
 	SceneTransition.change_scene("res://World/Levels/level.tscn")
 
 func _on_credit_button_pressed() -> void:
-	$Buttons/CreditButton.text = "I haven't added this yet"
-	#SceneTransition.change_scene("res://GUI/LevelSelectScreen.tscn")
+	SceneTransition.change_scene("res://GUI/Credits.tscn")
 
 func _on_quit_button_pressed() -> void:
 	get_tree().quit()
