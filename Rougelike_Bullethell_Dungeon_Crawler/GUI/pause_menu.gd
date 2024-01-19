@@ -2,7 +2,7 @@ extends Control
 
 @onready var _paused:bool = false
 @onready var buttons:VBoxContainer = $Buttons
-@onready var active_button:int = -1
+@onready var active_button:int = 0
 @onready var button_timer:Timer = $ButtonTimer
 
 func _ready() -> void:
@@ -12,12 +12,13 @@ func pause() -> void:
 	_paused = true
 	visible = true
 	get_tree().paused = true
+	buttons.get_children()[active_button].call_deferred("grab_focus")
 
 func unpause() -> void:
 	get_tree().paused = false
 	visible = false
 	_paused = false
-	active_button = -1
+	active_button = 0
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("player_pause"):

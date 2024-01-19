@@ -1,8 +1,11 @@
 extends Control
 
 @onready var buttons: VBoxContainer = $Buttons
-@onready var active_button:int = -1
+@onready var active_button:int = 0
 @onready var button_timer:Timer = $ButtonTimer
+
+func _ready() -> void:
+	buttons.get_children()[active_button].call_deferred("grab_focus")
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("player_ui_interact"):
