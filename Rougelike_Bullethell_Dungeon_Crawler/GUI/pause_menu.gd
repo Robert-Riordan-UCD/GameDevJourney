@@ -22,7 +22,8 @@ func unpause() -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("player_pause"):
-		pause()
+		if _paused: unpause()
+		else: pause()
 	
 	if not _paused: return
 	
