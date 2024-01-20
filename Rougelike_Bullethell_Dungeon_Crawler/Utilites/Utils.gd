@@ -15,6 +15,7 @@ func new_random_bullet_spawner(difficulty:int) -> BulletSpawner:
 func default_spawner(difficulty:int) -> BulletSpawner:
 	var spawner:BulletSpawner = bullet_spawner_scene.instantiate()
 	
+	spawner.direction = -1 if randi()%2 else 1
 	spawner.bullets_per_second = randf_range(sqrt(float(difficulty)), 2*sqrt(float(difficulty)))
 	spawner.size = randf_range(0.8, 1.0)
 	spawner.bullets_per_gap = randi_range(4, 10)

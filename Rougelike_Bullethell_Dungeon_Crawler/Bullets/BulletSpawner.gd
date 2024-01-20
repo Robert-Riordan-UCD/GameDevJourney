@@ -14,6 +14,10 @@ extends Node2D
 #@export_range(-180, 180) var rotation_start:float = -90
 #@export_range(-180, 180) var rotation_end:float = 90
 @export_range(0, 2*PI) var rotation_speed:float = PI
+@export var direction:int = 1:
+	set(d):
+		if d > 0: direction = 1
+		else: direction = -1
 
 @onready var bullet_spawn_timer:Timer = $BulletSpawnTimer
 @onready var bullets_till_next_gap:int = bullets_per_gap
@@ -25,7 +29,7 @@ func _ready() -> void:
 	bullet_spawn_timer.start()
 
 func _process(delta):
-	rotate(delta*rotation_speed)
+	rotate(direction*delta*rotation_speed)
 
 func enable():
 	bullet_spawn_timer.wait_time = 1/bullets_per_second
