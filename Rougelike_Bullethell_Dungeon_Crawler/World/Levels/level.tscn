@@ -44,3 +44,4 @@ grow_vertical = 2
 color = Color(0, 0, 0, 0)
 
 [node name="PauseMenu" parent="GUI" instance=ExtResource("3_36p7d")]
+visible = false

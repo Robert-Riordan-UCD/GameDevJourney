@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://3py6rnhkb2e7"]
+[gd_scene load_steps=9 format=3 uid="uid://3py6rnhkb2e7"]
 
 [ext_resource type="Script" path="res://Player/Weapons/weapon.gd" id="1_ifc0f"]
 [ext_resource type="Texture2D" uid="uid://b3fnrewu0rl3l" path="res://Player/Sprites/WoodenWeapons.png" id="1_nc15d"]
@@ -10,10 +10,50 @@ height = 35.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_ujcp6"]
 radius = 72.5155
 
+[sub_resource type="Animation" id="Animation_rtckf"]
+resource_name = "idle"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -5), Vector2(0, 5), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_vja3l"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bq0q0"]
+_data = {
+"RESET": SubResource("Animation_vja3l"),
+"idle": SubResource("Animation_rtckf")
+}
+
 [node name="Weapon" type="Node2D"]
 script = ExtResource("1_ifc0f")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
 texture_filter = 1
 position = Vector2(12.5, 1.5)
 texture = ExtResource("1_nc15d")
@@ -21,19 +61,24 @@ offset = Vector2(0, -24)
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 48)
 
-[node name="HitBox" type="Area2D" parent="Sprite2D"]
+[node name="HitBox" type="Area2D" parent="Node2D/Sprite2D"]
 script = ExtResource("3_2h8ay")
 team = "player"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/HitBox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Sprite2D/HitBox"]
 position = Vector2(0, -24)
 shape = SubResource("CapsuleShape2D_1qg7j")
 disabled = true
 
-[node name="PickupArea" type="Area2D" parent="Sprite2D/HitBox"]
+[node name="PickupArea" type="Area2D" parent="Node2D/Sprite2D/HitBox"]
 collision_layer = 0
 collision_mask = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/HitBox/PickupArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Sprite2D/HitBox/PickupArea"]
 position = Vector2(-0.5, -23.5)
 shape = SubResource("CircleShape2D_ujcp6")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_bq0q0")
+}

@@ -8,16 +8,14 @@ scale = Vector2(2, 2)
 script = ExtResource("2_vex7l")
 stab_distance = 75.0
 
-[node name="Sprite2D" parent="." index="0"]
-position = Vector2(0, 8)
+[node name="Sprite2D" parent="Node2D" index="0"]
+position = Vector2(0, 7.5)
 rotation = 1.5708
 offset = Vector2(0, 0)
+flip_v = true
 region_rect = Rect2(64, 0, 16, 48)
 
-[node name="HitBox" parent="Sprite2D" index="0"]
-position = Vector2(1.04907e-06, 24)
+[node name="HitBox" parent="Node2D/Sprite2D" index="0"]
+position = Vector2(0.5, 6)
 damage = 8.0
 crit_damage = 12.0
-
-[node name="CollisionShape2D" parent="Sprite2D/HitBox" index="0"]
-position = Vector2(-0.500002, -40)

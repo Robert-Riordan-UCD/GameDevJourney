@@ -5,10 +5,14 @@ extends Node2D
 @export var held:bool = false
 
 @onready var attacking:bool = false
-@onready var hit_box:HitBox = $Sprite2D/HitBox
-@onready var collision_shape_2d: CollisionShape2D = $Sprite2D/HitBox/CollisionShape2D
-@onready var pickup_area:Area2D = $Sprite2D/HitBox/PickupArea
-@onready var sprite2d:Sprite2D = $Sprite2D
+@onready var hit_box:HitBox = $Node2D/Sprite2D/HitBox
+@onready var collision_shape_2d: CollisionShape2D = $Node2D/Sprite2D/HitBox/CollisionShape2D
+@onready var pickup_area:Area2D = $Node2D/Sprite2D/HitBox/PickupArea
+@onready var sprite2d:Sprite2D = $Node2D/Sprite2D
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+
+func _ready() -> void:
+	animation_player.play("idle")
 
 func _input(event: InputEvent) -> void:
 	if held and event.is_action_pressed("player_main_hand"):
@@ -41,6 +45,7 @@ func pickup(new_parent:Node) -> void:
 	if held: return
 	if get_parent(): get_parent().remove_child(self)
 	new_parent.add_child(self)
+	animation_player.stop()
 	transform.origin = Vector2.ZERO
 	scale /= 2 
 	held = true

@@ -4,6 +4,3 @@
 
 [node name="Sword" instance=ExtResource("1_8ec5k")]
 scale = Vector2(1.5, 1.5)
-
-[node name="Sprite2D" parent="." index="0"]
-position = Vector2(21.3333, 0)
