@@ -36,12 +36,15 @@ func _physics_process(_delta):
 
 func pickup(item) -> void:
 	if item is Weapon:
-		if main_hand_weapon:
-			main_hand_weapon.drop()
-			main_hand.remove_child(main_hand_weapon)
+		drop_items()
 		
 		item.pickup(main_hand)
 		main_hand_weapon = item
+
+func drop_items() -> void:
+	if main_hand_weapon:
+		main_hand_weapon.drop()
+		main_hand.remove_child(main_hand_weapon)
 
 func _on_health_damaged() -> void:
 	health_changed.emit(health.current_health, health.max_health)
@@ -50,6 +53,7 @@ func _on_health_damaged() -> void:
 
 func _on_health_died() -> void:
 	if dying: return
+	drop_items()
 	dying = true
 	_on_health_damaged()
 	animated_sprite_2d.play("death")
