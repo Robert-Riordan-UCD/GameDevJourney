@@ -1,0 +1,58 @@
+[gd_scene load_steps=5 format=3 uid="uid://bi5imobi2pou7"]
+
+[ext_resource type="Script" path="res://Utilites/Item.gd" id="1_4g8mb"]
+
+[sub_resource type="Animation" id="Animation_7kq2e"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationOffset:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_f871v"]
+resource_name = "idle"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationOffset:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -5), Vector2(0, 5), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_37jpy"]
+_data = {
+"RESET": SubResource("Animation_7kq2e"),
+"idle": SubResource("Animation_f871v")
+}
+
+[node name="Item" type="Node2D"]
+script = ExtResource("1_4g8mb")
+
+[node name="AnimationOffset" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="AnimationOffset"]
+z_index = 1
+texture_filter = 1
+
+[node name="PickupArea" type="Area2D" parent="AnimationOffset/Sprite2D"]
+collision_layer = 0
+collision_mask = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_37jpy")
+}

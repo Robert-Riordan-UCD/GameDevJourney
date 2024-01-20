@@ -49,6 +49,7 @@ func get_current_camera():
 	return null
 
 func drop_item(item_scene:PackedScene, pos:Vector2=Vector2.ZERO) -> void:
-	var item = item_scene.instantiate()
-	add_child(item)
+	var item:Item = item_scene.instantiate()
+	call_deferred("add_child", item)
 	item.global_position = pos
+	print("New ", item, " at ", item.global_position)

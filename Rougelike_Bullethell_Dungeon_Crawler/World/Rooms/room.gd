@@ -3,7 +3,7 @@ extends Node2D
 
 @export var num_enemies:int = 4
 @export var level:int = 1 
-@export_range(0, 1) var item_drop_chance:float = 0.2
+@export_range(0, 1) var item_drop_chance:float = 10.2
 
 var room_defeated:bool = false
 var exit = null
@@ -86,6 +86,7 @@ func unlock() -> void:
 	get_tree().call_group("bullet", "early_despawn")
 
 func spawn_random_item() -> void:
+	print("Droping item")
 	Utils.drop_item(items.pick_random(), global_position + spawn_area.get_random_point())
 
 func _on_player_dection_body_entered(_body: Node2D) -> void:
