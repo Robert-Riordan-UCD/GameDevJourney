@@ -3,6 +3,7 @@ extends Node2D
 
 @export var num_enemies:int = 4
 @export var level:int = 1 
+@export_range(0, 1) var item_drop_chance:float = 0.2
 
 var room_defeated:bool = false
 var exit = null
@@ -19,8 +20,10 @@ const bottom_spawn_limit:float = 288
 @onready var spawn_area:SpawnArea = $SpawnArea
 @onready var doors: Node2D = $Doors
 @onready var walls: StaticBody2D = $Walls
+@onready var items:Array[PackedScene] = [preload("res://Player/Weapons/sword.tscn"), preload("res://Player/Weapons/spear.tscn")]
 
 func _ready() -> void:
+	randomize()
 	for i in range(num_enemies):
 		spawn_new_enemy()
 
@@ -71,6 +74,8 @@ func _on_enemy_died() -> void:
 	num_enemies -= 1
 	if num_enemies <= 0:
 		unlock()
+		if randf() < item_drop_chance:
+			spawn_random_item()
 
 func unlock() -> void:
 	room_defeated = true
@@ -79,6 +84,11 @@ func unlock() -> void:
 	if exit:
 		exit.unlock()
 	get_tree().call_group("bullet", "early_despawn")
+
+func spawn_random_item() -> void:
+	var item = items.pick_random().instantiate()
+	item.global_position = global_position + spawn_area.get_random_point()
+	get_tree().root.add_child(item)
 
 func _on_player_dection_body_entered(_body: Node2D) -> void:
 	if not room_defeated:
