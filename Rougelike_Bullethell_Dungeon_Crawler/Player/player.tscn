@@ -223,6 +223,16 @@ max_health = 10.0
 [node name="Weapon" parent="." instance=ExtResource("7_bcly8")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+position_smoothing_speed = 15.0
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_left_margin = 0.1
+drag_top_margin = 0.1
+drag_right_margin = 0.1
+drag_bottom_margin = 0.1
+editor_draw_limits = true
+editor_draw_drag_margin = true
 
 [node name="Dash" type="Node2D" parent="." node_paths=PackedStringArray("player", "hurt_box")]
 script = ExtResource("8_lv11x")
