@@ -48,7 +48,8 @@ _data = {
 "idle": SubResource("Animation_rtckf")
 }
 
-[node name="Weapon" type="Node2D"]
+[node name="Weapon" type="Node2D" groups=["item"]]
+z_index = 1
 script = ExtResource("1_ifc0f")
 
 [node name="Node2D" type="Node2D" parent="."]

@@ -47,3 +47,8 @@ func get_current_camera():
 		if camera is Camera2D and camera.enabled:
 			return camera
 	return null
+
+func drop_item(item_scene:PackedScene, pos:Vector2=Vector2.ZERO) -> void:
+	var item = item_scene.instantiate()
+	add_child(item)
+	item.global_position = pos

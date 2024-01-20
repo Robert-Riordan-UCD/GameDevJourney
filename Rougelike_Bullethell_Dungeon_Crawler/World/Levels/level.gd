@@ -74,8 +74,13 @@ func screen_on() -> void:
 
 func clear_level() -> void:
 	for room in rooms.get_children():
-		room.remove_child(room)
+		rooms.remove_child(room)
 		room.queue_free()
+	
+	for item in get_tree().get_nodes_in_group("item"):
+		if not item.held:
+			item.get_parent().remove_child(item)
+			item.queue_free()
 
 func _next_level():
 	player.movement_blocked = true

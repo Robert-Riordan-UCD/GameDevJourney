@@ -37,8 +37,8 @@ func _physics_process(_delta):
 func pickup(item) -> void:
 	if item is Weapon:
 		if main_hand_weapon:
-			main_hand.remove_child(main_hand_weapon)
 			main_hand_weapon.drop()
+			main_hand.remove_child(main_hand_weapon)
 		
 		item.pickup(main_hand)
 		main_hand_weapon = item

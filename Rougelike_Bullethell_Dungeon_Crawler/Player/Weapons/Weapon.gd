@@ -52,9 +52,9 @@ func pickup(new_parent:Node) -> void:
 
 func drop() -> void:
 	if not held: return
+	Utils.drop_item(load(scene_file_path), global_position)
+	if get_parent(): get_parent().remove_child(self)
 	queue_free()
-	#scale *= 2 
-	#held = false
 
 func _set_flipped(f:bool) -> void:
 	sprite2d.position.x = -abs(sprite2d.position.x) if f else abs(sprite2d.position.x)

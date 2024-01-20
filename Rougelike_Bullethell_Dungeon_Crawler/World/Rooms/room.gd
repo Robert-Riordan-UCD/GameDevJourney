@@ -86,9 +86,7 @@ func unlock() -> void:
 	get_tree().call_group("bullet", "early_despawn")
 
 func spawn_random_item() -> void:
-	var item = items.pick_random().instantiate()
-	item.global_position = global_position + spawn_area.get_random_point()
-	get_tree().root.add_child(item)
+	Utils.drop_item(items.pick_random(), global_position + spawn_area.get_random_point())
 
 func _on_player_dection_body_entered(_body: Node2D) -> void:
 	if not room_defeated:
