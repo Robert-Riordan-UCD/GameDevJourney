@@ -9,7 +9,7 @@ var dying:bool = false
 var movement_blocked:bool = false
 
 @onready var animated_sprite_2d = $AnimatedSprite2D
-@onready var weapon:Sprite2D = $Weapon
+@onready var main_hand_weapon:Weapon = $MainHand.get_child(0)
 @onready var health:Health = $Health
 
 func _physics_process(_delta):
@@ -21,11 +21,7 @@ func _physics_process(_delta):
 	move_and_slide()
 
 	if speed_left:
-		if speed_left < 0:
-				weapon.position.x = -abs(weapon.position.x)
-		else:
-				weapon.position.x = abs(weapon.position.x)
-		weapon.flipped = speed_left < 0
+		main_hand_weapon.flipped = speed_left < 0
 		animated_sprite_2d.flip_h = speed_left < 0
 	
 	if velocity:
