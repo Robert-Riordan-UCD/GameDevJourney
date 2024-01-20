@@ -36,8 +36,11 @@ func _physics_process(_delta):
 func _on_health_damaged() -> void:
 	health_changed.emit(health.current_health, health.max_health)
 	ScreenShake.screen_shake(40, 75, 6)
+	$AnimationPlayer.play("hit")
 
 func _on_health_died() -> void:
+	if dying: return
 	dying = true
+	_on_health_damaged()
 	animated_sprite_2d.play("death")
 	health_changed.emit(health.current_health, health.max_health)
