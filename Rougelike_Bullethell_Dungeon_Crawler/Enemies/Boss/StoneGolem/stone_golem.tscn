@@ -1,7 +1,8 @@
-[gd_scene load_steps=75 format=3 uid="uid://nrfgwah0docv"]
+[gd_scene load_steps=80 format=3 uid="uid://nrfgwah0docv"]
 
 [ext_resource type="Script" path="res://Enemies/Boss/StoneGolem/stone_golem.gd" id="1_36wpp"]
 [ext_resource type="Texture2D" uid="uid://ikcpxrwrne70" path="res://Enemies/Boss/StoneGolem/Character_sheet.png" id="1_uhvlh"]
+[ext_resource type="Shader" uid="uid://bbfxv1jut6xej" path="res://Utilites/hit_flash.tres" id="2_c1rhx"]
 [ext_resource type="Script" path="res://Utilites/Health/health.gd" id="3_epiqq"]
 [ext_resource type="Script" path="res://Utilites/Hurtbox.gd" id="3_tug5w"]
 [ext_resource type="Script" path="res://Enemies/Boss/StoneGolem/StoneGolemStateMachine.gd" id="7_kle3x"]
@@ -13,6 +14,11 @@
 [ext_resource type="Script" path="res://Enemies/Boss/StoneGolem/Death.gd" id="12_hj7yt"]
 [ext_resource type="Script" path="res://Enemies/Boss/StoneGolem/RangeAttack.gd" id="12_ne06x"]
 [ext_resource type="PackedScene" uid="uid://pvsuvpa1bj8f" path="res://Utilites/Health/health_bar.tscn" id="13_mfc10"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6mily"]
+shader = ExtResource("2_c1rhx")
+shader_parameter/Enabled = true
+shader_parameter/ColorParameter = Color(1, 1, 1, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uto7t"]
 atlas = ExtResource("1_uhvlh")
@@ -464,12 +470,50 @@ radius = 18.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_70ci5"]
 radius = 24.0
 
+[sub_resource type="Animation" id="Animation_10awf"]
+resource_name = "hit"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/Enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_26p27"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/Enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_as12j"]
+_data = {
+"RESET": SubResource("Animation_26p27"),
+"hit": SubResource("Animation_10awf")
+}
+
 [node name="StoneGolem" type="CharacterBody2D"]
 scale = Vector2(2, 2)
 script = ExtResource("1_36wpp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
+material = SubResource("ShaderMaterial_6mily")
 sprite_frames = SubResource("SpriteFrames_aes7t")
 animation = &"ranged_attack"
 
@@ -522,6 +566,11 @@ damage = 2.0
 script = ExtResource("12_hj7yt")
 parent = NodePath("../..")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_as12j")
+}
+
 [node name="health_bar" parent="." node_paths=PackedStringArray("health") instance=ExtResource("13_mfc10")]
 offset_left = -25.0
 offset_top = -38.0
@@ -529,5 +578,6 @@ offset_right = 25.0
 offset_bottom = -33.0
 health = NodePath("../Health")
 
+[connection signal="damaged" from="Health" to="." method="_on_health_damaged"]
 [connection signal="died" from="Health" to="." method="_on_health_died"]
 [connection signal="done" from="StateMachine/RangeAttack/SweepBulletSpawner" to="StateMachine/RangeAttack" method="_on_sweep_bullet_spawner_done"]
