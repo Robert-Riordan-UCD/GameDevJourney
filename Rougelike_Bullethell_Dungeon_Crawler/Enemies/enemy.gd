@@ -5,8 +5,8 @@ signal died
 
 @export var bullet_spawner:BulletSpawner = null
 
-@export var start_time_offset_min:float = 1.6
-@export var start_time_offset_max:float = 0.2
+@export var start_time_offset_min:float = 0.2
+@export var start_time_offset_max:float = 1.6
 
 @export var movement_area:SpawnArea
 
@@ -14,12 +14,23 @@ signal died
 @onready var random_movement: Node2D = $RandomMovement
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
+@export var difficulty:int = 1
+
 var dying:bool = false
 
 func _ready() -> void:
 	randomize()
+	randomize_self()
 	setup_bullet_spawner()
 	random_movement.movement_area = movement_area
+
+func randomize_self() -> void:
+	random_movement.speed += randi_range(0, difficulty)
+	$Health.max_health += randi_range(0, difficulty)
+	$Health.current_health = $Health.max_health
+	bullet_spawner = Utils.new_random_bullet_spawner(difficulty)
+	start_time_offset_min *= max(0, (100.0-difficulty)/100)
+	start_time_offset_max *= max(0, (100.0-difficulty)/100)
 
 func _process(delta: float) -> void:
 	if dying: return

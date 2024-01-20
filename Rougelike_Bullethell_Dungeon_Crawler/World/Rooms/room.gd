@@ -2,6 +2,7 @@ class_name Room
 extends Node2D
 
 @export var num_enemies:int = 4
+@export var level:int = 1 
 
 var room_defeated:bool = false
 var exit = null
@@ -31,7 +32,7 @@ func spawn_new_enemy() -> void:
 	var new_enemy:Enemy = enemy_scene.instantiate()
 	new_enemy.scale /= scale
 	new_enemy.connect("died", _on_enemy_died)
-	new_enemy.bullet_spawner = Utils.new_random_bullet_spawner()
+	new_enemy.difficulty = level
 	new_enemy.movement_area = spawn_area
 	await get_tree().process_frame
 	enemies.add_child(new_enemy)

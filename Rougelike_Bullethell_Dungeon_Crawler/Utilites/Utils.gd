@@ -6,16 +6,16 @@ var burst_bullet_spawner_scene:PackedScene = preload("res://Bullets/burst_bullet
 func _ready() -> void:
 	randomize()
 
-func new_random_bullet_spawner() -> BulletSpawner:
+func new_random_bullet_spawner(difficulty:int) -> BulletSpawner:
 	match randi()%2:
-		0: return default_spawner()
-		1: return burst_spawner()
+		0: return default_spawner(difficulty)
+		1: return burst_spawner(difficulty)
 		_: return null
 
-func default_spawner() -> BulletSpawner:
+func default_spawner(difficulty:int) -> BulletSpawner:
 	var spawner:BulletSpawner = bullet_spawner_scene.instantiate()
 	
-	spawner.bullets_per_second = randf_range(2, 4)
+	spawner.bullets_per_second = randf_range(sqrt(float(difficulty)), 2*sqrt(float(difficulty)))
 	spawner.size = randf_range(0.8, 1.0)
 	spawner.bullets_per_gap = randi_range(4, 10)
 	spawner.rotation_speed = randf_range(PI/4, PI)
@@ -23,7 +23,7 @@ func default_spawner() -> BulletSpawner:
 	
 	return spawner
 
-func burst_spawner() -> BurstBulletSpawner:
+func burst_spawner(difficulty:int) -> BurstBulletSpawner:
 	var spawner:BurstBulletSpawner = burst_bullet_spawner_scene.instantiate()
 	
 	spawner.bullets_per_second = randf_range(8, 12)
@@ -31,8 +31,8 @@ func burst_spawner() -> BurstBulletSpawner:
 	spawner.rotation_speed = randf_range(0.5*PI, 1.5*PI)
 	spawner.bullet_speed = randf_range(75, 100)
 	
-	spawner.on_time = randf_range(0.3, 0.6)
-	spawner.off_time = randf_range(1.2, 2.0)
+	spawner.on_time = randf_range(0.3, 0.6)*sqrt(difficulty/4.0)
+	spawner.off_time = randf_range(1.2, 2.0)*max(0.5, (100.0-difficulty)/100.0)
 	
 	return spawner
 
