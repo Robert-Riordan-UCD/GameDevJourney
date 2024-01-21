@@ -20,6 +20,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id="Animation_f871v"]
 resource_name = "idle"
 length = 2.0
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -39,7 +40,7 @@ _data = {
 "idle": SubResource("Animation_f871v")
 }
 
-[node name="Item" type="Node2D"]
+[node name="Item" type="Node2D" groups=["item"]]
 script = ExtResource("1_6we7s")
 
 [node name="AnimationOffset" type="Node2D" parent="."]
