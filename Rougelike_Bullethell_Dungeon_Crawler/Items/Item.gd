@@ -9,6 +9,7 @@ extends Node2D
 
 func _ready() -> void:
 	assert(sprite_2d, "Item sprite not set")
+	animation_player.play("idle")
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("player_pickup") and not held:
@@ -28,5 +29,9 @@ func pickup(new_parent:Node) -> void:
 func drop() -> void:
 	if not held: return
 	Utils.drop_item(load(scene_file_path), global_position)
+	if get_parent(): get_parent().remove_child(self)
+	queue_free()
+
+func use(user:Node) -> void:
 	if get_parent(): get_parent().remove_child(self)
 	queue_free()

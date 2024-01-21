@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bi5imobi2pou7"]
 
-[ext_resource type="Script" path="res://Utilites/Item.gd" id="1_4g8mb"]
+[ext_resource type="Script" path="res://Items/Item.gd" id="1_6we7s"]
 
 [sub_resource type="Animation" id="Animation_7kq2e"]
 length = 0.001
@@ -40,7 +40,7 @@ _data = {
 }
 
 [node name="Item" type="Node2D"]
-script = ExtResource("1_4g8mb")
+script = ExtResource("1_6we7s")
 
 [node name="AnimationOffset" type="Node2D" parent="."]
 

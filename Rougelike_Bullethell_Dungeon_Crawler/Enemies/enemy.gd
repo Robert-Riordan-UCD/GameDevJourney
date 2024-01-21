@@ -10,11 +10,14 @@ signal died
 
 @export var movement_area:SpawnArea
 
+@export_range(0.0, 1.0) var item_drop_chance:float = 0.05
+@export var difficulty:int = 1
+
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var random_movement: Node2D = $RandomMovement
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var items:Array[PackedScene] = [preload("res://Items/health_potion.tscn")]
 
-@export var difficulty:int = 1
 
 var dying:bool = false
 
@@ -65,6 +68,8 @@ func _on_health_died() -> void:
 	_on_health_damaged()
 	dying = true
 	died.emit()
+	if randf() < item_drop_chance:
+		Utils.drop_item(items.pick_random(), global_position)
 	animated_sprite_2d.stop()
 	animated_sprite_2d.position.y -= 8
 	animated_sprite_2d.play("death")

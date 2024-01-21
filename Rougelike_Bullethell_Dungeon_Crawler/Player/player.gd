@@ -40,6 +40,9 @@ func pickup(item) -> void:
 		
 		item.pickup(main_hand)
 		main_hand_weapon = item
+	else:
+		print("Using ", item)
+		item.use(self)
 
 func drop_items() -> void:
 	if main_hand_weapon:

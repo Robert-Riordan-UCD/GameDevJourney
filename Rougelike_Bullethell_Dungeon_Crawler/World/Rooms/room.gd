@@ -3,7 +3,7 @@ extends Node2D
 
 @export var num_enemies:int = 4
 @export var level:int = 1 
-@export_range(0, 1) var item_drop_chance:float = 10.2
+@export_range(0, 1) var item_drop_chance:float = 0.2
 
 var room_defeated:bool = false
 var exit = null

@@ -6,9 +6,6 @@ extends Item
 @onready var attacking:bool = false
 @onready var hit_box_collision:CollisionShape2D = $AnimationOffset/Sprite2D/HitBox/CollisionShape2D
 
-func _ready() -> void:
-	animation_player.play("idle")
-
 func _input(event: InputEvent) -> void:
 	if held and event.is_action_pressed("player_main_hand"):
 		attack()
