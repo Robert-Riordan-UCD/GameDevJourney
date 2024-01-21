@@ -31,11 +31,17 @@ func early_despawn():
 	despwan()
 
 func _on_despawn_box_body_entered(_body: Node2D) -> void:
-	despwan()
+	despwan(_body is Player)
 
-func despwan() -> void:
+func despwan(explode:bool=false) -> void:
 	if despawning: return
 	despawning = true
+	
+	if explode:
+		$Sprite2D.visible = false
+		$CPUParticles2D.emitting = true
+		await $CPUParticles2D.finished
+	
 	get_parent().call_deferred("remove_child", self)
 	queue_free()
 	
