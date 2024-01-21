@@ -40,6 +40,11 @@ layout_mode = 2
 text = "Mecha-Stone Golem - https://darkpixel-kronovi.itch.io/mecha-golem-free"
 horizontal_alignment = 1
 
+[node name="Label3" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Urban Assault Music Pack - https://blips.fm/urban-assault"
+horizontal_alignment = 1
+
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
