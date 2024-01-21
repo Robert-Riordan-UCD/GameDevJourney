@@ -22,6 +22,7 @@ func _input(event: InputEvent) -> void:
 		button_timer.start()
 
 func _on_play_button_pressed():
+	MusicBus.set_intensity(1)
 	SceneTransition.change_scene("res://World/Levels/level.tscn")
 
 func _on_credit_button_pressed() -> void:

@@ -21,6 +21,7 @@ Utils="*res://Utilites/Utils.gd"
 ScreenShake="*res://Utilites/ScreenShake.gd"
 DamageNumbers="*res://Utilites/damage_numbers.gd"
 SceneTransition="*res://GUI/SceneTransition.tscn"
+MusicBus="*res://Utilites/Audio/MusicBus.tscn"
 
 [input]
 

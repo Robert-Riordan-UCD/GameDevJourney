@@ -1,0 +1,30 @@
+[gd_scene load_steps=8 format=3 uid="uid://b0kq7ftix4pfd"]
+
+[ext_resource type="Script" path="res://Utilites/Audio/MusicBus.gd" id="1_6g1wr"]
+[ext_resource type="AudioStream" uid="uid://ch2nvnpyvjisc" path="res://Utilites/Audio/Track_1_Layer_1.wav" id="2_ursls"]
+[ext_resource type="Script" path="res://Utilites/Audio/Layer.gd" id="3_isnnq"]
+[ext_resource type="AudioStream" uid="uid://375ubak6bcyr" path="res://Utilites/Audio/Track_1_Layer_2.wav" id="4_ejt8e"]
+[ext_resource type="AudioStream" uid="uid://bu1b11q0mt77x" path="res://Utilites/Audio/Track_1_Layer_3.wav" id="5_il5wu"]
+[ext_resource type="AudioStream" uid="uid://db3vpij4e7406" path="res://Utilites/Audio/Win.wav" id="6_r45w7"]
+[ext_resource type="AudioStream" uid="uid://gcin452nkhvt" path="res://Utilites/Audio/Lose.wav" id="7_bdh4n"]
+
+[node name="MusicBus" type="Node2D"]
+script = ExtResource("1_6g1wr")
+
+[node name="Layer1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_ursls")
+script = ExtResource("3_isnnq")
+
+[node name="Layer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_ejt8e")
+script = ExtResource("3_isnnq")
+
+[node name="Layer3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_il5wu")
+script = ExtResource("3_isnnq")
+
+[node name="Win" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_r45w7")
+
+[node name="Lose" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_bdh4n")

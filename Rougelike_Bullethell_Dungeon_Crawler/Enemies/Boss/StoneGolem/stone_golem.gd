@@ -6,6 +6,7 @@ extends Boss
 
 func activate() -> void:
 	state_machine.change_state("Move")
+	MusicBus.set_intensity(3)
 
 func _on_health_damaged() -> void:
 	animation_player.play("hit")
@@ -16,3 +17,4 @@ func _on_health_died() -> void:
 	_dying = true
 	died.emit()
 	await state_machine.change_state("Death")
+	MusicBus.set_intensity(1)

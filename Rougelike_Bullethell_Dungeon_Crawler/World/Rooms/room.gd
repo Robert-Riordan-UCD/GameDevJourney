@@ -57,6 +57,7 @@ func set_final_room() -> void:
 
 func add_boss() -> void:
 	await get_tree().process_frame
+	MusicBus.set_intensity(2)
 	for enemy in enemies.get_children():
 		enemies.remove_child(enemy)
 		enemy.queue_free()
