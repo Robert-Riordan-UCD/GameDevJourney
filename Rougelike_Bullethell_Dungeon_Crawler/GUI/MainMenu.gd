@@ -25,6 +25,9 @@ func _on_play_button_pressed():
 	MusicBus.set_intensity(1)
 	SceneTransition.change_scene("res://World/Levels/level.tscn")
 
+func _on_settings_button_pressed() -> void:
+	SceneTransition.change_scene("res://GUI/settings.tscn")
+
 func _on_credit_button_pressed() -> void:
 	SceneTransition.change_scene("res://GUI/Credits.tscn")
 
