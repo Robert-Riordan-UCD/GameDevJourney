@@ -3,6 +3,7 @@ extends Node2D
 @export var level:int = 1
 @export var level_transtion_time:float = 1.0
 @export var boss_level:int = 5
+@export var final_level:int = 15
 
 @onready var room_scene:PackedScene = preload("res://World/Rooms/room.tscn")
 @onready var rooms:Node2D = $Rooms
@@ -87,6 +88,9 @@ func _next_level():
 	await screen_off()
 	clear_level()
 	level += 1
+	if level > final_level:
+		SceneTransition.change_scene("res://GUI/win_screen.tscn")
+		return
 	player.global_position = Vector2.ZERO
 	await get_tree().process_frame
 	generate_level()
