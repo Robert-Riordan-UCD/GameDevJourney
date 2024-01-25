@@ -263,6 +263,7 @@ theme_override_constants/margin_top = 10
 [node name="health_bar" parent="CanvasLayer/MarginContainer" node_paths=PackedStringArray("health") instance=ExtResource("9_vqcyb")]
 layout_mode = 2
 size_flags_vertical = 1
+mouse_filter = 1
 health = NodePath("../../../Health")
 
 [connection signal="damaged" from="Health" to="." method="_on_health_damaged"]

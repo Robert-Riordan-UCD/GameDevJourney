@@ -2,6 +2,7 @@ class_name Player
 extends CharacterBody2D
 
 signal health_changed(health:int, max_health:int)
+signal died
 
 @export var player_speed:float = 450.0
 
@@ -13,6 +14,7 @@ var main_hand_weapon:Weapon = null
 @onready var main_hand: Node2D = $MainHand
 @onready var health:Health = $Health
 const SWORD = preload("res://Player/Weapons/sword.tscn")
+const GAME_OVER = preload("res://GUI/game_over.tscn")
 
 func _ready() -> void:
 	pickup(SWORD.instantiate())
@@ -60,4 +62,5 @@ func _on_health_died() -> void:
 	dying = true
 	_on_health_damaged()
 	animated_sprite_2d.play("death")
-	health_changed.emit(health.current_health, health.max_health)
+	await animated_sprite_2d.animation_finished
+	died.emit()

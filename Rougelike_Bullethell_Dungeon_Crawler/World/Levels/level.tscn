@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://demy2evdrn76p"]
+[gd_scene load_steps=6 format=3 uid="uid://demy2evdrn76p"]
 
 [ext_resource type="Script" path="res://World/Levels/level.gd" id="1_1owfd"]
 [ext_resource type="PackedScene" uid="uid://dtrrrhcfme7or" path="res://Player/player.tscn" id="2_a80em"]
 [ext_resource type="PackedScene" uid="uid://b2ajorl26275p" path="res://GUI/pause_menu.tscn" id="3_36p7d"]
+[ext_resource type="PackedScene" uid="uid://dcs7yxr268loo" path="res://GUI/game_over.tscn" id="4_vvrfe"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_domg4"]
 font_size = 24
@@ -45,3 +46,7 @@ color = Color(0, 0, 0, 0)
 
 [node name="PauseMenu" parent="GUI" instance=ExtResource("3_36p7d")]
 visible = false
+
+[node name="GameOver" parent="GUI" instance=ExtResource("4_vvrfe")]
+
+[connection signal="died" from="Player" to="GUI/GameOver" method="game_over"]
