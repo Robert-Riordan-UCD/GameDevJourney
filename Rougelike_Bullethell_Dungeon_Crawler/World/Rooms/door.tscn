@@ -1,7 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://38e2y0xeq3me"]
+[gd_scene load_steps=3 format=3 uid="uid://38e2y0xeq3me"]
 
 [ext_resource type="Script" path="res://World/Rooms/door.gd" id="1_74a14"]
+[ext_resource type="AudioStream" uid="uid://clonyytkblbwt" path="res://World/Rooms/zapsplat_foley_rubble_rock_pick_up_from_pile_002_108153.mp3" id="2_6t2vk"]
 
 [node name="Door" type="StaticBody2D"]
 collision_mask = 5
 script = ExtResource("1_74a14")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_6t2vk")

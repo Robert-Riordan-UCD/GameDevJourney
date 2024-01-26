@@ -86,6 +86,15 @@ func unlock() -> void:
 		exit.unlock()
 	get_tree().call_group("bullet", "early_despawn")
 
+func unlock_instant() -> void:
+	room_defeated = true
+	for door in doors.get_children():
+		door.unlock_instant()
+	if exit:
+		exit.unlock_instant()
+	get_tree().call_group("bullet", "early_despawn")
+
+
 func spawn_random_item() -> void:
 	print("Droping item")
 	Utils.drop_item(items.pick_random(), global_position + spawn_area.get_random_point())

@@ -26,6 +26,17 @@ func unlock() -> void:
 		if child is CollisionShape2D:
 			child.set_deferred("disabled", true)
 
+func unlock_instant() -> void:
+	if is_wall: return
+	
+	for child in get_children():
+		if child is AnimatedSprite2D:
+			child.frame = child.sprite_frames.get_frame_count("unlock")-1
+	
+	for child in get_children():
+		if child is CollisionShape2D:
+			child.set_deferred("disabled", true)
+
 func lock() -> void:
 	if is_wall: return
 	animate(true)
@@ -35,6 +46,7 @@ func lock() -> void:
 			child.set_deferred("disabled", false)
 
 func animate(lock:bool=false) -> void:
+	$AudioStreamPlayer2D.play()
 	for child in get_children():
 		if child is AnimatedSprite2D:
 			if lock:

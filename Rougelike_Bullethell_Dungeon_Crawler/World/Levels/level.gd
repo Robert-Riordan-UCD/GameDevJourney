@@ -27,13 +27,11 @@ func generate_room_positions() -> Array[Vector2i]:
 	var room_positions:Array[Vector2i] = [next_room]
 	var directions:Array[Vector2i] = [Vector2i.UP, Vector2i.LEFT, Vector2i.DOWN, Vector2i.RIGHT]
 	var num_rooms:int = min(int(3.33*level)+randi_range(5, 6), 20)
-	print("Generating ", num_rooms, " rooms")
 	while true:
 		if room_positions.size() >= num_rooms: break
 		next_room = room_positions.pick_random() + directions.pick_random()
 		if next_room in room_positions: continue
 		room_positions.append(next_room)
-	print(room_positions)
 	return room_positions
 
 func generate_rooms_at_positions(room_positions:Array[Vector2i]) -> void:
@@ -43,7 +41,7 @@ func generate_rooms_at_positions(room_positions:Array[Vector2i]) -> void:
 		new_room.level = level
 		if pos == Vector2i.ZERO: new_room.num_enemies = 0
 		rooms.add_child(new_room)
-		if pos == Vector2i.ZERO: new_room.unlock()
+		if pos == Vector2i.ZERO: new_room.unlock_instant()
 		new_room.global_position = pos*ROOM_SIZE
 		for d in directions:
 			if not pos + d in room_positions:
