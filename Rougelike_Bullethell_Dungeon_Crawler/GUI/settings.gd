@@ -5,17 +5,21 @@ extends Control
 @onready var buttons:Array[Control] = [$Buttons/Volume/HSlider, $Buttons/BackButton]
 @onready var active_button:int = 0
 @onready var button_timer:Timer = $ButtonTimer
+@onready var click_sound_effect: AudioStreamPlayer = $ClickSoundEffect
 
 func _ready() -> void:
 	volume_slider.value = MusicBus.max_volume
 	MusicBus.set_intensity(1)
+	click_sound_effect.play()
 	buttons[active_button].call_deferred("grab_focus")
 
 func _on_h_slider_value_changed(value: float) -> void:
+	click_sound_effect.play()
 	MusicBus.update_max_volume(value)
 
 func _on_back_button_pressed() -> void:
 	MusicBus.set_intensity(0)
+	click_sound_effect.play()
 	SceneTransition.change_scene("res://GUI/MainMenu.tscn")
 
 func _input(event: InputEvent) -> void:

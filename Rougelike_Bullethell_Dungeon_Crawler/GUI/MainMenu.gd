@@ -3,6 +3,7 @@ extends Control
 @onready var buttons: VBoxContainer = $Buttons
 @onready var active_button:int = 0
 @onready var button_timer:Timer = $ButtonTimer
+@onready var click_sound_effect: AudioStreamPlayer = $ClickSoundEffect
 
 func _ready() -> void:
 	buttons.get_children()[active_button].call_deferred("grab_focus")
@@ -23,13 +24,17 @@ func _input(event: InputEvent) -> void:
 
 func _on_play_button_pressed():
 	MusicBus.set_intensity(1)
+	click_sound_effect.play()
 	SceneTransition.change_scene("res://World/Levels/level.tscn")
 
 func _on_settings_button_pressed() -> void:
+	click_sound_effect.play()
 	SceneTransition.change_scene("res://GUI/settings.tscn")
 
 func _on_credit_button_pressed() -> void:
+	click_sound_effect.play()
 	SceneTransition.change_scene("res://GUI/Credits.tscn")
 
 func _on_quit_button_pressed() -> void:
+	click_sound_effect.play()
 	get_tree().quit()

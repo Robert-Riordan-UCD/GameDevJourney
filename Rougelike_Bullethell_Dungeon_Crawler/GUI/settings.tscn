@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://tmf60ssbg0hv"]
+[gd_scene load_steps=5 format=3 uid="uid://tmf60ssbg0hv"]
 
 [ext_resource type="Script" path="res://GUI/settings.gd" id="1_xkw7m"]
+[ext_resource type="AudioStream" uid="uid://dx2kjuwdmuji3" path="res://GUI/click.mp3" id="2_qpjlk"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_yy2ru"]
 font_size = 64
@@ -88,6 +89,9 @@ text = "Back"
 [node name="ButtonTimer" type="Timer" parent="."]
 wait_time = 0.2
 one_shot = true
+
+[node name="ClickSoundEffect" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_qpjlk")
 
 [connection signal="value_changed" from="Buttons/Volume/HSlider" to="." method="_on_h_slider_value_changed"]
 [connection signal="pressed" from="Buttons/BackButton" to="." method="_on_back_button_pressed"]

@@ -4,6 +4,7 @@ extends Control
 @onready var buttons:VBoxContainer = $Buttons
 @onready var active_button:int = 0
 @onready var button_timer:Timer = $ButtonTimer
+@onready var click_sound_effect: AudioStreamPlayer = $ClickSoundEffect
 
 func _ready() -> void:
 	unpause()
@@ -41,11 +42,14 @@ func _input(event: InputEvent) -> void:
 		button_timer.start()
 
 func _on_play_button_pressed() -> void:
+	click_sound_effect.play()
 	unpause()
 
 func _on_menu_button_pressed() -> void:
 	get_tree().paused = false
+	click_sound_effect.play()
 	SceneTransition.change_scene("res://GUI/MainMenu.tscn")
 
 func _on_quit_button_pressed() -> void:
+	click_sound_effect.play()
 	get_tree().quit()

@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://b2ajorl26275p"]
+[gd_scene load_steps=4 format=3 uid="uid://b2ajorl26275p"]
 
 [ext_resource type="Script" path="res://GUI/pause_menu.gd" id="1_uwnx4"]
+[ext_resource type="AudioStream" uid="uid://dx2kjuwdmuji3" path="res://GUI/click.mp3" id="2_l7pkj"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_a7kqo"]
 font_size = 64
@@ -74,6 +75,9 @@ text = "Quit
 [node name="ButtonTimer" type="Timer" parent="."]
 wait_time = 0.2
 one_shot = true
+
+[node name="ClickSoundEffect" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_l7pkj")
 
 [connection signal="pressed" from="Buttons/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="Buttons/MenuButton" to="." method="_on_menu_button_pressed"]
