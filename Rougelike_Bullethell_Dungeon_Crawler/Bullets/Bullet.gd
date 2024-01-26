@@ -11,8 +11,10 @@ var direction:Vector2 = Vector2.RIGHT
 @onready var despawn_timer = $DespawnTimer
 @onready var hit_box: HitBox = $HitBox
 @onready var despawning:bool = false
+@onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 func _ready():
+	audio_stream_player_2d.play()
 	despawn_timer.wait_time = lifetime
 	despawn_timer.start()
 	
@@ -35,6 +37,7 @@ func _on_despawn_box_body_entered(_body: Node2D) -> void:
 
 func despwan(explode:bool=false) -> void:
 	if despawning: return
+	audio_stream_player_2d.play()
 	despawning = true
 	
 	if explode:
