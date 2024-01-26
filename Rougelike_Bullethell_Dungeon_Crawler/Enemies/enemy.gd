@@ -63,6 +63,7 @@ func spawn_self() -> void:
 
 func _on_health_damaged() -> void:
 	animation_player.play("hit")
+	$HitSound.play()
 
 func _on_health_died() -> void:
 	if dying: return

@@ -13,7 +13,6 @@ func _ready() -> void:
 
 func fade_in() -> void:
 	if current_state == State.FADING: return
-	print("Fading in ", name)
 	current_state = State.FADING
 	
 	var tween:Tween = create_tween()
@@ -24,7 +23,6 @@ func fade_in() -> void:
 
 func fade_out() -> void:
 	if current_state == State.FADING: return
-	print("Fading out ", name)
 	current_state = State.FADING
 	
 	var tween:Tween = create_tween()

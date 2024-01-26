@@ -21,11 +21,9 @@ func set_intensity(new_intensity:int) -> void:
 	
 	for i in range(new_intensity):
 		layers[i].fade_in()
-		print("Fade in layer ", i)
 
 	for i in range(new_intensity, 3):
 		layers[i].fade_out()
-		print("Fade out layer ", i)
 
 func update_max_volume(new_value:int) -> void:
 	max_volume = new_value

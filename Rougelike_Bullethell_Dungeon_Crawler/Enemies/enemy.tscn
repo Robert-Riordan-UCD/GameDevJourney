@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://dmx33r6xnsopf"]
+[gd_scene load_steps=37 format=3 uid="uid://dmx33r6xnsopf"]
 
 [ext_resource type="Script" path="res://Enemies/enemy.gd" id="1_poh43"]
 [ext_resource type="Texture2D" uid="uid://cjetnupabcr2" path="res://Enemies/Sprites/Skeleton/Idle-Sheet.png" id="1_slv70"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://pvsuvpa1bj8f" path="res://Utilites/Health/health_bar.tscn" id="8_ykc7f"]
 [ext_resource type="AudioStream" uid="uid://jnrbntkdx408" path="res://Enemies/Audio/skeleton_spawn.mp3" id="10_52oqr"]
 [ext_resource type="AudioStream" uid="uid://dphvy7wldrmrd" path="res://Enemies/Audio/skeleton_death.mp3" id="11_yw0yc"]
+[ext_resource type="AudioStream" uid="uid://cjvx3s8qo6iai" path="res://Enemies/Audio/hit.mp3" id="12_wu05s"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1ip07"]
 resource_local_to_scene = true
@@ -256,11 +257,15 @@ libraries = {
 
 [node name="NoticePlayerSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("10_52oqr")
-volume_db = 10.0
+volume_db = 6.0
 
 [node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("11_yw0yc")
-volume_db = 10.0
+volume_db = 6.0
+
+[node name="HitSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_wu05s")
+volume_db = 6.0
 
 [connection signal="damaged" from="Health" to="." method="_on_health_damaged"]
 [connection signal="died" from="Health" to="." method="_on_health_died"]
