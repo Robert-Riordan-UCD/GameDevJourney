@@ -55,6 +55,7 @@ func setup_bullet_spawner() -> void:
 
 func spawn_self() -> void:
 	await get_tree().create_timer(randf_range(start_time_offset_min, start_time_offset_max)).timeout
+	$NoticePlayerSound.play()
 	animated_sprite_2d.play_backwards("death")
 	await animated_sprite_2d.animation_finished
 	animated_sprite_2d.position.y += 8
@@ -66,6 +67,7 @@ func _on_health_damaged() -> void:
 func _on_health_died() -> void:
 	if dying: return
 	_on_health_damaged()
+	$DeathSound.play()
 	dying = true
 	died.emit()
 	if randf() < item_drop_chance:
