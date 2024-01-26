@@ -29,3 +29,4 @@ shape = SubResource("CircleShape2D_4b7yd")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AnimationOffset/Sprite2D/HitBox" index="0"]
 position = Vector2(-6.55671e-07, -15)
 shape = SubResource("CapsuleShape2D_58uip")
+disabled = true
