@@ -13,6 +13,10 @@ func enter() -> void:
 	parent.animated_sprite_2d.play("idle")
 	parent.animated_sprite_2d.flip_h = target.x < parent.position.x
 
+func exit() -> void:
+	exiting = true
+	print("Exit Move")
+
 func physics_update(delta:float) -> void:
 	parent.position += speed*delta*parent.position.direction_to(target)
 	if not exiting and parent.position.distance_to(target) < 10:

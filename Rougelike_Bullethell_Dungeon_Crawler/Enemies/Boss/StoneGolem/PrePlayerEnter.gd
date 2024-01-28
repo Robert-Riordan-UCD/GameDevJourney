@@ -10,6 +10,7 @@ func enter() -> void:
 func exit() -> void:
 	parent.animated_sprite_2d.play_backwards("death")
 	await parent.animated_sprite_2d.animation_finished
+	print("Exit PrePlayerEnter")
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is Player:

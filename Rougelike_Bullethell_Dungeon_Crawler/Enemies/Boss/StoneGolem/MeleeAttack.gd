@@ -6,11 +6,13 @@ extends State
 @export var floor_time:float = 0.2
 @export var rise_time:float = 0.8
 
+@onready var tween:Tween
+
 func enter() -> void:
 	parent.animated_sprite_2d.play("slam")
 	await parent.animated_sprite_2d.animation_finished
 	
-	var tween:Tween = create_tween()
+	tween = create_tween()
 	tween.tween_property(parent.animated_sprite_2d, "position", position+Vector2(0, slam_dist), slam_time).set_trans(Tween.TRANS_EXPO)
 	await tween.finished
 	
@@ -22,6 +24,10 @@ func enter() -> void:
 	
 	parent.animated_sprite_2d.play_backwards("slam")
 	parent.animated_sprite_2d.animation_finished.connect(done)
+
+func exit() -> void:
+	tween.stop()
+	print("Exit Melee")
 
 func done() -> void:
 	transition.emit("Move")

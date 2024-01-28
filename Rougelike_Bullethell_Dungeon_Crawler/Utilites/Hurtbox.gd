@@ -1,7 +1,7 @@
 class_name HurtBox
 extends Area2D
 
-@export var parent:Node
+@export var parent:Health
 @export var team:String = 'enemy'
 @export var invincibility_time:float = 0.2
 @export var active:bool = true

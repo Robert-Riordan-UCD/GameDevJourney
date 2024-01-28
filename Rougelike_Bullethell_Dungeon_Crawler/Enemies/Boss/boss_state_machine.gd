@@ -25,7 +25,7 @@ func _physics_process(delta: float) -> void:
 		current_state.physics_update(delta)
 
 func change_state(state:String) -> void:
-	print("Chaning state to ", state)
+	print("Changing state to ", state)
 	if current_state and state == current_state.name: return
 	if current_state and current_state.final: return
 	
@@ -34,6 +34,6 @@ func change_state(state:String) -> void:
 	
 	if current_state:
 		await current_state.exit()
-	await new_state.enter()
-	print("Succesfully changed state: ", state)
 	current_state = new_state
+	await new_state.enter()
+	print("--Succesfully changed state: ", state)
